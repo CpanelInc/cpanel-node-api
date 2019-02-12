@@ -1,0 +1,37 @@
+{
+  "name": "@cpanel/api",
+  "version": "0.0.1",
+  "description": "cPanel Api JavaScript and TypeScript libraries",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "link:cpanel": "yarn link && cd /usr/local/cpanel/base/frontend/paper_lantern/ng-apps-src/ && yarn link \"@cpanel/api\"",
+    "link:webmail": "yarn link && cd /usr/local/cpanel/base/webmail/paper_lantern/ng-apps-src/ && yarn link \"@cpanel/api\"",
+    "link:whm": "yarn link && cd /usr/local/cpanel/whostmgr/docroot/templates/ng-apps-src/ && yarn link \"@cpanel/api\""
+  },
+  "repository": "ssh://git@enterprise.cpanel.net:7999/cn/api.git",
+  "author": "Team Phoenix @ cPanel",
+  "contributors": [
+    "Aneece Yazdani <aneece@cpanel.net>",
+    "Sruthi Sanigarapu <sruthi@cpanel.net>",
+    "Thomas Green <tomg@cpanel.net>"
+  ],
+  "license": "SEE LICENSE IN LICENSE",
+  "devDependencies": {
+    "readme-generator": "^1.0.1"
+  },
+  "publishConfig": {
+    "registry": "npm.dev.cpanel.net:80"
+  },
+  "keywords": [
+    "api",
+    "uapi",
+    "whmapi"
+  ],
+  "dependencies": {
+    "@types/jasmine": "2.6.0",
+    "@types/node": "8.0.31",
+    "jasmine": "2.8.0",
+    "typescript": "3.2.2"
+  }
+}

@@ -1,4 +1,4 @@
-# api
+# @cpanel/api
 
 > cPanel Api JavaScript and TypeScript libraries
 

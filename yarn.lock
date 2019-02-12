@@ -7,6 +7,11 @@
   resolved "http://npm.dev.cpanel.net/@types%2fjasmine/-/jasmine-2.6.0.tgz#997b41a27752b4850af2683bc4a8d8222c25bd02"
   integrity sha512-1ZZdFvYA5zARDXPj5+VF0bwDZWH/o0QQWJVDc5srdC/DngcCZXskR33eR/4PielGvBjLQpQOd6KiQbmtqVkeZA==
 
+"@types/lodash@^4.14.121":
+  version "4.14.121"
+  resolved "http://npm.dev.cpanel.net/@types%2flodash/-/lodash-4.14.121.tgz#9327e20d49b95fc2bf983fc2f045b2c6effc80b9"
+  integrity sha512-ORj7IBWj13iYufXt/VXrCNMbUuCTJfhzme5kx9U/UtcIPdJYuvPDUAlHlbNhz/8lKCLy9XGIZnGrqXOtQbPGoQ==
+
 "@types/node@8.0.31":
   version "8.0.31"
   resolved "http://npm.dev.cpanel.net/@types%2fnode/-/node-8.0.31.tgz#d9af61093cf4bfc9f066ca34de0175012cfb0ce9"
@@ -953,6 +958,11 @@ load-pkg@^3.0.1:
   integrity sha1-kjCzfsBOVpADBgvFiVHj7VCNWU8=
   dependencies:
     find-pkg "^0.1.0"
+
+lodash@^4.17.11:
+  version "4.17.11"
+  resolved "http://npm.dev.cpanel.net/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
+  integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
 
 log-ok@^0.1.1:
   version "0.1.1"

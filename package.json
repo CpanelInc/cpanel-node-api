@@ -31,8 +31,10 @@
   ],
   "dependencies": {
     "@types/jasmine": "2.6.0",
+    "@types/lodash": "^4.14.121",
     "@types/node": "8.0.31",
     "jasmine": "2.8.0",
+    "lodash": "^4.17.11",
     "typescript": "3.2.2"
   }
 }

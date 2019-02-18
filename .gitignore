@@ -1,3 +1,5 @@
-dist/
 node_modules/
 yarn-error.log
+*.d.ts
+*.js
+*.js.map

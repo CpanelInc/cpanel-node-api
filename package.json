@@ -2,9 +2,10 @@
   "name": "@cpanel/api",
   "version": "0.0.1",
   "description": "cPanel Api JavaScript and TypeScript libraries",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "test": "yarn run build && jasmine **/*.spec.js",
     "link:cpanel": "yarn link && cd /usr/local/cpanel/base/frontend/paper_lantern/ng-apps-src/ && yarn link \"@cpanel/api\"",
     "link:webmail": "yarn link && cd /usr/local/cpanel/base/webmail/paper_lantern/ng-apps-src/ && yarn link \"@cpanel/api\"",
     "link:whm": "yarn link && cd /usr/local/cpanel/whostmgr/docroot/templates/ng-apps-src/ && yarn link \"@cpanel/api\""

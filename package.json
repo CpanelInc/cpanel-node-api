@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "docs": "compodoc -p tsconfig.json",
     "test": "yarn run build && jasmine **/*.spec.js",
     "link:cpanel": "yarn link && cd /usr/local/cpanel/base/frontend/paper_lantern/ng-apps-src/ && yarn link \"@cpanel/api\"",
     "link:webmail": "yarn link && cd /usr/local/cpanel/base/webmail/paper_lantern/ng-apps-src/ && yarn link \"@cpanel/api\"",
@@ -19,6 +20,7 @@
   ],
   "license": "SEE LICENSE IN LICENSE",
   "devDependencies": {
+    "compodoc": "^0.0.41",
     "readme-generator": "^1.0.1"
   },
   "publishConfig": {

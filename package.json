@@ -3,6 +3,15 @@
   "version": "0.0.1",
   "description": "cPanel Api JavaScript and TypeScript libraries",
   "main": "index.js",
+  "files": [
+    "*.d.ts",
+    "*.js",
+    "*.map.js",
+    "**/*.d.ts",
+    "**/*.js",
+    "**/*.map.js",
+    "documentation/**/*"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "docs": "compodoc -p tsconfig.json",

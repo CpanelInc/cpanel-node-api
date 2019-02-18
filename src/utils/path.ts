@@ -1,20 +1,4 @@
-export class LocationService {
-    public get pathname(): string {
-        return window.location.pathname;
-    }
-
-    public get port(): string {
-        return window.location.port;
-    }
-
-    public get hostname(): string {
-        return window.location.hostname;
-    }
-
-    public get protocol(): string {
-        return window.location.protocol;
-    }
-}
+import { LocationService } from './location-service';
 
 /**
  * Check if the protocol is https.
@@ -78,52 +62,55 @@ const PortToApplicationMap: PortNameMap = {
     'webmail': 'webmail'
 };
 
+/**
+ * Helper class used to calculate paths within cpanel applications.
+ */
 export class ApplicationPath {
     private unprotectedPaths = ['/resetpass', '/invitation'];
 
     /**
-     * @property {string} [applicationName] Name of the application
+     * Name of the application
      */
     applicationName: string;
     /**
-    * @property {string} [protocol] Protocol used to access the page.
+    * Protocol used to access the page.
     */
     protocol: string;
     /**
-     * @property {number} [port] Port used to access the product.
+     * Port used to access the product.
      */
     port: number;
     /**
-     * @property {string} [path] Path part of the url
+     * Path part of the url
      */
     path: string;
     /**
-     * @property {string} [domain] Domain used to access the page.
+     * Domain used to access the page.
      */
     domain: string;
 
     /**
-     * @property {string} [session] Session token
+     *Session token
      */
     securityToken: string;
 
     /**
-     * @property {string} [applicationPath] The path to the application.
+     * The path to the application.
      */
     applicationPath: string;
 
     /**
-     * @property {string} [theme] The name of the theme in the path
+     * The name of the theme in the path
      */
     theme: string;
 
     /**
-     * @property {string} [themePath] The theme path
+     * The theme path
      */
     themePath: string;
 
     /**
-     * @property {string} [rootUrl] Just the protocol, domain and port
+     * Just the protocol, domain and port
      */
     rootUrl: string;
 
@@ -195,7 +182,6 @@ export class ApplicationPath {
     /**
      * Return whether we are running inside some other framework or application
      *
-     * @method isOther
      * @return {boolean} true if this is an unrecognized application or framework; false otherwise
      */
     get isOther(): boolean {
@@ -205,7 +191,6 @@ export class ApplicationPath {
     /**
      * Return whether we are running inside an unprotected path
      *
-     * @method isUnprotected
      * @return {boolean} true if this is unprotected; false otherwise
      */
     get isUnprotected(): boolean {
@@ -215,7 +200,6 @@ export class ApplicationPath {
     /**
      * Return whether we are running inside cpanel or something else (e.g., WHM)
      *
-     * @method isCpanel
      * @return {boolean} true if this is cpanel; false otherwise
      */
     get isCpanel(): boolean {
@@ -225,7 +209,6 @@ export class ApplicationPath {
     /**
      * Return whether we are running inside WHM or something else (e.g., whm)
      *
-     * @method isWhm
      * @return {boolean} true if this is whm; false otherwise
      */
     get isWhm(): boolean {

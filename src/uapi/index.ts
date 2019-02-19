@@ -1,7 +1,8 @@
-import * as request from './request';
-//import * as response from './response';
+export {
+    UapiRequest
+} from './request';
 
 export {
-    request,
-    //response,
-};
+    UapiResponse,
+    UapiMetaData,
+} from './response';

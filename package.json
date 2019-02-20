@@ -3,9 +3,20 @@
   "version": "0.0.1",
   "description": "cPanel Api JavaScript and TypeScript libraries",
   "main": "index.js",
+  "files": [
+    "*.d.ts",
+    "*.js",
+    "*.map.js",
+    "**/*.d.ts",
+    "**/*.js",
+    "**/*.map.js",
+    "documentation/**/*"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "yarn run build && jasmine **/*.spec.js",
+    "docs": "compodoc -p tsconfig.json",
+    "serve-docs": "yarn run docs && http-server ./documentation -p 8081",
+    "test": "yarn run build && jasmine '**/*.spec.js'",
     "link:cpanel": "yarn link && cd /usr/local/cpanel/base/frontend/paper_lantern/ng-apps-src/ && yarn link \"@cpanel/api\"",
     "link:webmail": "yarn link && cd /usr/local/cpanel/base/webmail/paper_lantern/ng-apps-src/ && yarn link \"@cpanel/api\"",
     "link:whm": "yarn link && cd /usr/local/cpanel/whostmgr/docroot/templates/ng-apps-src/ && yarn link \"@cpanel/api\""
@@ -19,6 +30,8 @@
   ],
   "license": "SEE LICENSE IN LICENSE",
   "devDependencies": {
+    "compodoc": "^0.0.41",
+    "http-server": "^0.11.1",
     "readme-generator": "^1.0.1"
   },
   "publishConfig": {
@@ -31,8 +44,10 @@
   ],
   "dependencies": {
     "@types/jasmine": "2.6.0",
+    "@types/lodash": "^4.14.121",
     "@types/node": "8.0.31",
     "jasmine": "2.8.0",
+    "lodash": "^4.17.11",
     "typescript": "3.2.2"
   }
 }

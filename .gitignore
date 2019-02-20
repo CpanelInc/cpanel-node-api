@@ -1,4 +1,5 @@
 node_modules/
+documentation/
 yarn-error.log
 *.d.ts
 *.js

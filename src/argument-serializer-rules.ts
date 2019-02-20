@@ -47,7 +47,6 @@ export class DefaultArgumentSerializationRules {
             HttpVerb.HEAD
         ].forEach((verb: HttpVerb) => {
             let label = HttpVerb[verb].toString();
-            console.log(label);
             this.map[label] = {
                 verb: label,
                 dataInBody: false,

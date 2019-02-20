@@ -16,7 +16,7 @@
     "build": "tsc -p tsconfig.json",
     "docs": "compodoc -p tsconfig.json",
     "serve-docs": "yarn run docs && http-server ./documentation -p 8081",
-    "test": "yarn run build && jasmine **/*.spec.js",
+    "test": "yarn run build && jasmine '**/*.spec.js'",
     "link:cpanel": "yarn link && cd /usr/local/cpanel/base/frontend/paper_lantern/ng-apps-src/ && yarn link \"@cpanel/api\"",
     "link:webmail": "yarn link && cd /usr/local/cpanel/base/webmail/paper_lantern/ng-apps-src/ && yarn link \"@cpanel/api\"",
     "link:whm": "yarn link && cd /usr/local/cpanel/whostmgr/docroot/templates/ng-apps-src/ && yarn link \"@cpanel/api\""

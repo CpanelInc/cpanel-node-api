@@ -62,8 +62,8 @@ describe('Request derived object that implements generate', () => {
         });
         expect(request).toBeDefined();
         expect(request.config).toEqual({ analytics: false });
-        expect(request.namespace).toBe('');
-        expect(request.method).toBe('');
+        expect(request.namespace).toBe('test');
+        expect(request.method).toBe('test');
     });
 
     it('should accept an simple initialization object', () => {
@@ -101,9 +101,9 @@ describe('Request derived object that implements generate', () => {
         expect(request.config).toEqual({ json: true });
         expect(request.namespace).toBe('test');
         expect(request.method).toBe('get_tests');
-        expect(request.arguments).toEqual([]);
-        expect(request.sorts).toEqual([]);
-        expect(request.filters).toEqual([]);
+        expect(request.arguments).toEqual([new Argument( 'set', 'unit' )]);
+        expect(request.sorts).toEqual([new Sort( 'name', SortDirection.Ascending, SortType.Lexicographic )]);
+        expect(request.filters).toEqual([new Filter('enabled', FilterOperator.Equal, '1' )]);
         expect(request.columns).toEqual(['name', 'description', 'steps', 'set']);
         expect(request.pager as object).toEqual(jasmine.objectContaining({ page: 1, pageSize: 20 }));
     });
@@ -121,14 +121,14 @@ describe('Request derived object that implements generate', () => {
             request.addArgument({ name: 'set', value: 'unit' });
             expect(request.arguments).toBeDefined();
             expect(request.arguments.length).toBe(1);
-            expect(request.arguments[0]).toEqual({ name: 'set', value: 'unit' });
+            expect(request.arguments[0]).toEqual(new Argument( 'set', 'unit' ));
         });
 
         it('should add a name/value argument', () => {
             request.addArgument(new Argument('set', 'unit'));
             expect(request.arguments).toBeDefined();
             expect(request.arguments.length).toBe(1);
-            expect(request.arguments[0]).toEqual({ name: 'set', value: 'unit' });
+            expect(request.arguments[0]).toEqual(new Argument( 'set', 'unit' ));
         });
     })
 
@@ -145,14 +145,14 @@ describe('Request derived object that implements generate', () => {
             request.addSort({ column: 'name', direction: SortDirection.Descending, type: SortType.Lexicographic });
             expect(request.sorts).toBeDefined();
             expect(request.sorts.length).toBe(1);
-            expect(request.sorts[0]).toEqual({ column: 'name', direction: SortDirection.Descending, type: SortType.Lexicographic });
+            expect(request.sorts[0]).toEqual(new Sort( 'name', SortDirection.Descending, SortType.Lexicographic));
         });
 
         it('should sorting rule using object', () => {
             request.addSort(new Sort('name', SortDirection.Descending, SortType.Lexicographic));
             expect(request.sorts).toBeDefined();
             expect(request.sorts.length).toBe(1);
-            expect(request.sorts[0]).toEqual({ column: 'name', direction: SortDirection.Descending, type: SortType.Lexicographic });
+            expect(request.sorts[0]).toEqual(new Sort( 'name', SortDirection.Descending, SortType.Lexicographic ));
         });
     })
 
@@ -169,14 +169,14 @@ describe('Request derived object that implements generate', () => {
             request.addFilter({ column: 'enabled', operator: FilterOperator.Equal, value: Perl.fromBoolean(true) });
             expect(request.filters).toBeDefined();
             expect(request.filters.length).toBe(1);
-            expect(request.filters[0]).toEqual({ column: 'enabled', operator: FilterOperator.Equal, value: Perl.fromBoolean(true) });
+            expect(request.filters[0]).toEqual(new Filter('enabled', FilterOperator.Equal, Perl.fromBoolean(true)));
         });
 
         it('should filter using object', () => {
             request.addFilter(new Filter('enabled', FilterOperator.Equal, Perl.fromBoolean(true)));
             expect(request.filters).toBeDefined();
             expect(request.filters.length).toBe(1);
-            expect(request.filters[0]).toEqual({ column: 'enabled', operator: FilterOperator.Equal, value: Perl.fromBoolean(true) });
+            expect(request.filters[0]).toEqual(new Filter('enabled', FilterOperator.Equal, Perl.fromBoolean(true)));
         });
 
     })

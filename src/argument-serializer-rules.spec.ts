@@ -52,7 +52,7 @@ describe('ArgumentSerializationRules getRule()', () => {
     it('should return a predefined rule when passed an unrecognized verb', () => {
         const rule = argumentSerializationRules.getRule('CUSTOM');
         expect(rule).toBeDefined();
-        expect(rule.verb).toBe('CUSTOM')
+        expect(rule.verb).toBe('DEFAULT')
         expect(rule.dataInBody).toBe(true);
     })
 });

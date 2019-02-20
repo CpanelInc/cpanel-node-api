@@ -76,7 +76,7 @@ describe('UapiRequest', () => {
                     value: 'application/x-www-form-urlencoded'
                 }],
                 url: '/execute/test/get_tests',
-                body: `api.filter_column_0=id&api.filter_type_0=greater_than&api.filter_term_0=100`,
+                body: `api.filter_column_0=id&api.filter_type_0=gt&api.filter_term_0=100`,
             });
         });
 
@@ -104,7 +104,7 @@ describe('UapiRequest', () => {
                     value: 'application/x-www-form-urlencoded'
                 }],
                 url: '/execute/test/get_tests',
-                body: `api.filter_column_0=id&api.filter_type_0=greater_than&api.filter_term_0=100&api.filter_column_1=name&api.filter_type_1=contains&api.filter_term_1=unit%20test`,
+                body: `api.filter_column_0=id&api.filter_type_0=gt&api.filter_term_0=100&api.filter_column_1=name&api.filter_type_1=contains&api.filter_term_1=unit%20test`,
             });
         });
 

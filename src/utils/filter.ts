@@ -36,6 +36,11 @@ export enum FilterOperator {
     Equal,
 
     /**
+     * Column value not equal value
+     */
+    NotEqual,
+
+    /**
      * Column value is less than value
      */
     LessThan,
@@ -54,6 +59,16 @@ export enum FilterOperator {
      * Column value is greater than value using unlimited rules.
      */
     GreaterThanUnlimited,
+
+    /**
+     * Column value is defined. Value is ignored in this case.
+     */
+    Defined,
+
+    /**
+     * Column value is undefined. Value is ignored in this case.
+     */
+    Undefined,
 }
 
 /**

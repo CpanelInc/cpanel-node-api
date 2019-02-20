@@ -76,16 +76,22 @@ describe('JsonArgumentEncoder', () => {
     });
 
     it('should encode data correctly', () => {
-        expect(encoder.encode('data', 'value')).toBe('"data":"value"');
-        expect(encoder.encode('data', '&')).toBe('"data":"&"');
-        expect(encoder.encode('data', 1)).toBe('"data":1');
-        expect(encoder.encode('data', true)).toBe('"data":true');
-        expect(encoder.encode('data', [ 1, 2, 3 ])).toBe('"data":[1,2,3]');
-        expect(encoder.encode('data', { a: 1, b: 2 })).toBe('"data":{"a":1,"b":2}');
+        expect(encoder.encode('data', 'value', true)).toBe('"data":"value"');
+        expect(encoder.encode('data', 'value', false)).toBe('"data":"value",');
+        expect(encoder.encode('data', '&', true)).toBe('"data":"&"');
+        expect(encoder.encode('data', '&', false)).toBe('"data":"&",');
+        expect(encoder.encode('data', 1, true)).toBe('"data":1');
+        expect(encoder.encode('data', 1, false)).toBe('"data":1,');
+        expect(encoder.encode('data', true, true)).toBe('"data":true');
+        expect(encoder.encode('data', true, false)).toBe('"data":true,');
+        expect(encoder.encode('data', [ 1, 2, 3 ], true)).toBe('"data":[1,2,3]');
+        expect(encoder.encode('data', [ 1, 2, 3 ], false)).toBe('"data":[1,2,3],');
+        expect(encoder.encode('data', { a: 1, b: 2 }, true)).toBe('"data":{"a":1,"b":2}');
+        expect(encoder.encode('data', { a: 1, b: 2 }, false)).toBe('"data":{"a":1,"b":2},');
     });
 
     it('should throw an error when passed a value that can not be serialized', () => {
-        expect(() => encoder.encode('', '')).toThrowError();
-        expect(() => encoder.encode('', { a: 1, b: () => true })).toThrowError();
+        expect(() => encoder.encode('', '', false)).toThrowError();
+        expect(() => encoder.encode('', { a: 1, b: () => true }, false)).toThrowError();
     });
 });

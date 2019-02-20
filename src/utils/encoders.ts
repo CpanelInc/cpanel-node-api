@@ -33,7 +33,7 @@ export interface IArgumentEncoder {
      * @param  {boolean} last  True if this is the last argument being serialized.
      * @return {string}        Encoded version of the argument.
      */
-    encode(name: string, value: any, last?: boolean): string;
+    encode(name: string, value: any, last: boolean): string;
 }
 
 /**
@@ -54,7 +54,7 @@ export class UrlArgumentEncoder implements IArgumentEncoder {
      * @param  {boolean} last  True if this is the last argument being serialized.
      * @return {string}        Encoded version of the argument.
      */
-    encode(name: string, value: any, last?: boolean): string {
+    encode(name: string, value: any, last: boolean): string {
         if(!name) {
             throw new Error('Name must have a non-empty value');
         }
@@ -80,7 +80,7 @@ export class WwwFormUrlArgumentEncoder implements IArgumentEncoder {
      * @param  {boolean} last  True if this is the last argument being serialized.
      * @return {string}        Encoded version of the argument.
      */
-    encode(name: string, value: any, last?: boolean): string {
+    encode(name: string, value: any, last: boolean): string {
         if(!name) {
             throw new Error('Name must have a non-empty value');
         }
@@ -101,18 +101,18 @@ export class JsonArgumentEncoder implements IArgumentEncoder {
     /**
      * Encode a given value into the JSON application/json body.
      *
-     * @param  {string}  name  Unused
+     * @param  {string}  name  Name of the field.
      * @param  {any}     value Value to serialize
-     * @param  {boolean} last  Unused
+     * @param  {boolean} last  True if this is the last argument being serialized.
      * @return {string}        Encoded version of the argument.
      */
-    encode(name: string, value: any, last?: boolean): string {
+    encode(name: string, value: any, last: boolean): string {
         if(!name) {
             throw new Error('Name must have a non-empty value');
         }
         if(!json.isSerializable(value)) {
             throw new Error('The passed in value can not be serialized to JSON');
         }
-        return JSON.stringify(name) + ':' + JSON.stringify(value);
+        return JSON.stringify(name) + ':' + JSON.stringify(value) + (!last ? this.recordSeparator : '');
     }
 }

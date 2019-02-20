@@ -127,6 +127,43 @@ export class UapiRequest extends Request {
     }
 
     /**
+     * Lookup the correct name for the filter operator
+     * @param {FilterOperator} operator
+     * @returns {string}
+     */
+    private _lookupFilterOperator(operator: FilterOperator): string {
+        switch(operator) {
+            case FilterOperator.GreaterThanUnlimited:
+                return "gt_handle_unlimited";
+            case FilterOperator.GreaterThan:
+                return "gt";
+            case FilterOperator.LessThanUnlimited:
+                return "lt_handle_unlimited";
+            case FilterOperator.LessThan:
+                return "lt";
+            case FilterOperator.NotEqual:
+                return "ne";
+            case FilterOperator.Equal:
+                return "eq";
+            case FilterOperator.Defined:
+                return "defined";
+            case FilterOperator.Undefined:
+                return "undefined";
+            case FilterOperator.Matches:
+                return "matches";
+            case FilterOperator.Ends:
+                return "ends";
+            case FilterOperator.Begins:
+                return "begins";
+            case FilterOperator.Contains:
+                return "contains";
+            default:
+                const key = FilterOperator[operator];
+                throw new Error(`Unrecoginzed FilterOperator ${key} for UAPI`)
+        }
+    }
+
+    /**
      * Generate the filter parameters if any.
      *
      * @param  {IArgumentEncoder} encoder
@@ -138,7 +175,7 @@ export class UapiRequest extends Request {
             (arg: any, index: number, isLastFilter: boolean) => {
                 return this._buildFragment([
                     { name: 'api.filter_column_' + index,  value: arg.column },
-                    { name: 'api.filter_type_' + index,  value: snakeCase(FilterOperator[arg.operator]) },
+                    { name: 'api.filter_type_' + index,  value: this._lookupFilterOperator(arg.operator) },
                     { name: 'api.filter_term_' + index, value: arg.value },
                 ], (arg: any, isLast: boolean) => {
                     return encoder.encode(arg.name, arg.value, isLastFilter && isLast)
@@ -290,7 +327,6 @@ export class UapiRequest extends Request {
 
         if (argumentRule.dataInBody) {
             info['body'] = allArgs;
-            // TODO: JSON OBJECT WRAPPER
         } else {
             info['url'] += allArgs;
         }

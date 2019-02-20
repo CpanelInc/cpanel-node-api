@@ -47,87 +47,54 @@ import {
 } from '../utils/encoders'
 
 
-type EncodeMethod = (item: IArgument, last: boolean) => string;
-type ExpandMethod = (item: any, index:number, last: boolean) => string;
-
 export class UapiRequest extends Request {
 
     /**
      * Build a fragment of the parameter list based on the list of name/value pairs.
      *
-     * @param  {IArgument[]}  list   Parameters to add
-     * @param  {EncodeMethod} encode Helper function to pass the name/value to the encoder.
-     * @return {string}              Fragment with the serialized parameters
+     * @param  {IArgument[]}      params  Parameters to serialize.
+     * @param  {IArgumentEncoder} encoder Encoder to use to serialize the each parameter.
+     * @return {string}                   Fragment with the serialized parameters
      */
-    private _buildFragment(list: IArgument[], encode: EncodeMethod): string {
+    private _build(params: IArgument[], encoder: IArgumentEncoder): string {
         let fragment = '';
-        list.forEach((arg, index, array) => {
+        params.forEach((arg, index, array) => {
             const isLast: boolean = index === array.length - 1;
-            fragment += encode(arg, isLast);
+            fragment += encoder.encode(arg.name, arg.value, isLast);
         });
-        return fragment;
-    }
-
-    /**
-     * Expand the list of parameters based on the list of things passed. This will generate
-     * index parameter entries for each object in the original list based on the rule provided
-     * in the expand helper method.
-     *
-     * @param  {any[]}        list   Objects that get expanded. In our case probably Sort[] or Filter[].
-     * @param  {ExpandMethod} expand Expand each item in the list into a list of name/value pairs and encode them into a fragment.
-     * @return {string}              Fragment with the serialized parameters.
-     */
-    private _index(list: any[], expand: ExpandMethod): string {
-        let fragment = '';
-        list.forEach((arg, index, array) => {
-            const isLast: boolean = index === array.length - 1;
-            fragment += expand(arg, index, isLast);
-        });
-        return fragment;
+        return encoder.separatorStart +
+               fragment +
+               encoder.separatorEnd;
     }
 
     /**
      * Generates the arguments for the request.
      *
-     * @param  {ArgumentSerializationRule} rule
-     * @return {string}
+     * @param  {IArgument[]} params List of parameters to adjust based on the sort rules in the Request.
      */
-    private _generateArguments(encoder: IArgumentEncoder): string {
-        return this._buildFragment(
-            this.arguments,
-            (arg: any, isLast: boolean) => {
-                return encoder.encode(arg.name, arg.value, isLast)
-            }
-        );
+    private _generateArguments(params: IArgument[]): void {
+        this.arguments.forEach(argument => params.push(argument));
     }
 
     /**
-     * Generates the arguments for the request.
+     * Generates the sort parameters for the request.
      *
-     * @param  {ArgumentSerializationRule} rule
-     * @return {string}
+     * @param  {IArgument[]} params List of parameters to adjust based on the sort rules in the Request.
      */
-    private _generateSorts(encoder: IArgumentEncoder): string {
-        return this._index(
-            this.sorts,
-            (arg: any, index: number, isLastSort: boolean) => {
-                var sorts = [
-                    { name: 'api.sort_column_' + index,  value: arg.column },
-                    { name: 'api.sort_reverse_' + index, value: Perl.fromBoolean(arg.direction !== SortDirection.Ascending) },
-                    { name: 'api.sort_method_' + index,  value: snakeCase(SortType[arg.type]) },
-                ];
-                if(index === 0) {
-                    sorts.unshift({ name: 'api.sort', value: Perl.fromBoolean(true) })
-                }
-                return this._buildFragment(sorts, (arg: any, isLast: boolean) => {
-                    return encoder.encode(arg.name, arg.value, isLastSort && isLast)
-                });
+    private _generateSorts(params: IArgument[]): void {
+        this.sorts.forEach((sort, index) => {
+            if(index === 0) {
+                params.push({ name: 'api.sort', value: Perl.fromBoolean(true) })
             }
-        );
+            params.push({ name: 'api.sort_column_' + index,  value: sort.column });
+            params.push({ name: 'api.sort_reverse_' + index, value: Perl.fromBoolean(sort.direction !== SortDirection.Ascending) });
+            params.push({ name: 'api.sort_method_' + index,  value: snakeCase(SortType[sort.type]) });
+        });
     }
 
     /**
      * Lookup the correct name for the filter operator
+     *
      * @param {FilterOperator} operator
      * @returns {string}
      */
@@ -166,22 +133,14 @@ export class UapiRequest extends Request {
     /**
      * Generate the filter parameters if any.
      *
-     * @param  {IArgumentEncoder} encoder
-     * @return {string}
+     * @param  {IArgument[]} params List of parameters to adjust based on the filter rules provided.
      */
-    private _generateFilters(encoder: IArgumentEncoder) : string {
-        return this._index(
-            this.filters,
-            (arg: any, index: number, isLastFilter: boolean) => {
-                return this._buildFragment([
-                    { name: 'api.filter_column_' + index,  value: arg.column },
-                    { name: 'api.filter_type_' + index,  value: this._lookupFilterOperator(arg.operator) },
-                    { name: 'api.filter_term_' + index, value: arg.value },
-                ], (arg: any, isLast: boolean) => {
-                    return encoder.encode(arg.name, arg.value, isLastFilter && isLast)
-                });
-            }
-        );
+    private _generateFilters(params: IArgument[]) : void {
+        this.filters.forEach((filter, index) => {
+            params.push({ name: 'api.filter_column_' + index,  value: filter.column });
+            params.push({ name: 'api.filter_type_' + index,  value: this._lookupFilterOperator(filter.operator) });
+            params.push({ name: 'api.filter_term_' + index, value: filter.value });
+        });
     }
 
     /**
@@ -193,58 +152,44 @@ export class UapiRequest extends Request {
     }
 
     /**
-     * Generate the pager request parameters if any
-     * @param  {IArgumentEncoder} encoder
-     * @return {string}
+     * Generate the pager request parameters if any.
+     *
+     * @param  {IArgument[]} params List of parameters to adjust based on the pagination rules.
      */
-    private _generatePagination(encoder: IArgumentEncoder): string {
-        let allPages = this.pager.all();
-        let params: IArgument[] = [
-            {
-                name: 'api.paginate',
-                value: Perl.fromBoolean(true),
-            },
-            {
-                name: 'api.paginate_start',
-                value: allPages ? -1 : this._traslatePageToStart(this.pager)
-            },
-        ];
+    private _generatePagination(params: IArgument[]): void {
+        if (!this.usePager) {
+            return;
+        }
 
-        if (!allPages) {
+        let allPages = this.pager.all();
+        params.push({
+            name: 'api.paginate',
+            value: Perl.fromBoolean(true),
+        });
+        params.push({
+            name: 'api.paginate_start',
+            value: allPages ? -1 : this._traslatePageToStart(this.pager)
+        });
+        if(!allPages) {
             params.push({
                 name: 'api.paginate_size',
                 value: this.pager.pageSize
             });
         }
-
-        return this._buildFragment(
-            params,
-            (arg: any, isLast: boolean) => {
-                return encoder.encode(arg.name, arg.value, isLast)
-            }
-        );
     }
 
     /**
      * Generate any additional parameters from the configuration data.
      *
-     * @param  {IArgumentEncoder} encoder
-     * @return {string}
+     * @param  {IArgument[]} params List of parameter to adjust based on the configuration.
      */
-    private _generateConfiguration(encoder: IArgumentEncoder): string {
-        let params: IArgument[] = [];
+    private _generateConfiguration(params: IArgument[]): void {
         if (this.config && this.config['analytics']) {
             params.push({
                 name: 'api.analytics',
                 value: Perl.fromBoolean(this.config.analytics)
             });
         }
-        return this._buildFragment(
-            params,
-            (arg: any, isLast: boolean) => {
-                return encoder.encode(arg.name, arg.value, isLast)
-            }
-        );
     }
 
     /**
@@ -299,36 +244,19 @@ export class UapiRequest extends Request {
             body: '',
         };
 
-        let params:string[] = [];
-        if(this.arguments.length) {
-            params.push(this._generateArguments(rule.encoder));
-        }
+        let params: IArgument[] = [];
+        this._generateArguments(params);
+        this._generateSorts(params);
+        this._generateFilters(params);
+        this._generatePagination(params);
+        this._generateConfiguration(params);
 
-        if(this.sorts.length) {
-            params.push(this._generateSorts(rule.encoder));
-        }
-
-        if(this.filters.length) {
-            params.push(this._generateFilters(rule.encoder));
-        }
-
-        if (this.usePager) {
-            params.push(this._generatePagination(rule.encoder));
-        }
-
-        let encoded;
-        if (encoded = this._generateConfiguration(rule.encoder)) {
-            params.push(encoded);
-        }
-
-        let allArgs = rule.encoder.separatorStart +
-                      params.join(rule.encoder.recordSeparator) +
-                      rule.encoder.separatorEnd;
+        let encoded = this._build(params, rule.encoder);
 
         if (argumentRule.dataInBody) {
-            info['body'] = allArgs;
+            info['body'] = encoded;
         } else {
-            info['url'] += allArgs;
+            info['url'] += encoded;
         }
 
         return info as RequestInfo;

@@ -1,6 +1,6 @@
 {
   "name": "@cpanel/api",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "cPanel Api JavaScript and TypeScript libraries",
   "main": "index.js",
   "files": [
@@ -48,6 +48,7 @@
     "@types/node": "8.0.31",
     "jasmine": "2.8.0",
     "lodash": "^4.17.11",
+    "tslib": "^1.9.3",
     "typescript": "3.2.2"
   }
 }

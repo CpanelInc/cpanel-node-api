@@ -5,6 +5,8 @@
       "es2018",
       "dom"
     ],
+    "module": "es2015",
+    "moduleResolution": "node",
     "target": "es5",
     "strict": true,
     "outDir": "./",

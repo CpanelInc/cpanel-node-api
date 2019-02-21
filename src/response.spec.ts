@@ -54,7 +54,7 @@ describe('Response', () => {
         it('should keep a copy of the raw response when requested', () => {
             let resp = {};
             let response = new FakeResponse(resp, { keepUnprocessedResponse: true });
-            expect(response.raw).toBe(resp);
+            expect(response.raw).toEqual(resp);
         });
         it('should not keep a copy of the raw response when configured so', () => {
             let resp = {};
@@ -80,7 +80,7 @@ describe('Response', () => {
 
         it('should return a info messages when there is an warning', () => {
             expect(response.hasInfoMessages).toBe(true);
-            expect(response.infoMessages).toEqual([ { type: MessageType.Information, message: 'Fake Infomation' } ])
+            expect(response.infoMessages).toEqual([ { type: MessageType.Information, message: 'Fake Information' } ])
         })
     })
     describe('meta data methods', () => {

@@ -7,7 +7,7 @@
 Install with yarn
 
 ```sh
-$ yarn add --registry http://npm.dev.cpanel.net api
+$ yarn add @cpanel/api --registry http://127.0.0.1:4873
 ```
 
 ## Usage
@@ -34,7 +34,7 @@ var api = require('api');
 1. Setup your development environment.
 
 ```sh
-$ yarn --registry http://npm.dev.cpanel.net --dev
+$ yarn install --dev
 $ yarn run build
 $ yarn run link:cpanel link:webmail link:whm
 ```
@@ -53,7 +53,7 @@ $ yarn run build
 Install dev dependencies:
 
 ```sh
-$ yarn --registry http://npm.dev.cpanel.net --dev
+$ yarn install --dev
 $ yarn run test
 ```
 
@@ -61,7 +61,7 @@ $ yarn run test
 
 
 ```sh
-$ yarn --registry http://npm.dev.cpanel.net
+$ yarn install
 $ yarn run build
 $ npm publish
 ```

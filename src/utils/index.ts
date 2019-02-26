@@ -6,6 +6,7 @@ import * as encoders from './encoders';
 import * as perl from './perl';
 import * as serializable from './json/serializable';
 import * as path from './path';
+import * as location from './location-service';
 
 export {
     argument,
@@ -16,4 +17,5 @@ export {
     encoders,
     serializable,
     path,
+    location,
 };

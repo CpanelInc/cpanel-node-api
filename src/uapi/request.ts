@@ -222,8 +222,16 @@ export class UapiRequest extends Request {
         if (!rule) {
             rule = {
                 verb: HttpVerb.POST,
-                encoder: this.config.json ? new JsonArgumentEncoder() : new WwwFormUrlArgumentEncoder(),
-            }
+                encoder: this.config.json ?
+                    new JsonArgumentEncoder() :
+                    new WwwFormUrlArgumentEncoder(),
+            };
+        }
+
+        if(!rule.encoder) {
+            rule.encoder = this.config.json ?
+                new JsonArgumentEncoder() :
+                new WwwFormUrlArgumentEncoder();
         }
 
         const argumentRule: ArgumentSerializationRule = argumentSerializationRules.getRule(rule.verb);

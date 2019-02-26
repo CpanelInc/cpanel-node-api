@@ -1,3 +1,5 @@
+import { fromBoolean } from './perl';
+
 /**
  * Abstract interface that value based arguments must implement
  */
@@ -33,8 +35,8 @@ export class Argument implements IArgument  {
     /**
      * Build a new Argument.
      *
-     * @param {string}       name   Ignored if ArgumentType is Positional
-     * @param {any}          value  Value to initialize the argument to.
+     * @param {string}       name   Name of the argument
+     * @param {any}          value  Value of the argument.
      */
     constructor(name: string, value: any) {
         if (!name) {
@@ -42,5 +44,20 @@ export class Argument implements IArgument  {
         }
         this.name = name;
         this.value = value;
+    }
+}
+
+/**
+ * Specialty argument class that will auto coerce a boolean to a perl boolean
+ */
+export class PerlBooleanArgument extends Argument {
+
+    /**
+     * Build a new Argument
+     * @param {string}  name  Name of the argument
+     * @param {boolean} value Value of the argument. Will be serialized to use perls boolean rules.
+     */
+    constructor(name: string, value: boolean) {
+        super(name, fromBoolean(value));
     }
 }

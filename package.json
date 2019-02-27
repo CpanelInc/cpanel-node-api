@@ -1,6 +1,6 @@
 {
   "name": "@cpanel/api",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "cPanel Api JavaScript and TypeScript libraries",
   "main": "index.js",
   "files": [

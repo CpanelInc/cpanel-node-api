@@ -15,6 +15,28 @@ class FakeResponse extends Response {
      */
     constructor(response: any, options?: ResponseOptions) {
         super(response, options);
+        this.meta = {
+            isPaged: true,
+            isFiltered: true,
+            record: 1,
+            page: 1,
+            pageSize: 10,
+            totalRecords: 100,
+            totalPages: 10,
+            recordsBeforeFilter: 200,
+            recordsFiltered: 0,
+            batch: false,
+            properties: {},
+        };
+    }
+}
+
+/**
+ * Extend the FakeResponse to also have messages
+ */
+class FakeResponseWithMessages extends FakeResponse {
+    constructor(response: any, options?: ResponseOptions) {
+        super(response, options);
         this.messages = [
             {
                 type: MessageType.Error,
@@ -29,19 +51,6 @@ class FakeResponse extends Response {
                 message: 'Fake Information',
             },
         ];
-        this.meta = {
-            isPaged: true,
-            isFiltered: true,
-            record: 1,
-            page: 1,
-            pageSize: 10,
-            totalRecords: 100,
-            totalPages: 10,
-            recordsBeforeFilter: 200,
-            recordsFiltered: 0,
-            batch: false,
-            properties: {},
-        };
     }
 }
 
@@ -63,26 +72,50 @@ describe('Response', () => {
         });
     });
     describe('error, warning, messsage properties', () => {
-        let response: FakeResponse;
-        beforeEach(() => {
-            response = new FakeResponse({});
-        })
+        describe('without any messages', () => {
+            let response: FakeResponse;
+            beforeEach(() => {
+                response = new FakeResponse({});
+            })
 
-        it('should return an error when there is an error', () => {
-            expect(response.hasErrors).toBe(true);
-            expect(response.errors).toEqual([ { type: MessageType.Error, message: 'Fake Error' } ])
-        })
+            it('should return no errors', () => {
+                expect(response.hasErrors).toBe(false);
+                expect(response.errors).toEqual([])
+            })
 
-        it('should return a warning when there is an warning', () => {
-            expect(response.hasWarnings).toBe(true);
-            expect(response.warnings).toEqual([ { type: MessageType.Warning, message: 'Fake Warning' } ])
-        })
+            it('should return no warnings', () => {
+                expect(response.hasWarnings).toBe(false);
+                expect(response.warnings).toEqual([])
+            })
 
-        it('should return a info messages when there is an warning', () => {
-            expect(response.hasInfoMessages).toBe(true);
-            expect(response.infoMessages).toEqual([ { type: MessageType.Information, message: 'Fake Information' } ])
+            it('should return no info messages', () => {
+                expect(response.hasInfoMessages).toBe(false);
+                expect(response.infoMessages).toEqual([])
+            })
+        })
+        describe('with messages of each type', () => {
+            let response: FakeResponseWithMessages;
+            beforeEach(() => {
+                response = new FakeResponseWithMessages({});
+            })
+
+            it('should return an error when there is an error', () => {
+                expect(response.hasErrors).toBe(true);
+                expect(response.errors).toEqual([ { type: MessageType.Error, message: 'Fake Error' } ])
+            })
+
+            it('should return a warning when there is an warning', () => {
+                expect(response.hasWarnings).toBe(true);
+                expect(response.warnings).toEqual([ { type: MessageType.Warning, message: 'Fake Warning' } ])
+            })
+
+            it('should return a info messages when there is an info message', () => {
+                expect(response.hasInfoMessages).toBe(true);
+                expect(response.infoMessages).toEqual([ { type: MessageType.Information, message: 'Fake Information' } ])
+            })
         })
     })
+
     describe('meta data methods', () => {
         describe('isPaged', () => {
             let response: FakeResponse;

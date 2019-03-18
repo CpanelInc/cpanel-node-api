@@ -57,7 +57,7 @@ $ npm publish
 ```
 
 ## Contributing
-Pull requests and stars are always welcome. For bugs and feature requests, [create a JIRA case](https://jira.cpanel.net)
+Pull requests and stars are always welcome. For bugs and feature requests, [create a JIRA case](https://jira.cpanel.net).
 
 ## Authors
 

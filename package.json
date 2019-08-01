@@ -2,18 +2,13 @@
   "name": "@cpanel/api",
   "version": "0.0.7",
   "description": "cPanel Api JavaScript and TypeScript libraries",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "files": [
-    "*.d.ts",
-    "*.js",
-    "*.map.js",
-    "**/*.d.ts",
-    "**/*.js",
-    "**/*.map.js",
-    "documentation/**/*"
+    "dist"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json && webpack --config webpack.config.js",
+    "clean": "rm -rf dist",
     "docs": "compodoc -p tsconfig.json",
     "serve-docs": "yarn run docs && http-server ./documentation -p 8081",
     "test": "yarn run build && jasmine '**/*.spec.js'",
@@ -32,7 +27,9 @@
   "devDependencies": {
     "compodoc": "^0.0.41",
     "http-server": "^0.11.1",
-    "readme-generator": "^1.0.1"
+    "readme-generator": "^1.0.1",
+    "webpack": "^4.39.0",
+    "webpack-cli": "^3.3.6"
   },
   "publishConfig": {
     "registry": "http://127.0.0.1:4873"

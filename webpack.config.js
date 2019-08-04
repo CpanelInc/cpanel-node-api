@@ -1,7 +1,6 @@
 const path = require('path');
-
-module.exports = {
-    mode: 'development',
+const webpack = require('webpack');
+const commonConfig = {
     entry: './dist/index.js',
     output: {
         path: path.resolve(__dirname, 'dist', 'bundles'),
@@ -10,3 +9,20 @@ module.exports = {
         libraryTarget: 'umd'
     }
 };
+function buildConfig(env) {
+    if (env === 'dev') {
+        return Object.assign({}, { 'mode': 'development' }, commonConfig);
+    } else if (env === 'prod') {
+        let prodConfigOptions = {
+            'mode': 'production',
+            'output': {
+                filename: 'cpanel-locale.umd.min.js'
+            }
+        };
+        return Object.assign({}, commonConfig, prodConfigOptions);
+    } else {
+        console.log("Wrong webpack build parameter. Possible choices: 'dev' or 'prod'.")
+    }
+}
+
+module.exports = buildConfig;

@@ -7,7 +7,11 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.json && webpack --config webpack.config.js",
+    "build": "yarn run clean && yarn build:ts && yarn webpack:prod",
+    "build:dev": "yarn run clean && yarn run build:ts && yarn run webpack:dev",
+    "build:ts": "tsc -p tsconfig.json",
+    "webpack:dev": "webpack --env=dev",
+    "webpack:prod": "webpack --env=prod",
     "clean": "rm -rf dist",
     "docs": "compodoc -p tsconfig.json",
     "serve-docs": "yarn run docs && http-server ./documentation -p 8081",

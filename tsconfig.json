@@ -5,11 +5,10 @@
       "es2018",
       "dom"
     ],
-    "module": "es2015",
     "moduleResolution": "node",
     "target": "es5",
     "strict": true,
-    "outDir": "./",
+    "outDir": "./dist",
     "rootDir": "./src",
 
     "declaration": true,
@@ -33,12 +32,7 @@
     ]
   },
   "include": [
-    "src/*.ts",
     "src/**/*.ts",
-    "dist/*.js",
-    "dist/**/*.js",
-    "dist/*.d.ts",
-    "dist/**/*.d.ts"
   ],
   "exclude": [
     "node_modules"

@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const commonConfig = {
-    entry: './dist/index.js',
+    entry: './index.js',
     output: {
         path: path.resolve(__dirname, 'dist', 'bundles'),
         library: ['cp', 'api'],

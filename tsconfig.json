@@ -8,7 +8,7 @@
     "moduleResolution": "node",
     "target": "es5",
     "strict": true,
-    "outDir": "./dist",
+    "outDir": "./",
     "rootDir": "./src",
 
     "declaration": true,
@@ -32,6 +32,7 @@
     ]
   },
   "include": [
+    "src/*.ts",
     "src/**/*.ts",
   ],
   "exclude": [

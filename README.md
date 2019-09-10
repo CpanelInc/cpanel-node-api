@@ -33,18 +33,17 @@ var api = require('api');
 
 To develop using these:
 
-1. Set up your development environment:
-  ```sh
-  yarn install --dev
-  yarn run build
-  yarn run link:cpanel link:webmail link:whm
-  ```
-  This lets you test the local version of your library rather than the one distributed on `npm.dev.cpanel.net`.
+1. Set up your development environment to test the local version of your library rather than the one distributed on `npm.dev.cpanel.net`:
+```sh
+yarn install --dev
+yarn run build
+yarn run link:cpanel link:webmail link:whm
+```
 2. Make the changes to the library.
 3. Rebuild the library:
-  ```sh
-  yarn run build
-  ```
+```sh
+yarn run build
+```
 4. Test your changes in one of the cPanel application spaces.
 
 ## Testing

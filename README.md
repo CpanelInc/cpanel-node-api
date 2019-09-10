@@ -33,7 +33,7 @@ var api = require('api');
 
 To develop using these:
 
-  1. Set up your development environment:
+1. Set up your development environment:
   ```sh
   yarn install --dev
   yarn run build

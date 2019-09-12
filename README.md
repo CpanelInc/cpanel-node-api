@@ -62,6 +62,7 @@ When your changes are implemented and tested, and you're ready to publish, run:
 yarn install
 yarn run build
 yarn publish
+git push
 ```
 
 After you run `yarn publish`, the system will prompt you to select a change type:

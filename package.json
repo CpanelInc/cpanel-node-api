@@ -42,7 +42,7 @@
     "webpack-cli": "^3.3.6"
   },
   "publishConfig": {
-    "registry": "http://127.0.0.1:4873"
+    "registry": "https://vmware-manager.dev.cpanel.net/verdaccio/"
   },
   "keywords": [
     "api",

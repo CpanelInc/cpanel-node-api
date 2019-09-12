@@ -7,7 +7,7 @@ This provides steps for using the cPanel API JavaScript and TypeScript libraries
 To install these libraries with Yarn, run:
 
 ```sh
-yarn add @cpanel/api --registry http://127.0.0.1:4873
+yarn add @cpanel/api --registry https://vmware-manager.dev.cpanel.net/verdaccio/
 ```
 
 ## Use

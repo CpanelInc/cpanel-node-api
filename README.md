@@ -16,17 +16,12 @@ yarn add @cpanel/api --registry http://127.0.0.1:4873
 
 ```ts
 import { api } from '@cpanel/api';
-
-// TODO:
 ```
 
 ### JavaScript
 
 ```js
 var api = require('api');
-
-// TODO:
-
 ```
 
 ## Development
@@ -34,16 +29,20 @@ var api = require('api');
 To develop using these:
 
 1. Set up your development environment to test the local version of your library rather than the one distributed on `npm.dev.cpanel.net`:
-```sh
-yarn install --dev
-yarn run build
-yarn run link:cpanel link:webmail link:whm
-```
+
+    ```sh
+    yarn install --dev
+    yarn run build
+    yarn run link:cpanel link:webmail link:whm
+    ```
+
 2. Make the changes to the library.
 3. Rebuild the library:
-```sh
-yarn run build
-```
+
+    ```sh
+    yarn run build
+    ```
+
 4. Test your changes in one of the cPanel application spaces.
 
 ## Testing

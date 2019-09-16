@@ -7,7 +7,7 @@ This provides steps for using the cPanel API JavaScript and TypeScript libraries
 To install these libraries with Yarn, run:
 
 ```sh
-yarn add @cpanel/api --registry http://127.0.0.1:4873
+yarn add @cpanel/api --registry https://vmware-manager.dev.cpanel.net/verdaccio/
 ```
 
 ## Use
@@ -62,6 +62,7 @@ When your changes are implemented and tested, and you're ready to publish, run:
 yarn install
 yarn run build
 yarn publish
+git push
 ```
 
 After you run `yarn publish`, the system will prompt you to select a change type:

@@ -1,9 +1,10 @@
-import * as json from './json/serializable';
+import * as json from "./json/serializable";
 
 /**
  * Abstract argument encoder
  */
 export interface IArgumentEncoder {
+
     /**
      * Name of the content type if any. May be an empty string.
      */
@@ -41,10 +42,10 @@ export interface IArgumentEncoder {
  */
 export class UrlArgumentEncoder implements IArgumentEncoder {
 
-    contentType: string = '';
-    separatorStart: string = '?';
-    separatorEnd: string = '';
-    recordSeparator: string = '&';
+    contentType: string = "";
+    separatorStart: string = "?";
+    separatorEnd: string = "";
+    recordSeparator: string = "&";
 
     /**
      * Encode a given value into query-string compatible format.
@@ -55,10 +56,10 @@ export class UrlArgumentEncoder implements IArgumentEncoder {
      * @return {string}        Encoded version of the argument.
      */
     encode(name: string, value: any, last: boolean): string {
-        if(!name) {
-            throw new Error('Name must have a non-empty value');
+        if (!name) {
+            throw new Error("Name must have a non-empty value");
         }
-        return `${name}=${encodeURIComponent(value.toString())}`+ (!last ? this.recordSeparator : '');
+        return `${name}=${encodeURIComponent(value.toString())}` + (!last ? this.recordSeparator : "");
     }
 }
 
@@ -67,10 +68,10 @@ export class UrlArgumentEncoder implements IArgumentEncoder {
  */
 export class WwwFormUrlArgumentEncoder implements IArgumentEncoder {
 
-    contentType: string = 'application/x-www-form-urlencoded';
-    separatorStart: string = '';
-    separatorEnd: string = '';
-    recordSeparator: string = '&';
+    contentType: string = "application/x-www-form-urlencoded";
+    separatorStart: string = "";
+    separatorEnd: string = "";
+    recordSeparator: string = "&";
 
     /**
      * Encode a given value into the application/x-www-form-urlencoded.
@@ -81,11 +82,11 @@ export class WwwFormUrlArgumentEncoder implements IArgumentEncoder {
      * @return {string}        Encoded version of the argument.
      */
     encode(name: string, value: any, last: boolean): string {
-        if(!name) {
-            throw new Error('Name must have a non-empty value');
+        if (!name) {
+            throw new Error("Name must have a non-empty value");
         }
 
-        return `${name}=${encodeURIComponent(value.toString())}` + (!last ? this.recordSeparator : '');
+        return `${name}=${encodeURIComponent(value.toString())}` + (!last ? this.recordSeparator : "");
     }
 }
 
@@ -93,10 +94,10 @@ export class WwwFormUrlArgumentEncoder implements IArgumentEncoder {
  * Encode the parameter into json
  */
 export class JsonArgumentEncoder implements IArgumentEncoder {
-    contentType: string = 'application/json';
-    separatorStart: string = '{';
-    separatorEnd:    string = '}';
-    recordSeparator: string = ',';
+    contentType: string = "application/json";
+    separatorStart: string = "{";
+    separatorEnd:    string = "}";
+    recordSeparator: string = ",";
 
     /**
      * Encode a given value into the JSON application/json body.
@@ -107,12 +108,12 @@ export class JsonArgumentEncoder implements IArgumentEncoder {
      * @return {string}        Encoded version of the argument.
      */
     encode(name: string, value: any, last: boolean): string {
-        if(!name) {
-            throw new Error('Name must have a non-empty value');
+        if (!name) {
+            throw new Error("Name must have a non-empty value");
         }
-        if(!json.isSerializable(value)) {
-            throw new Error('The passed in value can not be serialized to JSON');
+        if (!json.isSerializable(value)) {
+            throw new Error("The passed in value can not be serialized to JSON");
         }
-        return JSON.stringify(name) + ':' + JSON.stringify(value) + (!last ? this.recordSeparator : '');
+        return JSON.stringify(name) + ":" + JSON.stringify(value) + (!last ? this.recordSeparator : "");
     }
 }

@@ -1,9 +1,10 @@
-import { fromBoolean } from './perl';
+import { fromBoolean } from "./perl";
 
 /**
  * Abstract interface that value based arguments must implement
  */
 export interface IArgument {
+
     /**
      * Name of the argument
      */
@@ -40,7 +41,7 @@ export class Argument implements IArgument  {
      */
     constructor(name: string, value: any) {
         if (!name) {
-            throw new Error('You must provide a name when creating a name/value argument')
+            throw new Error("You must provide a name when creating a name/value argument");
         }
         this.name = name;
         this.value = value;

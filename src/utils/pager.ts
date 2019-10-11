@@ -10,6 +10,7 @@ export const ALL = Number.POSITIVE_INFINITY;
  * Interface for a pagination request.
  */
 export interface IPager {
+
     /**
      * One based index of the pages of data.
      * @type {number}
@@ -27,6 +28,7 @@ export interface IPager {
  * Defines a pagination request for an API.
  */
 export class Pager implements IPager {
+
     /**
      * One based index of the pages of data.
      * @type {number}
@@ -49,11 +51,11 @@ export class Pager implements IPager {
      */
     constructor(page: number = 1, pageSize: number = DEFAULT_PAGE_SIZE) {
         if (page <= 0) {
-            throw new Error('The page must be 1 or greater. This is the logical page, not a programming index.');
+            throw new Error("The page must be 1 or greater. This is the logical page, not a programming index.");
         }
 
         if (pageSize <= 0) {
-            throw new Error('The pageSize must be set to \'ALL\' or a number > 0');
+            throw new Error("The pageSize must be set to 'ALL' or a number > 0");
         }
 
         this.page = page;

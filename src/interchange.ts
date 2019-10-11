@@ -2,6 +2,7 @@
  * Http Header Abstractions
  */
 export interface Header {
+
     /**
      * Name of the header
      */
@@ -17,6 +18,7 @@ export interface Header {
  * Abstract data structure used to pass rendered API information to remoting layer.
  */
 export interface RequestInfo {
+
     /**
      * List of headers for the request
      */

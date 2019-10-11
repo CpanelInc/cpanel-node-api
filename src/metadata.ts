@@ -2,10 +2,12 @@
  * Common interface for metadata.
  */
 export interface IMetaData {
+
     /**
          * Indicates if the data is paged.
          */
         isPaged: boolean;
+
         /**
          * The record number of the first record of a page.
          */

@@ -5,8 +5,8 @@ import {
     isNumber,
     isString,
     isArray,
-    isPlainObject,
-} from 'lodash';
+    isPlainObject
+} from "lodash";
 
 /**
  * Verify if the value can be serialized to JSON
@@ -30,7 +30,7 @@ function isSerializable(value: any) {
 
     for (var key in value) {
         if (!isSerializable(value[key])) {
-          return false;
+            return false;
         }
     }
 
@@ -39,4 +39,4 @@ function isSerializable(value: any) {
 
 export {
     isSerializable
-}
+};

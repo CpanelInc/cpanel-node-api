@@ -1,6 +1,6 @@
 import {
     HttpVerb
-} from './http/verb';
+} from "./http/verb";
 
 export type Nullable<T> = { [P in keyof T]: T[P] | null }
 
@@ -8,10 +8,12 @@ export type Nullable<T> = { [P in keyof T]: T[P] | null }
  * Abstract argument serialization rule
  */
 export interface ArgumentSerializationRule {
+
     /**
      * Name of the verb or DEFAULT
      */
     verb: string;
+
     /**
      * Flag to indicate if the data is in the body. If false, its in the url.
      */
@@ -35,9 +37,10 @@ export class DefaultArgumentSerializationRules {
      * Construct the lookup table for well know verbs.
      */
     constructor() {
+
         // fallback rule if the verb is not defined.
-        this.map['DEFAULT'] = {
-            verb: 'DEFAULT',
+        this.map["DEFAULT"] = {
+            verb: "DEFAULT",
             dataInBody: true,
         };
 
@@ -77,10 +80,10 @@ export class DefaultArgumentSerializationRules {
      * @param {HttpVerb|String} verb - verb to lookup.
      */
     getRule(verb: HttpVerb | string): ArgumentSerializationRule {
-        let name: string = typeof(verb) === 'string' ? verb : HttpVerb[verb].toString();
+        let name: string = typeof (verb) === "string" ? verb : HttpVerb[verb].toString();
         let rule = this.map[name];
         if (!rule) {
-            rule = this.map['DEFAULT'];
+            rule = this.map["DEFAULT"];
         }
         return rule;
     }
@@ -92,5 +95,5 @@ export class DefaultArgumentSerializationRules {
 const argumentSerializationRules = new DefaultArgumentSerializationRules();
 
 export {
-    argumentSerializationRules,
-}
+    argumentSerializationRules
+};

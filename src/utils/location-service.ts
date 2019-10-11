@@ -2,6 +2,7 @@
  * Provides a mockable layer between the tools below and window.location.
  */
 export class LocationService {
+
     /**
      * The pathname part of the url
      */

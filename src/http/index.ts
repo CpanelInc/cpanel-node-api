@@ -1,5 +1,5 @@
-import * as verb from './verb'
+import * as verb from "./verb";
 
 export {
     verb
-}
+};

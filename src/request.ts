@@ -1,15 +1,16 @@
-import { IArgument, Argument } from './utils/argument';
-import { IFilter, Filter } from './utils/filter';
-import { IPager, Pager } from './utils/pager';
-import { ISort, Sort } from './utils/sort';
-import { RequestInfo } from './interchange';
-import { IArgumentEncoder } from './utils/encoders';
-import { HttpVerb } from './http/verb';
+import { IArgument, Argument } from "./utils/argument";
+import { IFilter, Filter } from "./utils/filter";
+import { IPager, Pager } from "./utils/pager";
+import { ISort, Sort } from "./utils/sort";
+import { RequestInfo } from "./interchange";
+import { IArgumentEncoder } from "./utils/encoders";
+import { HttpVerb } from "./http/verb";
 
 /**
  * Rule used to convert a request to the interchange format
  */
 export interface GenerateRule {
+
     /**
      * Http verb
      */
@@ -25,6 +26,7 @@ export interface GenerateRule {
  * Other top level options for the construction of the request.
  */
 export interface IRequestConfiguration {
+
     /**
      * Enable analytics for the request
      */
@@ -40,6 +42,7 @@ export interface IRequestConfiguration {
  * Interface for developers that just want to pass a object literal
  */
 export interface IRequest {
+
     /**
      * Namespace where the api call lives
      */
@@ -86,6 +89,7 @@ export interface IRequest {
  * Extra information about the request that generates the request.
  */
 export interface IRequestMeta {
+
     /**
      * Request object that generated the RequestInfo object.
      * @type {Request}
@@ -97,6 +101,7 @@ export interface IRequestMeta {
  * Extra information about the batch request that generates the request.
  */
 export interface IBatchRequestMeta {
+
     /**
      * List of abstract request objects that make up the batch that generated the RequestInfo object.
      */
@@ -108,17 +113,18 @@ export interface IBatchRequestMeta {
  * create a subclass of this that implements the generate() method.
  */
 export abstract class Request {
+
     /**
      * Namespace where the api call lives
      * @type {string}
      */
-    public namespace: string = '';
+    public namespace: string = "";
 
     /**
      * Method name of the api call.
      * @type {string}
      */
-    public method: string = '';
+    public method: string = "";
 
     /**
      * Optional list of arguments for the api call.
@@ -161,7 +167,7 @@ export abstract class Request {
      */
     private defaultConfig: IRequestConfiguration = {
         analytics: false,
-        json:      false,
+        json: false,
     }
 
     /**
@@ -180,14 +186,14 @@ export abstract class Request {
             this.method = init.method;
             if (init.arguments) {
                 init.arguments.forEach((argument) => {
-                    this.addArgument(argument)
-                })
+                    this.addArgument(argument);
+                });
             }
 
             if (init.sorts) {
                 init.sorts.forEach((sort) => {
                     this.addSort(sort);
-                })
+                });
             }
 
             if (init.filters) {
@@ -222,7 +228,7 @@ export abstract class Request {
         if (argument instanceof Argument) {
             this.arguments.push(argument);
         } else {
-            this.arguments.push(new Argument(argument.name, argument.value))
+            this.arguments.push(new Argument(argument.name, argument.value));
         }
         return this;
     }
@@ -249,12 +255,12 @@ export abstract class Request {
      * @return {Request}
      */
     addFilter(filter: IFilter): Request {
-         if (filter instanceof Filter) {
-             this.filters.push(filter);
-         } else {
-             this.filters.push(new Filter(filter.column, filter.operator, filter.value));
-         }
-         return this;
+        if (filter instanceof Filter) {
+            this.filters.push(filter);
+        } else {
+            this.filters.push(new Filter(filter.column, filter.operator, filter.value));
+        }
+        return this;
     }
 
     /**
@@ -264,8 +270,8 @@ export abstract class Request {
      * @return {Request}
      */
     addColumn(column: string): Request {
-         this.columns.push(column);
-         return this;
+        this.columns.push(column);
+        return this;
     }
 
     /**
@@ -301,4 +307,3 @@ export abstract class Request {
      */
     abstract generate(rule?: GenerateRule): RequestInfo;
 }
-

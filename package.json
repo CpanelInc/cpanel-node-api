@@ -25,7 +25,7 @@
     "link:cpanel": "yarn link && cd /usr/local/cpanel/base/frontend/paper_lantern/ng-apps-src/ && yarn link \"@cpanel/api\"",
     "link:webmail": "yarn link && cd /usr/local/cpanel/base/webmail/paper_lantern/ng-apps-src/ && yarn link \"@cpanel/api\"",
     "link:whm": "yarn link && cd /usr/local/cpanel/whostmgr/docroot/templates/ng-apps-src/ && yarn link \"@cpanel/api\"",
-    "ts-tidy": "npx eslint -c .ts-eslint-tidy-rc.json 'src/**/*.ts'"
+    "ts-tidy": "npx eslint -c .ts-eslint-tidy-rc.json 'src/**/*.ts' --fix"
   },
   "repository": "ssh://git@enterprise.cpanel.net:7999/cn/api.git",
   "author": "Team Phoenix @ cPanel",

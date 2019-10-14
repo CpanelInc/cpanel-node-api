@@ -1,21 +1,23 @@
 import {
     IMetaData
-} from '../metadata';
+} from "../metadata";
 
 import {
     MessageType,
     Response,
-    ResponseOptions,
-} from '../response';
+    ResponseOptions
+} from "../response";
 
 /**
  * This class will extract the available meta data from the UAPI format into a standard format for JavaScript developers.
  */
 export class UapiMetaData implements IMetaData {
+
     /**
      * Indicates if the data is paged.
      */
     isPaged: boolean = false;
+
     /**
      * The record number of the first record of a page.
      */
@@ -72,8 +74,9 @@ export class UapiMetaData implements IMetaData {
      * @param {any} meta Uapi metadata object.
      */
     constructor(meta: any) {
+
         // Handle pagination
-        if(meta.paginate) {
+        if (meta.paginate) {
             this.isPaged = true;
             this.record = parseInt(meta.paginate.start_result, 10) || 0;
             this.page = parseInt(meta.paginate.current_page, 10) || 0;
@@ -83,13 +86,13 @@ export class UapiMetaData implements IMetaData {
         }
 
         // Handle filtering
-        if(meta.filter) {
+        if (meta.filter) {
             this.isFiltered = true;
             this.recordsBeforeFilter = parseInt(meta.filter.records_before_filter, 10) || 0;
         }
 
         // Get any other custom metadata properties off the object
-        let builtinSet = new Set(['paginate', 'filter']);
+        let builtinSet = new Set(["paginate", "filter"]);
         Object.keys(meta)
             .filter((key: string) => !builtinSet.has(key))
             .forEach((key: string) => {
@@ -112,8 +115,8 @@ export class UapiResponse extends Response {
      */
     private _parseStatus(response: any): void {
         this.status = 0; // Assume it failed.
-        if(typeof(response.status) === 'undefined') {
-            throw new Error('The response should have a numeric status property indicating the api succeeded (>0) or failed (=0)');
+        if (typeof (response.status) === "undefined") {
+            throw new Error("The response should have a numeric status property indicating the api succeeded (>0) or failed (=0)");
         }
         this.status = parseInt(response.status, 10);
     }
@@ -128,7 +131,7 @@ export class UapiResponse extends Response {
             const errors = response.errors;
             if ( errors && errors.length ) {
                 errors.forEach((error: string) => {
-                        this.messages.push({
+                    this.messages.push({
                         type: MessageType.Error,
                         message: error,
                     });
@@ -140,7 +143,7 @@ export class UapiResponse extends Response {
             var messages = response.messages;
             if ( messages ) {
                 messages.forEach((message: string) => {
-                        this.messages.push({
+                    this.messages.push({
                         type: MessageType.Information,
                         message: message,
                     });
@@ -157,15 +160,15 @@ export class UapiResponse extends Response {
      */
     constructor(
         response: any,
-        options?: ResponseOptions,
-    ){
+        options?: ResponseOptions
+    ) {
         super(response, options);
 
         this._parseStatus(response);
         this._parseMessages(response);
 
-        if (!response || !response.hasOwnProperty('data')) {
-            throw new Error('Expected response to contain a data property, but it is missing');
+        if (!response || !response.hasOwnProperty("data")) {
+            throw new Error("Expected response to contain a data property, but it is missing");
         }
 
         // TODO: Add parsing by specific types to take care of renames and type coercion.

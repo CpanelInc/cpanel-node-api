@@ -1,4 +1,4 @@
-import { LocationService } from './location-service';
+import { LocationService } from "./location-service";
 
 /**
  * Check if the protocol is https.
@@ -14,7 +14,7 @@ export function isHttps(protocol: string): boolean {
  * @param  {string}  protocol
  * @return {boolean}          true if its http: in any case, false otherwise.
  */
- export function isHttp(protocol: string): boolean {
+export function isHttp(protocol: string): boolean {
     return (/^http:$/i).test(protocol);
 }
 
@@ -25,7 +25,7 @@ export function isHttps(protocol: string): boolean {
  * @param  {string} path   The path string to process.
  * @return {string}        The path string without a trailing slash.
  */
- export function stripTrailingSlash(path: string) {
+export function stripTrailingSlash(path: string) {
     return path && path.replace(/\/?$/, "");
 }
 
@@ -36,7 +36,7 @@ export function isHttps(protocol: string): boolean {
  * @param  {string} path   The path string to process.
  * @return {string}        The path string with a guaranteed trailing slash.
  */
- export function ensureTrailingSlash(path: string) {
+export function ensureTrailingSlash(path: string) {
     return path && path.replace(/\/?$/, "/");
 }
 
@@ -46,44 +46,48 @@ type PortNameMap = { [index: string]: string };
 // that accesses a URL outside /frontend (cpanel) or /webmail (webmail),
 // but URLs like that are non-production by defintion.
 const PortToApplicationMap: PortNameMap = {
-    '80': 'other',
-    '443': 'other',
-    '2082': 'cpanel',
-    '2083': 'cpanel',
-    '2086': 'whostmgr',
-    '2087': 'whostmgr',
-    '2095': 'webmail',
-    '2096': 'webmail',
-    '9876': 'unittest',
-    '9877': 'unittest',
-    '9878': 'unittest',
-    '9879': 'unittest',
-    'frontend': 'cpanel',
-    'webmail': 'webmail'
+    "80": "other",
+    "443": "other",
+    "2082": "cpanel",
+    "2083": "cpanel",
+    "2086": "whostmgr",
+    "2087": "whostmgr",
+    "2095": "webmail",
+    "2096": "webmail",
+    "9876": "unittest",
+    "9877": "unittest",
+    "9878": "unittest",
+    "9879": "unittest",
+    "frontend": "cpanel",
+    "webmail": "webmail"
 };
 
 /**
  * Helper class used to calculate paths within cpanel applications.
  */
 export class ApplicationPath {
-    private unprotectedPaths = ['/resetpass', '/invitation'];
+    private unprotectedPaths = ["/resetpass", "/invitation"];
 
     /**
      * Name of the application
      */
     applicationName: string;
+
     /**
     * Protocol used to access the page.
     */
     protocol: string;
+
     /**
      * Port used to access the product.
      */
     port: number;
+
     /**
      * Path part of the url
      */
     path: string;
+
     /**
      * Domain used to access the page.
      */
@@ -131,9 +135,9 @@ export class ApplicationPath {
             // Since some browsers wont fill this in, we have to derive it from
             // the protocol if its not provided in the window.location object.
             if (isHttps(this.protocol)) {
-                port = '443';
+                port = "443";
             } else if (isHttp(this.protocol)) {
-                port = '80';
+                port = "80";
             }
         }
 
@@ -146,37 +150,38 @@ export class ApplicationPath {
 
         // For proxy subdomains, we look at the first subdomain to identify the application.
         if (/^whm\./.test(this.domain)) {
-            this.applicationName = PortToApplicationMap['2087'];
+            this.applicationName = PortToApplicationMap["2087"];
         } else if (/^cpanel\./.test(this.domain)) {
-            this.applicationName = PortToApplicationMap['2083'];
+            this.applicationName = PortToApplicationMap["2083"];
         } else if (/^webmail\./.test(this.domain)) {
-            this.applicationName = PortToApplicationMap['2095'];
+            this.applicationName = PortToApplicationMap["2095"];
         } else {
-            this.applicationName = PortToApplicationMap[port.toString()] || PortToApplicationMap[pathMatch[2]] || 'whostmgr';
+            this.applicationName = PortToApplicationMap[port.toString()] || PortToApplicationMap[pathMatch[2]] || "whostmgr";
         }
 
-        this.securityToken = pathMatch[1] || '';
-        this.applicationPath = this.securityToken ? this.path.replace(this.securityToken, '') : this.path;
-        this.theme = '';
+        this.securityToken = pathMatch[1] || "";
+        this.applicationPath = this.securityToken ? this.path.replace(this.securityToken, "") : this.path;
+        this.theme = "";
         if (!this.isUnprotected && ( this.isCpanel || this.isWebmail )) {
-            const folders = this.path.split('/');
+            const folders = this.path.split("/");
             this.theme = folders[3];
         }
 
-        this.themePath = '';
-        let themePath = this.securityToken + '/';
+        this.themePath = "";
+        let themePath = this.securityToken + "/";
         if ( this.isUnprotected ) {
-            themePath = '/';
+            themePath = "/";
         } else if ( this.isCpanel ) {
-            themePath += 'frontend/' + this.theme + '/';
+            themePath += "frontend/" + this.theme + "/";
         } else if ( this.isWebmail ) {
-            themePath += 'webmail/' + this.theme + '/';
+            themePath += "webmail/" + this.theme + "/";
         } else if ( this.isOther ) {
+
             // For unrecognized applications, use the path passed in PAGE.THEME_PATH
-            themePath = '/';
+            themePath = "/";
         }
         this.themePath = themePath;
-        this.rootUrl = this.protocol + '//' + this.domain + ':' + this.port
+        this.rootUrl = this.protocol + "//" + this.domain + ":" + this.port;
     }
 
     /**
@@ -241,7 +246,7 @@ export class ApplicationPath {
      * @return {string} Full url path including theme if applicable for the application to the file.
      */
     buildFullPath(relative: string) {
-        return this.protocol + '//' + this.domain + ':' + this.port + this.buildPath(relative);
+        return this.protocol + "//" + this.domain + ":" + this.port + this.buildPath(relative);
     }
 
     /**
@@ -251,6 +256,6 @@ export class ApplicationPath {
      * @return {string} Full path to the token relative resource.
      */
     buildTokenPath(relative: string) {
-        return this.protocol + '//' + this.domain + ':' + this.port + this.securityToken + relative;
+        return this.protocol + "//" + this.domain + ":" + this.port + this.securityToken + relative;
     }
 }

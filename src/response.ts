@@ -1,11 +1,11 @@
 import {
     IMetaData
-} from './metadata';
+} from "./metadata";
 
 import {
     isUndefined,
-    isNull,
-} from 'lodash';
+    isNull
+} from "lodash";
 
 /**
  * Options for how to handle response parsing.
@@ -18,18 +18,22 @@ export interface ResponseOptions {
  * Types of message that can be in a response.
  */
 export enum MessageType {
+
     /**
      * Message is an error.
      */
     Error,
+
     /**
      * Message is an warning.
      */
     Warning,
+
     /**
      * Message is informational.
      */
     Information,
+
     /**
      * The message type is unknown.
      */
@@ -40,15 +44,18 @@ export enum MessageType {
  * Abstract structure for a message
  */
 export interface IMessage {
+
     /**
      * Type of the message
      */
     type: MessageType,
+
     /**
      * Actual message
      * @type {string}
      */
     message: string,
+
     /**
      * Any other data related to a message
      */
@@ -59,6 +66,7 @@ export interface IMessage {
  * Abstract structure of a response shared by all responses.
  */
 export interface IResponse {
+
     /**
      * The unprocessed response from the server.
      */
@@ -118,6 +126,7 @@ function clone(data: IMetaData): IMetaData {
  * Base class for all response. Must be sub-classed by a real implementation.
  */
 export abstract class Response implements IResponse {
+
     /**
       * The unprocessed response from the server.
       */
@@ -158,10 +167,10 @@ export abstract class Response implements IResponse {
      */
     constructor(response: any, options?: ResponseOptions) {
         if (isUndefined(response) || isNull(response) ) {
-            throw new Error('The response was unexpectedly undefined or null');
+            throw new Error("The response was unexpectedly undefined or null");
         }
 
-        if(options) {
+        if (options) {
             this.options = options;
         }
 

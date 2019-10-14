@@ -2,10 +2,12 @@
  * Sorting direction. The SortType and SortDirection combine to define the sorting for collections returned.
  */
 export enum SortDirection {
+
     /**
      * Records are sorted from low value to high value based on the SortType
      */
     Ascending,
+
     /**
      * Records are sorted from high value to low value based on the SortType
      * @type {[type]}
@@ -17,6 +19,7 @@ export enum SortDirection {
  * Sorting type. Defines how values are compared.
  */
 export enum SortType {
+
     /**
      * Uses character by character comparison
      */
@@ -66,6 +69,7 @@ export interface ISort {
  * Defines a sort rule. These can be combined into a list to define a complex sort for a list dataset.
  */
 export class Sort implements ISort {
+
     /**
      * Column name to sort on.
      *
@@ -98,10 +102,10 @@ export class Sort implements ISort {
     constructor(
         column: string,
         direction: SortDirection = SortDirection.Ascending,
-        type: SortType = SortType.Lexicographic,
+        type: SortType = SortType.Lexicographic
     ) {
-        if(!column) {
-            throw new Error('You must provide a non-empty column name for a Sort rule.');
+        if (!column) {
+            throw new Error("You must provide a non-empty column name for a Sort rule.");
         }
         this.column = column;
         this.direction = direction;

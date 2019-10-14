@@ -1,50 +1,50 @@
 import {
     snakeCase
-} from 'lodash';
+} from "lodash";
 
-import * as Perl from '../utils/perl';
+import * as Perl from "../utils/perl";
 
 import {
     SortDirection,
-    SortType,
-} from '../utils/sort';
+    SortType
+} from "../utils/sort";
 
 import {
     FilterOperator
-} from '../utils/filter';
+} from "../utils/filter";
 
 import {
-    IArgument,
-} from '../utils/argument';
+    IArgument
+} from "../utils/argument";
 
 import {
     IPager
-} from '../utils/pager';
+} from "../utils/pager";
 
 import {
     GenerateRule,
     Request,
-    IRequest,
-} from '../request';
+    IRequest
+} from "../request";
 
 import {
-    HttpVerb,
-} from '../http/verb';
+    HttpVerb
+} from "../http/verb";
 
 import {
-    RequestInfo,
-} from '../interchange';
+    RequestInfo
+} from "../interchange";
 
 import {
     ArgumentSerializationRule,
     argumentSerializationRules
-} from '../argument-serializer-rules';
+} from "../argument-serializer-rules";
 
 import {
     IArgumentEncoder,
     JsonArgumentEncoder,
-    WwwFormUrlArgumentEncoder,
-} from '../utils/encoders'
+    WwwFormUrlArgumentEncoder
+} from "../utils/encoders";
 
 
 export class UapiRequest extends Request {
@@ -57,7 +57,7 @@ export class UapiRequest extends Request {
      * @return {string}                   Fragment with the serialized parameters
      */
     private _build(params: IArgument[], encoder: IArgumentEncoder): string {
-        let fragment = '';
+        let fragment = "";
         params.forEach((arg, index, array) => {
             const isLast: boolean = index === array.length - 1;
             fragment += encoder.encode(arg.name, arg.value, isLast);
@@ -83,12 +83,12 @@ export class UapiRequest extends Request {
      */
     private _generateSorts(params: IArgument[]): void {
         this.sorts.forEach((sort, index) => {
-            if(index === 0) {
-                params.push({ name: 'api.sort', value: Perl.fromBoolean(true) })
+            if (index === 0) {
+                params.push({ name: "api.sort", value: Perl.fromBoolean(true) });
             }
-            params.push({ name: 'api.sort_column_' + index,  value: sort.column });
-            params.push({ name: 'api.sort_reverse_' + index, value: Perl.fromBoolean(sort.direction !== SortDirection.Ascending) });
-            params.push({ name: 'api.sort_method_' + index,  value: snakeCase(SortType[sort.type]) });
+            params.push({ name: "api.sort_column_" + index,  value: sort.column });
+            params.push({ name: "api.sort_reverse_" + index, value: Perl.fromBoolean(sort.direction !== SortDirection.Ascending) });
+            params.push({ name: "api.sort_method_" + index,  value: snakeCase(SortType[sort.type]) });
         });
     }
 
@@ -99,7 +99,7 @@ export class UapiRequest extends Request {
      * @returns {string}
      */
     private _lookupFilterOperator(operator: FilterOperator): string {
-        switch(operator) {
+        switch (operator) {
             case FilterOperator.GreaterThanUnlimited:
                 return "gt_handle_unlimited";
             case FilterOperator.GreaterThan:
@@ -126,7 +126,7 @@ export class UapiRequest extends Request {
                 return "contains";
             default:
                 const key = FilterOperator[operator];
-                throw new Error(`Unrecoginzed FilterOperator ${key} for UAPI`)
+                throw new Error(`Unrecoginzed FilterOperator ${key} for UAPI`);
         }
     }
 
@@ -137,9 +137,9 @@ export class UapiRequest extends Request {
      */
     private _generateFilters(params: IArgument[]) : void {
         this.filters.forEach((filter, index) => {
-            params.push({ name: 'api.filter_column_' + index,  value: filter.column });
-            params.push({ name: 'api.filter_type_' + index,  value: this._lookupFilterOperator(filter.operator) });
-            params.push({ name: 'api.filter_term_' + index, value: filter.value });
+            params.push({ name: "api.filter_column_" + index,  value: filter.column });
+            params.push({ name: "api.filter_type_" + index,  value: this._lookupFilterOperator(filter.operator) });
+            params.push({ name: "api.filter_term_" + index, value: filter.value });
         });
     }
 
@@ -163,16 +163,16 @@ export class UapiRequest extends Request {
 
         let allPages = this.pager.all();
         params.push({
-            name: 'api.paginate',
+            name: "api.paginate",
             value: Perl.fromBoolean(true),
         });
         params.push({
-            name: 'api.paginate_start',
+            name: "api.paginate_start",
             value: allPages ? -1 : this._traslatePageToStart(this.pager)
         });
-        if(!allPages) {
+        if (!allPages) {
             params.push({
-                name: 'api.paginate_size',
+                name: "api.paginate_size",
                 value: this.pager.pageSize
             });
         }
@@ -184,9 +184,9 @@ export class UapiRequest extends Request {
      * @param  {IArgument[]} params List of parameter to adjust based on the configuration.
      */
     private _generateConfiguration(params: IArgument[]): void {
-        if (this.config && this.config['analytics']) {
+        if (this.config && this.config["analytics"]) {
             params.push({
-                name: 'api.analytics',
+                name: "api.analytics",
                 value: Perl.fromBoolean(this.config.analytics)
             });
         }
@@ -212,11 +212,11 @@ export class UapiRequest extends Request {
     generate(rule? : GenerateRule): RequestInfo {
 
         // Needed for or pure js clients since they don't get the compiler checks
-        if(!this.namespace) {
-            throw new Error('You must define a namespace for the uapi call before you generate a request');
+        if (!this.namespace) {
+            throw new Error("You must define a namespace for the uapi call before you generate a request");
         }
-        if(!this.method) {
-            throw new Error('You must define a method for the uapi call before you generate a request');
+        if (!this.method) {
+            throw new Error("You must define a method for the uapi call before you generate a request");
         }
 
         if (!rule) {
@@ -228,7 +228,7 @@ export class UapiRequest extends Request {
             };
         }
 
-        if(!rule.encoder) {
+        if (!rule.encoder) {
             rule.encoder = this.config.json ?
                 new JsonArgumentEncoder() :
                 new WwwFormUrlArgumentEncoder();
@@ -239,17 +239,17 @@ export class UapiRequest extends Request {
         let info = {
             headers: [
                 {
-                    name: 'Content-Type',
+                    name: "Content-Type",
                     value: rule.encoder.contentType,
                 }
             ],
             url: [
-                '',
-                'execute',
+                "",
+                "execute",
                 this.namespace,
                 this.method
-            ].map(encodeURIComponent).join('/'),
-            body: '',
+            ].map(encodeURIComponent).join("/"),
+            body: "",
         };
 
         let params: IArgument[] = [];
@@ -262,9 +262,9 @@ export class UapiRequest extends Request {
         let encoded = this._build(params, rule.encoder);
 
         if (argumentRule.dataInBody) {
-            info['body'] = encoded;
+            info["body"] = encoded;
         } else {
-            info['url'] += encoded;
+            info["url"] += encoded;
         }
 
         return info as RequestInfo;

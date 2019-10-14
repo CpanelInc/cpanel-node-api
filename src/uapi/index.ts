@@ -1,8 +1,8 @@
 export {
     UapiRequest
-} from './request';
+} from "./request";
 
 export {
     UapiResponse,
-    UapiMetaData,
-} from './response';
+    UapiMetaData
+} from "./response";

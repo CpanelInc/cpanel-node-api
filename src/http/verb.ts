@@ -2,6 +2,7 @@
  * Common http verbs
  */
 export enum HttpVerb {
+
     /**
      * Get request
      */

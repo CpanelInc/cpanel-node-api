@@ -1,13 +1,14 @@
 import {
     Response,
     ResponseOptions,
-    MessageType,
-} from './response';
+    MessageType
+} from "./response";
 
 /**
  * Fake to help with testing abstract class.
  */
 class FakeResponse extends Response {
+
     /**
      * Construct a FakeResponse object.
      * @param {any}             response
@@ -40,103 +41,103 @@ class FakeResponseWithMessages extends FakeResponse {
         this.messages = [
             {
                 type: MessageType.Error,
-                message: 'Fake Error',
+                message: "Fake Error",
             },
             {
                 type: MessageType.Warning,
-                message: 'Fake Warning',
+                message: "Fake Warning",
             },
             {
                 type: MessageType.Information,
-                message: 'Fake Information',
+                message: "Fake Information",
             },
         ];
     }
 }
 
-describe('Response', () => {
-    describe('constructor', () => {
-        it('should not keep a copy of the raw response by default', () => {
+describe("Response", () => {
+    describe("constructor", () => {
+        it("should not keep a copy of the raw response by default", () => {
             let response = new FakeResponse({});
             expect(response.raw).not.toBeDefined();
         });
-        it('should keep a copy of the raw response when requested', () => {
+        it("should keep a copy of the raw response when requested", () => {
             let resp = {};
             let response = new FakeResponse(resp, { keepUnprocessedResponse: true });
             expect(response.raw).toEqual(resp);
         });
-        it('should not keep a copy of the raw response when configured so', () => {
+        it("should not keep a copy of the raw response when configured so", () => {
             let resp = {};
             let response = new FakeResponse(resp, { keepUnprocessedResponse: false });
             expect(response.raw).not.toBeDefined();
         });
     });
-    describe('error, warning, messsage properties', () => {
-        describe('without any messages', () => {
+    describe("error, warning, messsage properties", () => {
+        describe("without any messages", () => {
             let response: FakeResponse;
             beforeEach(() => {
                 response = new FakeResponse({});
-            })
+            });
 
-            it('should return no errors', () => {
+            it("should return no errors", () => {
                 expect(response.hasErrors).toBe(false);
-                expect(response.errors).toEqual([])
-            })
+                expect(response.errors).toEqual([]);
+            });
 
-            it('should return no warnings', () => {
+            it("should return no warnings", () => {
                 expect(response.hasWarnings).toBe(false);
-                expect(response.warnings).toEqual([])
-            })
+                expect(response.warnings).toEqual([]);
+            });
 
-            it('should return no info messages', () => {
+            it("should return no info messages", () => {
                 expect(response.hasInfoMessages).toBe(false);
-                expect(response.infoMessages).toEqual([])
-            })
-        })
-        describe('with messages of each type', () => {
+                expect(response.infoMessages).toEqual([]);
+            });
+        });
+        describe("with messages of each type", () => {
             let response: FakeResponseWithMessages;
             beforeEach(() => {
                 response = new FakeResponseWithMessages({});
-            })
+            });
 
-            it('should return an error when there is an error', () => {
+            it("should return an error when there is an error", () => {
                 expect(response.hasErrors).toBe(true);
-                expect(response.errors).toEqual([ { type: MessageType.Error, message: 'Fake Error' } ])
-            })
+                expect(response.errors).toEqual([ { type: MessageType.Error, message: "Fake Error" } ]);
+            });
 
-            it('should return a warning when there is an warning', () => {
+            it("should return a warning when there is an warning", () => {
                 expect(response.hasWarnings).toBe(true);
-                expect(response.warnings).toEqual([ { type: MessageType.Warning, message: 'Fake Warning' } ])
-            })
+                expect(response.warnings).toEqual([ { type: MessageType.Warning, message: "Fake Warning" } ]);
+            });
 
-            it('should return a info messages when there is an info message', () => {
+            it("should return a info messages when there is an info message", () => {
                 expect(response.hasInfoMessages).toBe(true);
-                expect(response.infoMessages).toEqual([ { type: MessageType.Information, message: 'Fake Information' } ])
-            })
-        })
-    })
+                expect(response.infoMessages).toEqual([ { type: MessageType.Information, message: "Fake Information" } ]);
+            });
+        });
+    });
 
-    describe('meta data methods', () => {
-        describe('isPaged', () => {
+    describe("meta data methods", () => {
+        describe("isPaged", () => {
             let response: FakeResponse;
             beforeEach(() => {
                 response = new FakeResponse({});
-            })
+            });
 
-            it('should return state from metadata', () => {
+            it("should return state from metadata", () => {
                 expect(response.isPaged).toBe(true);
-            })
-        })
+            });
+        });
 
-        describe('isFiltered', () => {
+        describe("isFiltered", () => {
             let response: FakeResponse;
             beforeEach(() => {
                 response = new FakeResponse({});
-            })
+            });
 
-            it('should return state from metadata', () => {
+            it("should return state from metadata", () => {
                 expect(response.isFiltered).toBe(true);
-            })
-        })
-    })
+            });
+        });
+    });
 });

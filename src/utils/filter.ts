@@ -1,4 +1,3 @@
-
 /**
  * The filter operator defines the rule used to compare data in a column with the passed in value. It
  * behaves something like:
@@ -10,6 +9,7 @@
  * where item is the data from the column
  */
 export enum FilterOperator {
+
     /**
      * String contains value
      */
@@ -75,6 +75,7 @@ export enum FilterOperator {
  * Interface for filter data.
  */
 export interface IFilter {
+
     /**
      * Column name to look at in a record.
      * @type {string}
@@ -98,6 +99,7 @@ export interface IFilter {
  * Defines a filter request for a Api call.
  */
 export class Filter implements IFilter {
+
     /**
      * Column name to look at in a record.
      * @type {string}
@@ -128,8 +130,8 @@ export class Filter implements IFilter {
         operator: FilterOperator,
         value: any
     ) {
-        if(!column) {
-            throw new Error('You must define a non-empty column name.')
+        if (!column) {
+            throw new Error("You must define a non-empty column name.");
         }
 
         this.column = column;

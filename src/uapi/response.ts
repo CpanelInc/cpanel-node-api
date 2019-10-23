@@ -54,11 +54,6 @@ export class UapiMetaData implements IMetaData {
     recordsBeforeFilter: number = 0;
 
     /**
-     * Number of records removed by the filter.
-     */
-    recordsFiltered: number = 0;
-
-    /**
      * Indicates the response was the result of a batch api.
      */
     batch: boolean = false;

@@ -25,7 +25,6 @@ class FakeResponse extends Response {
             totalRecords: 100,
             totalPages: 10,
             recordsBeforeFilter: 200,
-            recordsFiltered: 0,
             batch: false,
             properties: {},
         };

@@ -107,7 +107,6 @@ export let DefaultMetaData: IMetaData = {
     totalRecords: 0,
     totalPages: 0,
     recordsBeforeFilter: 0,
-    recordsFiltered: 0,
     batch: false,
     properties: {},
 };

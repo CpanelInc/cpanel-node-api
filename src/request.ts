@@ -46,7 +46,7 @@ export interface IRequest {
     /**
      * Namespace where the api call lives
      */
-    namespace: string;
+    namespace?: string;
 
     /**
      * Method name of the api call.
@@ -182,8 +182,11 @@ export abstract class Request {
      */
     constructor(init?: IRequest ) {
         if (init) {
-            this.namespace = init.namespace;
             this.method = init.method;
+            if (init.namespace) {
+                this.namespace = init.namespace;
+            }
+
             if (init.arguments) {
                 init.arguments.forEach((argument) => {
                     this.addArgument(argument);
@@ -289,13 +292,6 @@ export abstract class Request {
         this._usePager = true;
         return this;
     }
-
-    /**
-     * Generate the request. Developers of concrete classes based on
-     * this class must implement this method.
-     *
-     * @return {RequestInfo}
-     */
 
     /**
      * Generate the request interchange information. Note: This method is abstract and

@@ -1,10 +1,8 @@
 import * as utils from "./utils/index";
 import * as uapi from "./uapi/index";
-
-// import * as uapi from './apis/whmapi/index'
+import * as whmapi from "./whmapi/index";
 export {
     utils,
-    uapi
-
-    // whmapi,
+    uapi,
+    whmapi
 };

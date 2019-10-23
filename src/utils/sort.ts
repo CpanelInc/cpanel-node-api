@@ -97,7 +97,6 @@ export class Sort implements ISort {
      * @param {string}        column Column to sort
      * @param {SortDirection} direction Optional sort direction. Defaults to Ascending
      * @param {SortType}      type      Optional sort type. Defaults to Lexicographic
-     * @param {Sort}
      */
     constructor(
         column: string,

@@ -44,11 +44,6 @@ export interface IMetaData {
         recordsBeforeFilter: number;
 
         /**
-         * Number of records removed by the filter.
-         */
-        recordsFiltered: number;
-
-        /**
          * Indicates the response was the result of a batch api.
          */
         batch: boolean;

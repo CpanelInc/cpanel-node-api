@@ -5,3 +5,5 @@ yarn-error.log
 *.js
 *.js.map
 docs/
+coverage
+.nyc_output

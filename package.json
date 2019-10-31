@@ -22,7 +22,7 @@
     "build-docs": "compodoc -p tsconfig.json -d ./docs",
     "serve-docs": "compodoc -p tsconfig.json -d ./docs -r 4214 -s",
     "test": "yarn run build:ts && jasmine '**/*.spec.js'",
-    "test:cover": "nyc -r lcov -r text -e .ts -x '**/*.spec.ts' jasmine-ts --config=jasmine.json",
+    "test:cover": "nyc -e .ts -x '**/*.spec.ts' jasmine-ts --config=jasmine.json && nyc report -r lcov",
     "link:cpanel": "yarn link && cd /usr/local/cpanel/base/frontend/paper_lantern/ng-apps-src/ && yarn link \"@cpanel/api\"",
     "link:webmail": "yarn link && cd /usr/local/cpanel/base/webmail/paper_lantern/ng-apps-src/ && yarn link \"@cpanel/api\"",
     "link:whm": "yarn link && cd /usr/local/cpanel/whostmgr/docroot/templates/ng-apps-src/ && yarn link \"@cpanel/api\"",

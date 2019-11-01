@@ -265,7 +265,11 @@ export class UapiRequest extends Request {
         if (argumentRule.dataInBody) {
             info["body"] = encoded;
         } else {
-            info["url"] += encoded;
+            if (rule.verb === HttpVerb.GET) {
+                info["url"] += `?${encoded}`;
+            } else {
+                info["url"] += encoded;
+            }
         }
 
         return info as RequestInfo;

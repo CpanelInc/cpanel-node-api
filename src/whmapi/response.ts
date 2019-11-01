@@ -123,7 +123,7 @@ export class WhmApiResponse extends Response {
      */
     private _parseMessages(resMetadata: any): void {
         if (!resMetadata.result) {
-            const errors: any[] = [ resMetadata.reason ];
+            const errors: any[] = [resMetadata.reason];
             if (errors && errors.length) {
                 errors.forEach((error: string) => {
                     this.messages.push({

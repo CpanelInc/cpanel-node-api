@@ -66,7 +66,7 @@ export class WhmApiMetaData implements IMetaData {
     /**
      * Build a new MetaData object from the metadata response from the server.
      *
-     * @param {any} meta WhmApi metadata object.
+     * @param meta WhmApi metadata object.
      */
     constructor(meta: any) {
 
@@ -119,7 +119,7 @@ export class WhmApiResponse extends Response {
     /**
      * Parse out the messages from the response.
      *
-     * @param {any} resMetadata Metadata returned in response object from the backend.
+     * @param resMetadata Metadata returned in response object from the backend.
      */
     private _parseMessages(resMetadata: any): void {
         if (!resMetadata.result) {
@@ -143,8 +143,8 @@ export class WhmApiResponse extends Response {
      *
      * @method _reduce_list_data
      * @private
-     * @param {object} data The "data" member of the API JSON response
-     * @return {object|array} The data that the API returned
+     * @param data The "data" member of the API JSON response
+     * @return The reduced data object.
      */
     private _reduce_list_data(data: any): any {
         if ((typeof data === "object") && !(data instanceof Array)) {
@@ -167,8 +167,8 @@ export class WhmApiResponse extends Response {
     /**
      * Parse out the status, data and metadata from a WhmApi response into the abstract Response and IMetaData structures.
      *
-     * @param {any}             response  Raw response from the server. Its just been JSON.parse() at this point.
-     * @param {ResponseOptions} [options] Options on how to handle parsing of the response.
+     * @param response Raw response from the server. Its just been JSON.parse() at this point.
+     * @param Options On how to handle parsing of the response.
      */
     constructor(
         response: any,

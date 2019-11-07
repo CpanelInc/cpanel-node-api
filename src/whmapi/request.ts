@@ -74,9 +74,9 @@ export class WhmApiRequest extends Request {
     /**
      * Build a fragment of the parameter list based on the list of name/value pairs.
      *
-     * @param  {IArgument[]}      params  Parameters to serialize.
-     * @param  {IArgumentEncoder} encoder Encoder to use to serialize the each parameter.
-     * @return {string}                   Fragment with the serialized parameters
+     * @param params  Parameters to serialize.
+     * @param encoder Encoder to use to serialize the each parameter.
+     * @return Fragment with the serialized parameters
      */
     private _build(params: IArgument[], encoder: IArgumentEncoder): string {
         let fragment = "";
@@ -94,8 +94,8 @@ export class WhmApiRequest extends Request {
      * in the same order as the numbers; e.g.: 26=>"za", 52=>"zza", ...
      * @method  _make_whm_api_fieldspec_from_number
      * @private
-     * @param  {Number} num Index of sort item
-     * @return {String}     letter combination for the index of the sort item.
+     * @param num Index of sort item
+     * @return letter combination for the index of the sort item.
      */
     private _make_whm_api_fieldspec_from_number(num: number): string {
         let left = _.padStart("", Math.floor(num / 26), "z");
@@ -105,7 +105,7 @@ export class WhmApiRequest extends Request {
     /**
      * Generates the arguments for the request.
      *
-     * @param  {IArgument[]} params List of parameters to adjust based on the sort rules in the Request.
+     * @param params List of parameters to adjust based on the sort rules in the Request.
      */
     private _generateArguments(params: IArgument[]): void {
 
@@ -119,7 +119,7 @@ export class WhmApiRequest extends Request {
     /**
      * Generates the sort parameters for the request.
      *
-     * @param  {IArgument[]} params List of parameters to adjust based on the sort rules in the Request.
+     * @param params List of parameters to adjust based on the sort rules in the Request.
      */
     private _generateSorts(params: IArgument[]): void {
         this.sorts.forEach((sort, index) => {
@@ -138,8 +138,9 @@ export class WhmApiRequest extends Request {
     /**
      * Lookup the correct name for the filter operator
      *
-     * @param {FilterOperator} operator
-     * @returns {string}
+     * @param operator Type of filter operator to use to filter the items
+     * @returns The string counter part for the filter operator.
+     * @throws Will throw an error if an unrecognized FilterOperator is provided.
      */
     private _lookupFilterOperator(operator: FilterOperator): string {
         switch (operator) {
@@ -166,7 +167,7 @@ export class WhmApiRequest extends Request {
     /**
      * Generate the filter parameters if any.
      *
-     * @param  {IArgument[]} params List of parameters to adjust based on the filter rules provided.
+     * @param params List of parameters to adjust based on the filter rules provided.
      */
     private _generateFilters(params: IArgument[]): void {
         this.filters.forEach((filter, index) => {
@@ -185,6 +186,8 @@ export class WhmApiRequest extends Request {
     /**
      * In UAPI we request the starting record not the starting page. This translates
      * the page and page size into the correct starting record.
+     *
+     * @param pager Object containing pager settings.
      */
     private _translatePageToStart(pager: IPager) {
         return ((pager.page - 1) * pager.pageSize) + 1;
@@ -193,7 +196,7 @@ export class WhmApiRequest extends Request {
     /**
      * Generate the pager request parameters if any.
      *
-     * @param  {IArgument[]} params List of parameters to adjust based on the pagination rules.
+     * @param params List of parameters to adjust based on the pagination rules.
      */
     private _generatePagination(params: IArgument[]): void {
         if (!this.usePager) {
@@ -218,7 +221,7 @@ export class WhmApiRequest extends Request {
     /**
      * Create a new uapi request.
      *
-     * @param {IRequest} init   Optional request object used to initialize this object.
+     * @param init Optional request object used to initialize this object.
      */
     constructor(apiType: WhmApiType, init?: IRequest) {
         super(init);
@@ -239,8 +242,7 @@ export class WhmApiRequest extends Request {
      * Generate the interchange object that has the pre-encoded
      * request using UAPI formatting.
      *
-     * @param  {HttpVerb}    verb
-     * @param  {IArgumentEncoder}    [encoder] optional parameter encoder if you don't want to use the default encoder
+     * @param rule Optional parameter to specify a specific Rule we want the Request to be generated for.
      * @return {RequestInfo} Request information ready to be used by a remoting layer
      */
     generate(rule?: GenerateRule): RequestInfo {

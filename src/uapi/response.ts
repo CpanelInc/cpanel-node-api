@@ -66,7 +66,7 @@ export class UapiMetaData implements IMetaData {
     /**
      * Build a new MetaData object from the metadata response from the server.
      *
-     * @param {any} meta Uapi metadata object.
+     * @param meta Uapi metadata object.
      */
     constructor(meta: any) {
 
@@ -105,8 +105,8 @@ export class UapiResponse extends Response {
     /**
      * Parse out the status from the response.
      *
-     * @param  {any}    response Raw response object from the backend. Already passed thru JSON.parse().
-     * @return {number}          Number indicating success or failure. > 1 success, 0 failure.
+     * @param  response Raw response object from the backend. Already passed thru JSON.parse().
+     * @return Number indicating success or failure. > 1 success, 0 failure.
      */
     private _parseStatus(response: any): void {
         this.status = 0; // Assume it failed.
@@ -119,7 +119,7 @@ export class UapiResponse extends Response {
     /**
      * Parse out the messages from the response.
      *
-     * @param {any} response
+     * @param response The response object sent by the API method.
      */
     private _parseMessages(response: any): void {
         if ("errors" in response ) {
@@ -150,8 +150,8 @@ export class UapiResponse extends Response {
     /**
      * Parse out the status, data and metadata from a Uapi response into the abstract Response and IMetaData structures.
      *
-     * @param {any}             response  Raw response from the server. Its just been JSON.parse() at this point.
-     * @param {ResponseOptions} [options] Options on how to handle parsing of the response.
+     * @param response  Raw response from the server. Its just been JSON.parse() at this point.
+     * @param Options on how to handle parsing of the response.
      */
     constructor(
         response: any,

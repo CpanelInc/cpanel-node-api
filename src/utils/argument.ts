@@ -23,21 +23,19 @@ export class Argument implements IArgument  {
 
     /**
      * Name of the argument.
-     * @type {string}
      */
     name: string;
 
     /**
      * Value of the argument
-     * @type {any}
      */
     value: any;
 
     /**
      * Build a new Argument.
      *
-     * @param {string}       name   Name of the argument
-     * @param {any}          value  Value of the argument.
+     * @param name Name of the argument
+     * @param value Value of the argument.
      */
     constructor(name: string, value: any) {
         if (!name) {
@@ -55,8 +53,8 @@ export class PerlBooleanArgument extends Argument {
 
     /**
      * Build a new Argument
-     * @param {string}  name  Name of the argument
-     * @param {boolean} value Value of the argument. Will be serialized to use perls boolean rules.
+     * @param  name  Name of the argument
+     * @param value Value of the argument. Will be serialized to use perls boolean rules.
      */
     constructor(name: string, value: boolean) {
         super(name, fromBoolean(value));

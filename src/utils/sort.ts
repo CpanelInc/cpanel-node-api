@@ -10,7 +10,6 @@ export enum SortDirection {
 
     /**
      * Records are sorted from high value to low value based on the SortType
-     * @type {[type]}
      */
     Descending,
 }
@@ -48,19 +47,16 @@ export interface ISort {
 
     /**
      * Column name to sort on.
-     * @type {string}
      */
     column: string;
 
     /**
      * Direction to apply to sort: ascending or descending
-     * @type {SortDir}
      */
     direction: SortDirection;
 
     /**
      * Sort type applied. See SortType for information on available sorting rules.
-     * @type {SortType}
      */
     type: SortType;
 }
@@ -72,31 +68,25 @@ export class Sort implements ISort {
 
     /**
      * Column name to sort on.
-     *
-     * @type {string}
      */
     column: string;
 
     /**
      * Direction to apply to sort: ascending or descending
-     *
-     * @type {SortDir}
      */
     direction: SortDirection;
 
     /**
      * Sort type applied. See SortType for information on available sorting rules.
-     *
-     * @type {SortType}
      */
     type: SortType;
 
     /**
      * Create a new instance of a Sort
      *
-     * @param {string}        column Column to sort
-     * @param {SortDirection} direction Optional sort direction. Defaults to Ascending
-     * @param {SortType}      type      Optional sort type. Defaults to Lexicographic
+     * @param column Column to sort
+     * @param direction Optional sort direction. Defaults to Ascending
+     * @param type Optional sort type. Defaults to Lexicographic
      */
     constructor(
         column: string,

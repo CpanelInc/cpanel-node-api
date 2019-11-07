@@ -78,19 +78,16 @@ export interface IFilter {
 
     /**
      * Column name to look at in a record.
-     * @type {string}
      */
     column: string;
 
     /**
      * Comparison operator to apply
-     * @type {FilterOperator}
      */
     operator: FilterOperator;
 
     /**
      * Value to compare the column data to. The kinds of values here vary depending on the FilterOperator
-     * @type {any}
      */
     value: any;
 };
@@ -102,28 +99,25 @@ export class Filter implements IFilter {
 
     /**
      * Column name to look at in a record.
-     * @type {string}
      */
     column: string;
 
     /**
      * Comparison operator to apply
-     * @type {FilterOperator}
      */
     operator: FilterOperator;
 
     /**
      * Value to compare the column data to. The kinds of values here vary depending on the FilterOperator
-     * @type {any}
      */
     value: any;
 
     /**
      * Construct a new Filter object.
      *
-     * @param {string}         column   Column name requests. Must be non-empty and exist on the related backend collection.
-     * @param {FilterOperator} operator Comparison operator to use when applying the filter.
-     * @param {any}            value    Value to compare the columns value too.
+     * @param column Column name requests. Must be non-empty and exist on the related backend collection.
+     * @param operator Comparison operator to use when applying the filter.
+     * @param value Value to compare the columns value too.
      */
     constructor(
         column: string,

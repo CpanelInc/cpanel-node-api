@@ -178,7 +178,7 @@ export abstract class Request {
     /**
      * Create a new request.
      *
-     * @param {IRequest} init   Optional request object used to initialize this object.
+     * @param init   Optional request object used to initialize this object.
      */
     constructor(init?: IRequest ) {
         if (init) {
@@ -224,8 +224,8 @@ export abstract class Request {
     /**
      * Add an argument to the request.
      *
-     * @param  {IArgument} argument
-     * @return {Request}
+     * @param argument
+     * @return Updated Request object.
      */
     addArgument(argument: IArgument): Request {
         if (argument instanceof Argument) {
@@ -239,8 +239,8 @@ export abstract class Request {
     /**
      * Add sorting rule to the request.
      *
-     * @param  {ISort}   sort
-     * @return {Request}
+     * @param sort Sort object with sorting information.
+     * @return Updated Request object.
      */
     addSort(sort: ISort): Request {
         if (sort instanceof Sort) {
@@ -254,8 +254,8 @@ export abstract class Request {
     /**
      * Add a filter to the request.
      *
-     * @param  {IFilter} filter
-     * @return {Request}
+     * @param filter Filter object with filter information.
+     * @return Updated Request object.
      */
     addFilter(filter: IFilter): Request {
         if (filter instanceof Filter) {
@@ -269,8 +269,8 @@ export abstract class Request {
     /**
      * Add a column to include in the request. Not if no columns are specified, all columns are retrieved.
      *
-     * @param  {string} name Name of a column
-     * @return {Request}
+     * @param name Name of a column
+     * @return Updated Request object.
      */
     addColumn(column: string): Request {
         this.columns.push(column);
@@ -280,8 +280,8 @@ export abstract class Request {
     /**
      * Set the pager setting for the request.
      *
-     * @param  {Pager} pager
-     * @return {Request}
+     * @param pager Pager object with pagination information.
+     * @return Updated Request object.
      */
     paginate(pager: IPager): Request {
         if (pager instanceof Pager) {
@@ -297,9 +297,9 @@ export abstract class Request {
      * Generate the request interchange information. Note: This method is abstract and
      * must be implemented in derived request generators.
      *
-     * @param  {GenerateRule} [rule] Rule used to create the interchange. If not provided, implementations
+     * @param Rule used to create the interchange. If not provided, implementations
      *                               should select the rule to use.
-     * @return {RequestInfo}         Interchange data.
+     * @return Interchange data.
      */
     abstract generate(rule?: GenerateRule): RequestInfo;
 }

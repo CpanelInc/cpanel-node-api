@@ -52,7 +52,6 @@ export interface IMessage {
 
     /**
      * Actual message
-     * @type {string}
      */
     message: string,
 
@@ -114,8 +113,8 @@ export let DefaultMetaData: IMetaData = {
 /**
  * Deep cloning of a object to avoid reference overwritting.
  *
- * @param {IMetaData} data [description]
- * @returns {IMetaData}
+ * @param data Metadata object to be cloned.
+ * @returns Cloned Metadata object.
  */
 function clone(data: IMetaData): IMetaData {
     return JSON.parse(JSON.stringify(data)) as IMetaData;
@@ -161,8 +160,8 @@ export abstract class Response implements IResponse {
     /**
      * Build a new response object from the response. Note, this class should not be called
      * directly.
-     * @param {any}             response  Complete data passed from the server. Probably its been parsed using JSON.parse().
-     * @param {ResponseOptions} [options] Optional options for how to handle the processing of the response data.
+     * @param response Complete data passed from the server. Probably its been parsed using JSON.parse().
+     * @param options for how to handle the processing of the response data.
      */
     constructor(response: any, options?: ResponseOptions) {
         if (isUndefined(response) || isNull(response) ) {
@@ -181,7 +180,7 @@ export abstract class Response implements IResponse {
     /**
      * Checks if the api was successful.
      *
-     * @return {boolean} true if successful, false if failure.
+     * @return true if successful, false if failure.
      */
     get success(): boolean {
         return this.status > 0;
@@ -190,7 +189,7 @@ export abstract class Response implements IResponse {
     /**
      * Checks if the api failed.
      *
-     * @return {boolean} ture if the api reports failure, true otherwise.
+     * @return ture if the api reports failure, true otherwise.
      */
     get failed(): boolean {
         return this.status === 0;
@@ -199,8 +198,8 @@ export abstract class Response implements IResponse {
     /**
      * Get the list of message based on the requested type.
      *
-     * @param  {MessageType} type Type of the message to lookup
-     * @return {IMessage[]}       List of messages that match the filter.
+     * @param type Type of the message to lookup
+     * @return List of messages that match the filter.
      */
     private _getMessages(type: MessageType): IMessage[] {
         return this.messages.filter((message) => message.type === type);
@@ -209,7 +208,7 @@ export abstract class Response implements IResponse {
     /**
      * Get the list of error messages.
      *
-     * @return {IMessage[]} List of errors.
+     * @return List of errors.
      */
     get errors(): IMessage[] {
         return this._getMessages(MessageType.Error);
@@ -218,7 +217,7 @@ export abstract class Response implements IResponse {
     /**
      * Get the list of warning messages.
      *
-     * @return {IMessage[]} List of warnings.
+     * @return List of warnings.
      */
     get warnings(): IMessage[] {
         return this._getMessages(MessageType.Warning);
@@ -227,7 +226,7 @@ export abstract class Response implements IResponse {
     /**
      * Get the list of informational messages.
      *
-     * @return {IMessage[]} List of informational messages.
+     * @return List of informational messages.
      */
     get infoMessages(): IMessage[] {
         return this._getMessages(MessageType.Information);
@@ -235,8 +234,8 @@ export abstract class Response implements IResponse {
 
     /**
      * Checks if there are any messages of a given type.
-     * @param  {MessageType} type Type of the message to check for.
-     * @return {boolean}          true if there are messages of the requested type. false otherwise.
+     * @param type Type of the message to check for.
+     * @return true if there are messages of the requested type. false otherwise.
      */
     private _hasMessages(type: MessageType): boolean {
         return this.messages.filter((message) => message.type === type).length > 0;
@@ -245,7 +244,7 @@ export abstract class Response implements IResponse {
     /**
      * Checks if there are any error messages in the response.
      *
-     * @return {boolean} true if there are error messages, false otherwise.
+     * @return true if there are error messages, false otherwise.
      */
     get hasErrors(): boolean {
         return this._hasMessages(MessageType.Error);
@@ -254,7 +253,7 @@ export abstract class Response implements IResponse {
     /**
      * Checks if there are any warnings in the response.
      *
-     * @return {boolean} true if there are warnings, false otherwise.
+     * @return true if there are warnings, false otherwise.
      */
     get hasWarnings(): boolean {
         return this._hasMessages(MessageType.Warning);
@@ -263,7 +262,7 @@ export abstract class Response implements IResponse {
     /**
      * Checks if there are any informational messages in the response.
      *
-     * @return {boolean} true if there are informational messages, false otherwise.
+     * @return true if there are informational messages, false otherwise.
      */
     get hasInfoMessages(): boolean {
         return this._hasMessages(MessageType.Information);
@@ -272,7 +271,7 @@ export abstract class Response implements IResponse {
     /**
      * Check if the response was paginated by the backend.
      *
-     * @return {boolean} true if the backend returned a page of the total records.
+     * @return true if the backend returned a page of the total records.
      */
     get isPaged(): boolean {
         return this.meta.isPaged;
@@ -281,7 +280,7 @@ export abstract class Response implements IResponse {
     /**
      * Check if the response was filtered by the backend.
      *
-     * @return {boolean} true if the backend filtered the records.
+     * @return true if the backend filtered the records.
      */
     get isFiltered(): boolean {
         return this.meta.isFiltered;

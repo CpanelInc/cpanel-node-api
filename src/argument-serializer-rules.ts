@@ -77,7 +77,7 @@ export class DefaultArgumentSerializationRules {
      *   Body,
      *   Url
      *
-     * @param {HttpVerb|String} verb - verb to lookup.
+     * @param verb verb to lookup.
      */
     getRule(verb: HttpVerb | string): ArgumentSerializationRule {
         let name: string = typeof (verb) === "string" ? verb : HttpVerb[verb].toString();

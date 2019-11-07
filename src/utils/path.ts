@@ -2,8 +2,8 @@ import { LocationService } from "./location-service";
 
 /**
  * Check if the protocol is https.
- * @param  {string}  protocol
- * @return {boolean}          true if its https: in any case, false otherwise.
+ * @param  protocol Protocol to test
+ * @return true if its https: in any case, false otherwise.
  */
 export function isHttps(protocol: string): boolean {
     return (/^https:$/i).test(protocol);
@@ -11,8 +11,8 @@ export function isHttps(protocol: string): boolean {
 
 /**
  * Check if the protocol is http.
- * @param  {string}  protocol
- * @return {boolean}          true if its http: in any case, false otherwise.
+ * @param  protocol Protocol to test
+ * @return true if its http: in any case, false otherwise.
  */
 export function isHttp(protocol: string): boolean {
     return (/^http:$/i).test(protocol);
@@ -22,8 +22,8 @@ export function isHttp(protocol: string): boolean {
  * Strip any trailing slashes from a string.
  *
  * @method stripTrailingSlash
- * @param  {string} path   The path string to process.
- * @return {string}        The path string without a trailing slash.
+ * @param  path The path string to process.
+ * @return The path string without a trailing slash.
  */
 export function stripTrailingSlash(path: string) {
     return path && path.replace(/\/?$/, "");
@@ -33,8 +33,8 @@ export function stripTrailingSlash(path: string) {
  * Add a trailing slashes to a string if it doesn't have one.
  *
  * @method ensureTrailingSlash
- * @param  {string} path   The path string to process.
- * @return {string}        The path string with a guaranteed trailing slash.
+ * @param  path The path string to process.
+ * @return The path string with a guaranteed trailing slash.
  */
 export function ensureTrailingSlash(path: string) {
     return path && path.replace(/\/?$/, "/");
@@ -123,7 +123,7 @@ export class ApplicationPath {
      * within an application. It has special knowledge about how paths are
      * constructructed in the cPanel family of applications.
      *
-     * @param {LocationService} location Abstraction for the window.location object to aid in unit testing this module.
+     * @param location Abstraction for the window.location object to aid in unit testing this module.
      */
     constructor(location: LocationService) {
 
@@ -187,7 +187,7 @@ export class ApplicationPath {
     /**
      * Return whether we are running inside some other framework or application
      *
-     * @return {boolean} true if this is an unrecognized application or framework; false otherwise
+     * @return true if this is an unrecognized application or framework; false otherwise
      */
     get isOther(): boolean {
         return (/other/i).test(this.applicationName);
@@ -196,7 +196,7 @@ export class ApplicationPath {
     /**
      * Return whether we are running inside an unprotected path
      *
-     * @return {boolean} true if this is unprotected; false otherwise
+     * @return true if this is unprotected; false otherwise
      */
     get isUnprotected(): boolean {
         return !this.securityToken && this.unprotectedPaths.indexOf( stripTrailingSlash(this.applicationPath) ) !== -1;
@@ -205,7 +205,7 @@ export class ApplicationPath {
     /**
      * Return whether we are running inside cpanel or something else (e.g., WHM)
      *
-     * @return {boolean} true if this is cpanel; false otherwise
+     * @return true if this is cpanel; false otherwise
      */
     get isCpanel(): boolean {
         return (/cpanel/i).test(this.applicationName);
@@ -214,7 +214,7 @@ export class ApplicationPath {
     /**
      * Return whether we are running inside WHM or something else (e.g., whm)
      *
-     * @return {boolean} true if this is whm; false otherwise
+     * @return true if this is whm; false otherwise
      */
     get isWhm(): boolean {
         return (/whostmgr/i).test(this.applicationName);
@@ -223,7 +223,7 @@ export class ApplicationPath {
     /**
      * Return whether we are running inside WHM or something else (e.g., whm)
      *
-     * @return {boolean} true if this is webmail; false otherwise
+     * @return true if this is webmail; false otherwise
      */
     get isWebmail(): boolean {
         return (/webmail/i).test(this.applicationName);
@@ -232,8 +232,8 @@ export class ApplicationPath {
     /**
      * Get the domain relative path for the relative url path.
      *
-     * @param {string} relative Relative path to the resource.
-     * @return {string} Domain relative url path including theme if applicable for the application to the file.
+     * @param relative Relative path to the resource.
+     * @return Domain relative url path including theme if applicable for the application to the file.
      */
     buildPath(relative: string) {
         return this.themePath + relative;
@@ -242,8 +242,8 @@ export class ApplicationPath {
     /**
      * Get the full url path for the relative url path.
      *
-     * @param {string} relative Relative path to the resource.
-     * @return {string} Full url path including theme if applicable for the application to the file.
+     * @param relative Relative path to the resource.
+     * @return Full url path including theme if applicable for the application to the file.
      */
     buildFullPath(relative: string) {
         return this.protocol + "//" + this.domain + ":" + this.port + this.buildPath(relative);
@@ -252,8 +252,8 @@ export class ApplicationPath {
     /**
      * Build a path relative to the security token
      *
-     * @param {string} relative Relative path to the resource.
-     * @return {string} Full path to the token relative resource.
+     * @param relative Relative path to the resource.
+     * @return Full path to the token relative resource.
      */
     buildTokenPath(relative: string) {
         return this.protocol + "//" + this.domain + ":" + this.port + this.securityToken + relative;

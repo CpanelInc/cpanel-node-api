@@ -22,17 +22,16 @@ export interface IArgumentEncoder {
 
     /**
      * Record separator
-     * @type {string}
      */
     recordSeparator: string;
 
     /**
      * Encode a given value into the requested format.
      *
-     * @param  {string}  name  Name of the field, may be empty string.
-     * @param  {any}     value Value to serialize
-     * @param  {boolean} last  True if this is the last argument being serialized.
-     * @return {string}        Encoded version of the argument.
+     * @param name Name of the field, may be empty string.
+     * @param value Value to serialize
+     * @param last True if this is the last argument being serialized.
+     * @return Encoded version of the argument.
      */
     encode(name: string, value: any, last: boolean): string;
 }
@@ -50,10 +49,10 @@ export class UrlArgumentEncoder implements IArgumentEncoder {
     /**
      * Encode a given value into query-string compatible format.
      *
-     * @param  {string}  name  Name of the field, may be empty string.
-     * @param  {any}     value Value to serialize
-     * @param  {boolean} last  True if this is the last argument being serialized.
-     * @return {string}        Encoded version of the argument.
+     * @param name Name of the field, may be empty string.
+     * @param value Value to serialize
+     * @param last True if this is the last argument being serialized.
+     * @return Encoded version of the argument.
      */
     encode(name: string, value: any, last: boolean): string {
         if (!name) {
@@ -76,10 +75,10 @@ export class WwwFormUrlArgumentEncoder implements IArgumentEncoder {
     /**
      * Encode a given value into the application/x-www-form-urlencoded.
      *
-     * @param  {string}  name  Name of the field, may be empty string.
-     * @param  {any}     value Value to serialize
-     * @param  {boolean} last  True if this is the last argument being serialized.
-     * @return {string}        Encoded version of the argument.
+     * @param name Name of the field, may be empty string.
+     * @param value Value to serialize
+     * @param last True if this is the last argument being serialized.
+     * @return Encoded version of the argument.
      */
     encode(name: string, value: any, last: boolean): string {
         if (!name) {
@@ -102,9 +101,9 @@ export class JsonArgumentEncoder implements IArgumentEncoder {
     /**
      * Encode a given value into the JSON application/json body.
      *
-     * @param  {string}  name  Name of the field.
-     * @param  {any}     value Value to serialize
-     * @param  {boolean} last  True if this is the last argument being serialized.
+     * @param name Name of the field.
+     * @param value Value to serialize
+     * @param last True if this is the last argument being serialized.
      * @return {string}        Encoded version of the argument.
      */
     encode(name: string, value: any, last: boolean): string {

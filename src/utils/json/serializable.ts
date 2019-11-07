@@ -11,7 +11,7 @@ import {
 /**
  * Verify if the value can be serialized to JSON
  *
- * @param {any} value Value to check.
+ * @param value Value to check.
  * @source https://stackoverflow.com/questions/30579940/reliable-way-to-check-if-objects-is-serializable-in-javascript#answer-30712764
  */
 function isSerializable(value: any) {

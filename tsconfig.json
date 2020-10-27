@@ -6,7 +6,7 @@
       "dom"
     ],
     "moduleResolution": "node",
-    "target": "es5",
+    "target": "es2015",
     "strict": true,
     "outDir": "./",
     "rootDir": "./src",
@@ -33,7 +33,7 @@
   },
   "include": [
     "src/*.ts",
-    "src/**/*.ts",
+    "src/**/*.ts"
   ],
   "exclude": [
     "node_modules"

@@ -1,5 +1,3 @@
-import * as verb from "./verb";
+import { HttpVerb } from "./verb";
 
-export {
-    verb
-};
+export { HttpVerb };

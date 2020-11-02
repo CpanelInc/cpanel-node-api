@@ -8,6 +8,8 @@ import * as serializable from "./json/serializable";
 import * as path from "./path";
 import * as location from "./location-service";
 
+import { WwwFormUrlArgumentEncoder } from "./encoders";
+
 export {
     argument,
     filter,
@@ -17,5 +19,6 @@ export {
     encoders,
     serializable,
     path,
-    location
+    location,
+    WwwFormUrlArgumentEncoder
 };

@@ -62,7 +62,7 @@ fetch('http://my-cpanel-server.com:2087', {
 ### JavaScript
 
 ```js
-var api = require('api');
+var api = require('@cpanel/api');
 ```
 
 #### Calling a WHM Api 1 function

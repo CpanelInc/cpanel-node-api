@@ -26,7 +26,7 @@ const commonConfig = {
     entry: './dist/index.js',
     output: {
         path: path.resolve(__dirname, 'dist', 'bundles'),
-        library: ['cp', 'api'],
+        library: ['@cpanel', 'api'],
         libraryTarget: 'umd'
     }
 };

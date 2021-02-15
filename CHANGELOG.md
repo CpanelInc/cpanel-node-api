@@ -9,3 +9,7 @@ Initial open source release.
 # v3.0.1
 
 Removed testing files from ./dist.
+
+# v3.0.2
+
+Reworked the build so the developer build will can still run the tests.

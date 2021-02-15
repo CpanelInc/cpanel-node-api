@@ -1,6 +1,6 @@
 {
   "name": "@cpanel/api",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "cPanel Api JavaScript and TypeScript interface libraries. This library provides a set of classes for calling cPanel Whm API 1 and UAPI calls. The classes hide much of the complexity of these API's behind classes the abstract the underlying variances between these API systems. Users of this library can focus on what they want to accomplish rather the having to learn the various complexities of the underlying wire formats for each of the cPanel Products APIs",
   "main": "dist/index.js",
   "typings": "./dist/index.d.ts",
@@ -15,14 +15,15 @@
   ],
   "scripts": {
     "build": "yarn clean && yarn build:ts && yarn webpack:prod && yarn webpack:dev",
-    "build:dev": "yarn clean && yarn build:ts && yarn webpack:dev",
-    "build:ts": "tsc -p tsconfig.json",
+    "build:dev": "yarn clean && yarn build:ts-dev && yarn webpack:dev",
+    "build:ts": "tsc -p tsconfig.prod.json",
+    "build:ts-dev": "tsc -p tsconfig.dev.json",
     "webpack:dev": "webpack --env=dev",
     "webpack:prod": "webpack --env=prod",
     "clean": "rm -rf dist",
-    "build-docs": "compodoc -p tsconfig.json -d ./docs",
-    "serve-docs": "compodoc -p tsconfig.json -d ./docs -r 4214 -s",
-    "test": "yarn run build:ts && jasmine '**/*.spec.js'",
+    "build-docs": "compodoc -p tsconfig.dev.json -d ./docs",
+    "serve-docs": "compodoc -p tsconfig.dev.json -d ./docs -r 4214 -s",
+    "test": "yarn run build:ts-dev && jasmine '**/*.spec.js'",
     "test:cover": "nyc -e .ts -x '**/*.spec.ts' jasmine-ts --config=jasmine.json && nyc report -r lcov",
     "ts-tidy": "npx eslint -c .ts-eslint-tidy-rc.json 'src/**/*.ts' --fix",
     "prepublish": "npm run build"

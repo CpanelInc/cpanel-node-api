@@ -25,7 +25,7 @@
     "removeComments": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "strictNullChecks": true,
     "types": [
       "jasmine",
@@ -38,6 +38,5 @@
   ],
   "exclude": [
     "node_modules",
-    "src/**/*.spec.ts"
   ]
 }

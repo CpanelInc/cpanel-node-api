@@ -13,3 +13,7 @@ Removed testing files from ./dist.
 # v3.0.2
 
 Reworked the build so the developer build will can still run the tests.
+
+# v3.0.3
+
+Fixed the unit tests to run again.

@@ -1,7 +1,7 @@
 {
   "name": "@cpanel/api",
-  "version": "2.0.0",
-  "description": "cPanel Api JavaScript and TypeScript libraries",
+  "version": "3.0.0",
+  "description": "cPanel Api JavaScript and TypeScript interface libraries. This library provides a set of classes for calling cPanel Whm API 1 and UAPI calls. The classes hide much of the complexity of these API's behind classes the abstract the underlying variances between these API systems. Users of this library can focus on what they want to accomplish rather the having to learn the various complexities of the underlying wire formats for each of the cPanel Products APIs",
   "main": "index.js",
   "files": [
     "*.d.ts",
@@ -18,18 +18,15 @@
     "build:ts": "tsc -p tsconfig.json",
     "webpack:dev": "webpack --env=dev",
     "webpack:prod": "webpack --env=prod",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist && rm -rf build",
     "build-docs": "compodoc -p tsconfig.json -d ./docs",
     "serve-docs": "compodoc -p tsconfig.json -d ./docs -r 4214 -s",
     "test": "yarn run build:ts && jasmine '**/*.spec.js'",
     "test:cover": "nyc -e .ts -x '**/*.spec.ts' jasmine-ts --config=jasmine.json && nyc report -r lcov",
-    "link:cpanel": "yarn link && cd /usr/local/cpanel/base/frontend/paper_lantern/ng-apps-src/ && yarn link \"@cpanel/api\"",
-    "link:webmail": "yarn link && cd /usr/local/cpanel/base/webmail/paper_lantern/ng-apps-src/ && yarn link \"@cpanel/api\"",
-    "link:whm": "yarn link && cd /usr/local/cpanel/whostmgr/docroot/templates/ng-apps-src/ && yarn link \"@cpanel/api\"",
     "ts-tidy": "npx eslint -c .ts-eslint-tidy-rc.json 'src/**/*.ts' --fix"
   },
   "repository": "ssh://git@enterprise.cpanel.net:7999/cn/api.git",
-  "author": "Team Phoenix @ cPanel",
+  "author": "cPanel L.L.C.",
   "contributors": [
     "Aneece Yazdani <aneece@cpanel.net>",
     "Sruthi Sanigarapu <sruthi@cpanel.net>",
@@ -38,11 +35,14 @@
   "license": "SEE LICENSE IN LICENSE",
   "devDependencies": {
     "@compodoc/compodoc": "^1.1.11",
+    "@types/jasmine": "2.6.0",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
     "eslint": "^6.8.0",
     "http-server": "^0.11.1",
+    "jasmine": "2.8.0",
     "jasmine-ts": "^0.3.0",
+    "nyc": "^14.1.1",
     "readme-generator": "^1.0.1",
     "ts-node": "^8.10.2",
     "webpack": "^4.44.2",
@@ -57,12 +57,9 @@
     "whmapi"
   ],
   "dependencies": {
-    "@types/jasmine": "2.6.0",
     "@types/lodash": "^4.14.121",
     "@types/node": "8.0.31",
-    "jasmine": "2.8.0",
     "lodash": "^4.17.11",
-    "nyc": "^14.1.1",
     "tslib": "^1.14.1",
     "typescript": "3.8.3"
   }

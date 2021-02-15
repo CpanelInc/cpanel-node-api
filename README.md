@@ -9,7 +9,7 @@ This library provides a set of classes for calling cPanel Whm API 1 and UAPI cal
 To install these libraries with Yarn, run:
 
 ```sh
-yarn add @cpanel/api --registry https://vmware-manager.dev.cpanel.net/verdaccio/
+yarn add @cpanel/api
 ```
 
 ## Using @cpanel/api
@@ -135,7 +135,7 @@ The maintainer will evaluate all bugs and feature requests, and reserves the rig
 
 ### Bugs
 
-Please submit bugs via the github issue tracker. Bug reports must include the following:
+Please submit bugs via the github [issue tracker](https://github.com/CpanelInc/cpanel-node-api/issues). Bug reports must include the following:
 
 1. The version of the @cpanel/api library.
 2. The version of cPanel & WHM you are testing against.
@@ -146,7 +146,7 @@ The maintainers will evaluate all bugs.
 
 ### Improvements and Feature Requests
 
-Please submit feature requests via the github issue tracker.
+Please submit feature requests via the github [issue tracker](https://github.com/CpanelInc/cpanel-node-api/issues).
 
 Describe the feature in detail. Try to include information on why the suggested feature would be valuable and under what scenarios.
 

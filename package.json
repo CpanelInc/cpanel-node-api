@@ -2,7 +2,8 @@
   "name": "@cpanel/api",
   "version": "3.0.0",
   "description": "cPanel Api JavaScript and TypeScript interface libraries. This library provides a set of classes for calling cPanel Whm API 1 and UAPI calls. The classes hide much of the complexity of these API's behind classes the abstract the underlying variances between these API systems. Users of this library can focus on what they want to accomplish rather the having to learn the various complexities of the underlying wire formats for each of the cPanel Products APIs",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "typings": "./dist/index.d.ts",
   "files": [
     "*.d.ts",
     "*.js",
@@ -18,21 +19,38 @@
     "build:ts": "tsc -p tsconfig.json",
     "webpack:dev": "webpack --env=dev",
     "webpack:prod": "webpack --env=prod",
-    "clean": "rm -rf dist && rm -rf build",
+    "clean": "rm -rf dist",
     "build-docs": "compodoc -p tsconfig.json -d ./docs",
     "serve-docs": "compodoc -p tsconfig.json -d ./docs -r 4214 -s",
     "test": "yarn run build:ts && jasmine '**/*.spec.js'",
     "test:cover": "nyc -e .ts -x '**/*.spec.ts' jasmine-ts --config=jasmine.json && nyc report -r lcov",
-    "ts-tidy": "npx eslint -c .ts-eslint-tidy-rc.json 'src/**/*.ts' --fix"
+    "ts-tidy": "npx eslint -c .ts-eslint-tidy-rc.json 'src/**/*.ts' --fix",
+    "prepublish": "npm run build"
   },
-  "repository": "ssh://git@enterprise.cpanel.net:7999/cn/api.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CpanelInc/cpanel-node-api"
+  },
   "author": "cPanel L.L.C.",
   "contributors": [
-    "Aneece Yazdani <aneece@cpanel.net>",
-    "Sruthi Sanigarapu <sruthi@cpanel.net>",
-    "Thomas Green <tomg@cpanel.net>"
+    {
+      "name": "Aneece Yazdani",
+      "email": "aneece@cpanel.net"
+    },
+    {
+      "name": "Sruthi Sanigarapu",
+      "email": "sruthi@cpanel.net"
+    },
+    {
+      "name": "Thomas Green",
+      "email": "tomg@cpanel.net"
+    }
   ],
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CpanelInc/cpanel-node-api/issues"
+  },
+  "homepage": "https://cpanel.com",
   "devDependencies": {
     "@compodoc/compodoc": "^1.1.11",
     "@types/jasmine": "2.6.0",

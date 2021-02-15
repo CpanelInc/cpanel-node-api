@@ -5,10 +5,11 @@
       "es2018",
       "dom"
     ],
+
     "moduleResolution": "node",
     "target": "es2015",
     "strict": true,
-    "outDir": "./build",
+    "outDir": "./dist",
     "rootDir": "./src",
 
     "declaration": true,
@@ -21,11 +22,11 @@
     "noImplicitThis": true,
     "noUnusedParameters": false,
     "noUnusedLocals": true,
+    "removeComments": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "strictNullChecks": true,
-
     "types": [
       "jasmine",
       "node"

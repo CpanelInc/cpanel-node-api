@@ -29,3 +29,7 @@ Minor adjustments for the typescript publication in the npm module.
 # v3.0.6
 
 Changed to es5 code generation to get nodejs typescript to work.
+
+# v3.0.7
+
+Trying a different export strategy to get deep typescript object to publish.

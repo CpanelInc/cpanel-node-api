@@ -20,11 +20,5 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-export {
-    UapiRequest
-} from "./request";
-
-export {
-    UapiResponse,
-    UapiMetaData
-} from "./response";
+export * from "./request";
+export * from "./response";

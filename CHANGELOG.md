@@ -21,3 +21,7 @@ Fixed the unit tests to run again.
 # v3.0.4
 
 Removed internal publication references.
+
+# v3.0.5
+
+Minor adjustments for the typescript publication in the npm module.

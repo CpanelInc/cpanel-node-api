@@ -17,3 +17,7 @@ Reworked the build so the developer build will can still run the tests.
 # v3.0.3
 
 Fixed the unit tests to run again.
+
+# v3.0.4
+
+Removed internal publication references.

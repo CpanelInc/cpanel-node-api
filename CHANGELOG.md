@@ -33,3 +33,7 @@ Changed to es5 code generation to get nodejs typescript to work.
 # v3.0.7
 
 Trying a different export strategy to get deep typescript object to publish.
+
+# v3.0.8
+
+Correctly exported the utils modules.

@@ -26,6 +26,6 @@ export * from "./metadata";
 export * from "./request";
 export * from "./response";
 export * from "./http"
-export * from "./utils/index";
-export * from "./uapi/index";
-export * from "./whmapi/index";
+export * from "./utils";
+export * from "./uapi";
+export * from "./whmapi";

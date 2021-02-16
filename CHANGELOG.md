@@ -25,3 +25,7 @@ Removed internal publication references.
 # v3.0.5
 
 Minor adjustments for the typescript publication in the npm module.
+
+# v3.0.6
+
+Changed to es5 code generation to get nodejs typescript to work.

@@ -24,6 +24,13 @@ import { WhmApiRequest, WhmApiType } from "./request";
 import { Pager } from "../utils/pager";
 import { FilterOperator } from "../utils/filter";
 import { SortDirection, SortType } from "../utils/sort";
+import {
+    Headers,
+    WhmApiTokenHeader,
+    CpanelApiTokenHeader,
+    CpanelApiTokenMismatchError
+} from "../utils/headers";
+
 
 describe("WhmApiRequest: ", () => {
     describe("when not fully initialized", () => {
@@ -38,10 +45,10 @@ describe("WhmApiRequest: ", () => {
         });
         expect(request).toBeDefined();
         expect(request.generate()).toEqual({
-            headers: [{
+            headers: new Headers([{
                 name: "Content-Type",
                 value: "application/x-www-form-urlencoded"
-            }],
+            }]),
             url: "/xml-api/api_method",
             body: "api.version=1",
         });
@@ -186,13 +193,79 @@ describe("WhmApiRequest: ", () => {
             });
             expect(request).toBeDefined();
             expect(request.generate()).toEqual({
-                headers: [{
+                headers: new Headers([{
                     name: "Content-Type",
                     value: "application/json"
-                }],
+                }]),
                 url: "/json-api/api_method",
                 body: '{"api.version":1,"label":"unit"}',
             });
+        });
+    });
+
+    describe("when calling with whm api token with token and user", () => {
+        it("should generate a correct interchange", () => {
+            const request = new WhmApiRequest(WhmApiType.JsonApi, {
+                namespace: "test",
+                method: "simple_call",
+                headers: [
+                    new WhmApiTokenHeader("fake", "user")
+                ]
+            });
+            expect(request).toBeDefined();
+            expect(request.generate()).toEqual({
+                headers: new Headers([ {
+                    name: "Content-Type",
+                    value: "application/x-www-form-urlencoded"
+                },
+                {
+                    name: "Authorization",
+                    value: "whm user:fake"
+                }
+                ]),
+                url: "/json-api/simple_call",
+                body: "api.version=1",
+            });
+        });
+    });
+
+    describe("when calling with whm api token with combined user/token", () => {
+        it("should generate a correct interchange", () => {
+            const request = new WhmApiRequest(WhmApiType.JsonApi, {
+                namespace: "test",
+                method: "simple_call",
+                headers: [
+                    new WhmApiTokenHeader("user:fake")
+                ]
+            });
+            expect(request).toBeDefined();
+            expect(request.generate()).toEqual({
+                headers: new Headers([ {
+                    name: "Content-Type",
+                    value: "application/x-www-form-urlencoded"
+                },
+                {
+                    name: "Authorization",
+                    value: "whm user:fake"
+                }
+                ]),
+                url: "/json-api/simple_call",
+                body: "api.version=1",
+            });
+        });
+    });
+
+    describe("when calling with cpanel api token", () => {
+        it("should throw an error", () => {
+            expect(() => {
+                new WhmApiRequest(WhmApiType.JsonApi, {
+                    namespace: "test",
+                    method: "simple_call",
+                    headers: [
+                        new CpanelApiTokenHeader("fake", "user")
+                    ]
+                });
+            }).toThrowError(CpanelApiTokenMismatchError);
         });
     });
 });

@@ -41,3 +41,9 @@ Correctly exported the utils modules.
 # v3.0.9
 
 Updated the library version to remove low security threat
+
+# v3.0.10
+
+Add support for cPanel and Whm Api tokens.
+Add support to convert headers to an object using toObject() or an array using toArray(). This simplifies use with some libraries.
+Fixed the examples in the README.md.

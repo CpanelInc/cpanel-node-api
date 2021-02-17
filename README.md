@@ -16,17 +16,18 @@ yarn add @cpanel/api
 
 ### TypeScript
 
-```ts
-import { api } from '@cpanel/api';
-```
-
 #### Calling a WHM Api 1 function
 
 ```ts
-import { WhmApiType } from "@cpanel/api/whmapi/request";
-import { WhmApiResponse, WhmApiRequest } from "@cpanel/api/whmapi";
-import { Argument } from "@cpanel/api/utils/argument";
+import {
+    Argument,
+    WhmApiResponse,
+    WhmApiRequest,
+    WhmApiType,
+    WhmApiTokenHeader
+} from "@cpanel/api";
 
+const token = "...paste your api token here...";
 const request = new WhmApiRequest(WhmApiType.JsonApi, {
             method: "api_token_create",
             arguments: [
@@ -36,16 +37,15 @@ const request = new WhmApiRequest(WhmApiType.JsonApi, {
                 new Argument('acl', 'create-user-session'),
                 // Delete a token
                 new Argument('acl', 'manage-api-tokens'),
-            ]
+            ],
+            headers: [
+                new WhmApiTokenHeader(token, 'root'),
+            ],
         }).generate();
 
 fetch('http://my-cpanel-server.com:2087', {
     method: 'POST',
-    headers: request.headers.reduce(
-        (obj, h) => {
-            obj[h.name] = h.value;
-            return obj;
-        }, {}),
+    headers: request.headers.toObject(),
     body: request.body
 })
   .then(response => response.json())
@@ -61,17 +61,18 @@ fetch('http://my-cpanel-server.com:2087', {
 
 ### JavaScript
 
-```js
-var api = require('@cpanel/api');
-```
-
 #### Calling a WHM Api 1 function
 
 ```js
-let WhmApiType = require("@cpanel/api/dist/whmapi/request");
-let { WhmApiResponse, WhmApiRequest } = require("@cpanel/api/dist/whmapi");
-let { Argument } = require("@cpanel/api/dist/utils/argument");
+let {
+    Argument,
+    WhmApiResponse,
+    WhmApiRequest,
+    WhmApiType,
+    WhmApiTokenHeader
+} = require("@cpanel/api");
 
+const token = "...paste your api token here...";
 const request = new WhmApiRequest(WhmApiType.JsonApi, {
             method: "api_token_create",
             arguments: [
@@ -81,16 +82,15 @@ const request = new WhmApiRequest(WhmApiType.JsonApi, {
                 new Argument('acl', 'create-user-session'),
                 // Delete a token
                 new Argument('acl', 'manage-api-tokens'),
-            ]
+            ],
+            headers: [
+                new WhmApiTokenHeader(token, 'root'),
+            ],
         }).generate();
 
 fetch('http://my-cpanel-server.com:2087', {
     method: 'POST',
-    headers: request.headers.reduce(
-        (obj, h) => {
-            obj[h.name] = h.value;
-            return obj;
-        }, {}),
+    headers: request.headers.toObject()),
     body: request.body
 })
   .then(response => response.json())

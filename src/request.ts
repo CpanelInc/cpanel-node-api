@@ -25,6 +25,7 @@ import { IFilter, Filter } from "./utils/filter";
 import { IPager, Pager } from "./utils/pager";
 import { ISort, Sort } from "./utils/sort";
 import { RequestInfo } from "./interchange";
+import { Header, Headers, CustomHeader } from "./utils/headers";
 import { IArgumentEncoder } from "./utils/encoders";
 import { HttpVerb } from "./http/verb";
 
@@ -105,6 +106,11 @@ export interface IRequest {
      * Optional additional configuration for the request.
      */
     config?: IRequestConfiguration;
+
+    /**
+     * Optional additional HTTP headers for the request.
+     */
+    headers?: Header[];
 }
 
 /**
@@ -174,6 +180,10 @@ export abstract class Request {
      */
     public pager: Pager = new Pager();
 
+    /**
+     * Optional custom headers collection
+     */
+    public headers: Headers = new Headers();
 
     private _usePager: boolean = false;
 
@@ -240,6 +250,12 @@ export abstract class Request {
             } else {
                 this.config = this.defaultConfig;
             }
+
+            if (init.headers) {
+                init.headers.forEach(header => {
+                    this.addHeader(header);
+                });
+            }
         }
     }
 
@@ -296,6 +312,21 @@ export abstract class Request {
      */
     addColumn(column: string): Request {
         this.columns.push(column);
+        return this;
+    }
+
+    /**
+     * Add a custom http header to the request
+     *
+     * @param name Name of a column
+     * @return Updated Request object.
+     */
+    addHeader(header: Header): Request {
+        if (header instanceof CustomHeader) {
+            this.headers.push(header);
+        } else {
+            this.headers.push(new CustomHeader(header));
+        }
         return this;
     }
 

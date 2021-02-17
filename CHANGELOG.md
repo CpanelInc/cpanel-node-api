@@ -37,3 +37,7 @@ Trying a different export strategy to get deep typescript object to publish.
 # v3.0.8
 
 Correctly exported the utils modules.
+
+# v3.0.9
+
+Updated the library version to remove low security threat

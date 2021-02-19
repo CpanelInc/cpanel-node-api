@@ -1,6 +1,6 @@
 # @cpanel/api Libraries
 
-cPanel Api JavaScript and TypeScript interface libraries.
+cPanel API JavaScript and TypeScript interface libraries.
 
 This library provides a set of classes for calling cPanel Whm API 1 and UAPI calls. The classes hide much of the complexity of these API's behind classes the abstract the underlying variances between these API systems. Users of this library can focus on what they want to accomplish rather the having to learn the various complexities of the underlying wire formats for each of the cPanel Products APIs
 
@@ -16,7 +16,7 @@ yarn add @cpanel/api
 
 ### TypeScript
 
-#### Calling a WHM Api 1 function
+#### Calling a WHM API 1 function
 
 ```ts
 import {
@@ -27,7 +27,7 @@ import {
     WhmApiTokenHeader
 } from "@cpanel/api";
 
-const token = "...paste your api token here...";
+const token = "...paste your API token here...";
 const request = new WhmApiRequest(WhmApiType.JsonApi, {
             method: "api_token_create",
             arguments: [
@@ -61,7 +61,7 @@ fetch('http://my-cpanel-server.com:2087', {
 
 ### JavaScript
 
-#### Calling a WHM Api 1 function
+#### Calling a WHM API 1 function
 
 ```js
 let {
@@ -72,7 +72,7 @@ let {
     WhmApiTokenHeader
 } = require("@cpanel/api");
 
-const token = "...paste your api token here...";
+const token = "...paste your API token here...";
 const request = new WhmApiRequest(WhmApiType.JsonApi, {
             method: "api_token_create",
             arguments: [

@@ -33,7 +33,7 @@ export interface RequestInfo {
     headers: Headers;
 
     /**
-     * Url use to make the request.
+     * URL use to make the request.
      */
     url: string;
 

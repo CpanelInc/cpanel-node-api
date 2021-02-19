@@ -1,7 +1,7 @@
 {
   "name": "@cpanel/api",
   "version": "3.0.10",
-  "description": "cPanel Api JavaScript and TypeScript interface libraries. This library provides a set of classes for calling cPanel Whm API 1 and UAPI calls. The classes hide much of the complexity of these API's behind classes the abstract the underlying variances between these API systems. Users of this library can focus on what they want to accomplish rather the having to learn the various complexities of the underlying wire formats for each of the cPanel Products APIs",
+  "description": "cPanel API JavaScript and TypeScript interface libraries. This library provides a set of classes for calling cPanel WHM API 1 and UAPI calls. The classes hide much of the complexity of these APIs behind classes the abstract the underlying variances between these API systems. Users of this library can focus on what they want to accomplish rather the having to learn the various complexities of the underlying wire formats for each of the cPanel Products APIs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [

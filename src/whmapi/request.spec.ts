@@ -203,7 +203,7 @@ describe("WhmApiRequest: ", () => {
         });
     });
 
-    describe("when calling with whm api token with token and user", () => {
+    describe("when calling with WHM API token with token and user", () => {
         it("should generate a correct interchange", () => {
             const request = new WhmApiRequest(WhmApiType.JsonApi, {
                 namespace: "test",
@@ -229,7 +229,7 @@ describe("WhmApiRequest: ", () => {
         });
     });
 
-    describe("when calling with whm api token with combined user/token", () => {
+    describe("when calling with WHM API token with combined user/token", () => {
         it("should generate a correct interchange", () => {
             const request = new WhmApiRequest(WhmApiType.JsonApi, {
                 namespace: "test",
@@ -255,7 +255,7 @@ describe("WhmApiRequest: ", () => {
         });
     });
 
-    describe("when calling with cpanel api token", () => {
+    describe("when calling with cPanel API token", () => {
         it("should throw an error", () => {
             expect(() => {
                 new WhmApiRequest(WhmApiType.JsonApi, {

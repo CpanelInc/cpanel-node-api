@@ -21,7 +21,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 /**
- * Http Header Abstraction
+ * HTTP Header Abstraction
  */
 export interface Header {
 
@@ -39,16 +39,16 @@ export interface Header {
 export type HeaderHash = { [index:string] : string };
 
 /**
- * Http Headers Collection Abstraction
+ * HTTP Headers Collection Abstraction
  *
- * The abstraction is an adaptor to transform the headers array into various
- * formats for external http libraries.
+ * The abstraction is an adapter to allow easy transformation of the headers array
+ * into various formats for external HTTP libraries.
  */
 export class Headers {
     private headers: Header[];
 
     /**
-     * Create the adaptor.
+     * Create the adapter.
      *
      * @param headers - List of headers.
      */
@@ -134,10 +134,10 @@ export class CpanelApiTokenHeader extends CustomHeader {
             throw new CpanelApiTokenInvalidError("You must pass a valid token to the constructor.");
         }
         if (!user && !/^.+[:]/.test(token)) {
-            throw new CpanelApiTokenInvalidError("You must pass a cPanel username associated with the cPanel Api token.");
+            throw new CpanelApiTokenInvalidError("You must pass a cPanel username associated with the cPanel API token.");
         }
         if (!user && !/[:].+$/.test(token)) {
-            throw new CpanelApiTokenInvalidError("You must pass a valid cPanel Api token.");
+            throw new CpanelApiTokenInvalidError("You must pass a valid cPanel API token.");
         }
         super({ name: "Authorization", value: `cpanel ${user ? user + ":" : ""}${token}` });
     }
@@ -169,10 +169,10 @@ export class WhmApiTokenHeader extends CustomHeader {
             throw new WhmApiTokenInvalidError("You must pass a valid token to the constructor.");
         }
         if (!user && !/^.+:/.test(token)) {
-            throw new WhmApiTokenInvalidError("You must pass a Whm username associated with the Whm Api token.");
+            throw new WhmApiTokenInvalidError("You must pass a WHM username associated with the WHM API token.");
         }
         if (!user && !/:.+$/.test(token)) {
-            throw new WhmApiTokenInvalidError("You must pass a valid Whm Api token.");
+            throw new WhmApiTokenInvalidError("You must pass a valid WHM API token.");
         }
         super({ name: "Authorization", value: `whm ${user ? user + ":" : ""}${token}` });
     }

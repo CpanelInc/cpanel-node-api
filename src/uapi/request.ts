@@ -78,7 +78,7 @@ import {
 export class UapiRequest extends Request {
 
     /**
-     * Add a custom http header to the request
+     * Add a custom HTTP header to the request
      *
      * @param name Name of a column
      * @return Updated Request object.

@@ -101,7 +101,7 @@ export class WhmApiRequest extends Request {
     public apiType: WhmApiType = WhmApiType.JsonApi;
 
     /**
-     * Add a custom http header to the request
+     * Add a custom HTTP header to the request
      *
      * @param name Name of a column
      * @return Updated Request object.

@@ -209,7 +209,7 @@ describe("UapiRequest", () => {
         });
     });
 
-    describe("when calling with cpanel api token with token and user", () => {
+    describe("when calling with cPanel API token with token and user", () => {
         it("should generate a correct interchange", () => {
             const request = new UapiRequest({
                 namespace: "test",
@@ -235,7 +235,7 @@ describe("UapiRequest", () => {
         });
     });
 
-    describe("when calling with cpanel api token with combined user/token", () => {
+    describe("when calling with cPanel API token with combined user/token", () => {
         it("should generate a correct interchange", () => {
             const request = new UapiRequest({
                 namespace: "test",
@@ -261,7 +261,7 @@ describe("UapiRequest", () => {
         });
     });
 
-    describe("when calling with whm api token", () => {
+    describe("when calling with WHM API token", () => {
         it("should throw an error", () => {
             expect(() => {
                 new UapiRequest({

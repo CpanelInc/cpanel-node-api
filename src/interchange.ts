@@ -20,21 +20,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-/**
- * Http Header Abstractions
- */
-export interface Header {
-
-    /**
-     * Name of the header
-     */
-    name: string;
-
-    /**
-     * Value of the header
-     */
-    value: string;
-}
+import { Headers } from "./utils/headers";
 
 /**
  * Abstract data structure used to pass rendered API information to remoting layer.
@@ -44,10 +30,10 @@ export interface RequestInfo {
     /**
      * List of headers for the request
      */
-    headers: Header[];
+    headers: Headers;
 
     /**
-     * Url use to make the request.
+     * URL use to make the request.
      */
     url: string;
 

@@ -30,3 +30,4 @@ export * from "./json/serializable";
 export * from "./path";
 export * from "./location-service";
 export * from "./encoders";
+export * from "./headers";

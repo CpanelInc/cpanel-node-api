@@ -33,6 +33,13 @@ import {
     SortType
 } from "../utils/sort";
 
+import {
+    Headers,
+    CpanelApiTokenHeader,
+    WhmApiTokenHeader,
+    WhmApiTokenMismatchError
+} from "../utils/headers";
+
 describe("UapiRequest", () => {
     describe("when not fully initialized", () => {
         it("should not generate without a namespace", () => {
@@ -52,10 +59,10 @@ describe("UapiRequest", () => {
             });
             expect(request).toBeDefined();
             expect(request.generate()).toEqual({
-                headers: [ {
+                headers: new Headers([ {
                     name: "Content-Type",
                     value: "application/x-www-form-urlencoded"
-                }],
+                }]),
                 url: "/execute/test/get_tests",
                 body: "",
             });
@@ -72,10 +79,10 @@ describe("UapiRequest", () => {
             });
             expect(request).toBeDefined();
             expect(request.generate()).toEqual({
-                headers: [ {
+                headers: new Headers([ {
                     name: "Content-Type",
                     value: "application/x-www-form-urlencoded"
-                }],
+                }]),
                 url: "/execute/test/get_tests",
                 body: `api.paginate=1&api.paginate_start=15&api.paginate_size=7`,
             });
@@ -95,10 +102,10 @@ describe("UapiRequest", () => {
             });
             expect(request).toBeDefined();
             expect(request.generate()).toEqual({
-                headers: [ {
+                headers: new Headers([ {
                     name: "Content-Type",
                     value: "application/x-www-form-urlencoded"
-                }],
+                }]),
                 url: "/execute/test/get_tests",
                 body: `api.filter_column_0=id&api.filter_type_0=gt&api.filter_term_0=100`,
             });
@@ -123,10 +130,10 @@ describe("UapiRequest", () => {
             });
             expect(request).toBeDefined();
             expect(request.generate()).toEqual({
-                headers: [ {
+                headers: new Headers([ {
                     name: "Content-Type",
                     value: "application/x-www-form-urlencoded"
-                }],
+                }]),
                 url: "/execute/test/get_tests",
                 body: `api.filter_column_0=id&api.filter_type_0=gt&api.filter_term_0=100&api.filter_column_1=name&api.filter_type_1=contains&api.filter_term_1=unit%20test`,
             });
@@ -146,10 +153,10 @@ describe("UapiRequest", () => {
             });
             expect(request).toBeDefined();
             expect(request.generate()).toEqual({
-                headers: [ {
+                headers: new Headers([ {
                     name: "Content-Type",
                     value: "application/x-www-form-urlencoded"
-                }],
+                }]),
                 url: "/execute/test/get_tests",
                 body: `api.sort=1&api.sort_column_0=title&api.sort_reverse_0=1&api.sort_method_0=lexicographic`,
             });
@@ -166,10 +173,10 @@ describe("UapiRequest", () => {
             });
             expect(request).toBeDefined();
             expect(request.generate()).toEqual({
-                headers: [ {
+                headers: new Headers([ {
                     name: "Content-Type",
                     value: "application/x-www-form-urlencoded"
-                }],
+                }]),
                 url: "/execute/test/get_tests_by_label",
                 body: "label=unit",
             });
@@ -192,13 +199,79 @@ describe("UapiRequest", () => {
             });
             expect(request).toBeDefined();
             expect(request.generate()).toEqual({
-                headers: [ {
+                headers: new Headers([ {
                     name: "Content-Type",
                     value: "application/json"
-                }],
+                }]),
                 url: "/execute/test/get_tests_by_label",
                 body: '{"label":"unit"}',
             });
+        });
+    });
+
+    describe("when calling with cPanel API token with token and user", () => {
+        it("should generate a correct interchange", () => {
+            const request = new UapiRequest({
+                namespace: "test",
+                method: "simple_call",
+                headers: [
+                    new CpanelApiTokenHeader("fake", "user")
+                ]
+            });
+            expect(request).toBeDefined();
+            expect(request.generate()).toEqual({
+                headers: new Headers([ {
+                    name: "Content-Type",
+                    value: "application/x-www-form-urlencoded"
+                },
+                {
+                    name: "Authorization",
+                    value: "cpanel user:fake"
+                }
+                ]),
+                url: "/execute/test/simple_call",
+                body: "",
+            });
+        });
+    });
+
+    describe("when calling with cPanel API token with combined user/token", () => {
+        it("should generate a correct interchange", () => {
+            const request = new UapiRequest({
+                namespace: "test",
+                method: "simple_call",
+                headers: [
+                    new CpanelApiTokenHeader("user:fake")
+                ]
+            });
+            expect(request).toBeDefined();
+            expect(request.generate()).toEqual({
+                headers: new Headers([ {
+                    name: "Content-Type",
+                    value: "application/x-www-form-urlencoded"
+                },
+                {
+                    name: "Authorization",
+                    value: "cpanel user:fake"
+                }
+                ]),
+                url: "/execute/test/simple_call",
+                body: "",
+            });
+        });
+    });
+
+    describe("when calling with WHM API token", () => {
+        it("should throw an error", () => {
+            expect(() => {
+                new UapiRequest({
+                    namespace: "test",
+                    method: "simple_call",
+                    headers: [
+                        new WhmApiTokenHeader("fake", "user")
+                    ]
+                });
+            }).toThrowError(WhmApiTokenMismatchError);
         });
     });
 });

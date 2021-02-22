@@ -25,7 +25,7 @@ export * from "./interchange";
 export * from "./metadata";
 export * from "./request";
 export * from "./response";
-export * from "./http"
+export * from "./http";
 export * from "./utils";
 export * from "./uapi";
 export * from "./whmapi";

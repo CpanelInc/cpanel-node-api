@@ -48,6 +48,10 @@ import {
 } from "./utils/pager";
 
 import {
+    Headers
+} from "./utils/headers";
+
+import {
     RequestInfo
 } from "./interchange";
 
@@ -63,7 +67,7 @@ class MockRequest extends Request {
 
     generate(rule?: GenerateRule): RequestInfo {
         return {
-            headers: [ { name: "content-type", value: "text/plain" } ],
+            headers: new Headers([ { name: "content-type", value: "text/plain" } ]),
             url: "/execute/test/get_tests",
             body: ""
         };

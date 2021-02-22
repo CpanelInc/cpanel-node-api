@@ -58,6 +58,13 @@ import {
 } from "../interchange";
 
 import {
+    WhmApiTokenHeader,
+    WhmApiTokenMismatchError,
+    Headers,
+    Header
+} from "../utils/headers";
+
+import {
     ArgumentSerializationRule,
     argumentSerializationRules
 } from "../argument-serializer-rules";
@@ -68,8 +75,21 @@ import {
     WwwFormUrlArgumentEncoder
 } from "../utils/encoders";
 
-
 export class UapiRequest extends Request {
+
+    /**
+     * Add a custom HTTP header to the request
+     *
+     * @param name Name of a column
+     * @return Updated Request object.
+     */
+    addHeader(header: Header): Request {
+        if (header instanceof WhmApiTokenHeader) {
+            throw new  WhmApiTokenMismatchError("A WhmApiTokenHeader cannot be used on a CpanelApiRequest");
+        }
+        super.addHeader(header);
+        return this;
+    }
 
     /**
      * Build a fragment of the parameter list based on the list of name/value pairs.
@@ -258,13 +278,13 @@ export class UapiRequest extends Request {
 
         const argumentRule: ArgumentSerializationRule = argumentSerializationRules.getRule(rule.verb);
 
-        let info = {
-            headers: [
+        let info: RequestInfo = {
+            headers: new Headers([
                 {
                     name: "Content-Type",
                     value: rule.encoder.contentType,
                 }
-            ],
+            ]),
             url: [
                 "",
                 "execute",
@@ -293,6 +313,13 @@ export class UapiRequest extends Request {
             }
         }
 
-        return info as RequestInfo;
+        this.headers.forEach(header => {
+            info.headers.push({
+                name: header.name,
+                value: header.value
+            });
+        });
+
+        return info;
     }
 }

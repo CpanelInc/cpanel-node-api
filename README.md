@@ -6,10 +6,10 @@ This library provides a set of classes for calling cPanel WHM API 1 and UAPI cal
 
 ## Installing @cpanel/api
 
-To install these libraries with Yarn, run:
+To install these libraries with NPM, run:
 
 ```sh
-yarn add @cpanel/api
+npm install @cpanel/api
 ```
 
 ## Using @cpanel/api
@@ -109,15 +109,15 @@ fetch('http://my-cpanel-server.com:2087', {
 1. Set up your development environment to test the local version of your library rather than the one distributed on `npm.dev.cpanel.net`:
 
     ```sh
-    yarn install --dev
-    yarn run build
+    npm install --also=dev
+    npm run build:dev
     ```
 
 2. Make the changes to the library.
 3. Rebuild the library:
 
     ```sh
-    yarn run build
+    npm run build:dev
     ```
 
 ## Testing
@@ -125,8 +125,8 @@ fetch('http://my-cpanel-server.com:2087', {
 To install the development dependencies, run:
 
 ```sh
-yarn install --dev
-yarn run test
+npm install --also=dev
+npm run test
 ```
 
 ## Contributing
@@ -164,23 +164,22 @@ Any code submitted via pull requests that is incorporated into the library will 
 
 When your changes are implemented and tested, and you're ready to publish, run:
 
-```sh
-yarn install
-yarn run build
-yarn publish
-git push
-```
+### Developer publishing (publishing an alpha build for testing)
 
-After you run `yarn publish`, the system will prompt you to select a change type:
+1. As part of the development changes update the `version` property in `package.json` to the format `X.X.X-alpha.X` so that the semver is updated correctly and appended with alpha build information (1.0.0 -> 1.0.1-alpha.1).
+2. `npm run publish`
+3. Confirm changes are properly published at http://alpha.docs.ui.dev.cpanel.net/locale
 
-* *Patch* — Select this option for patches or very small changes (like fixing a typo).
-* *Minor* — Select this option for small bug fixes.
-* *Major* — Select this option for major changes, like adding new functionality.
+### Production publishing (This will be done by a UI3)
+
+1. When dev changes are accepted and complete update the `version` property in `package.json` to the format `X.X.X` so that the semver is updated correctly and alpha build information has been removed. Do this on the development branch before merging pull request (1.0.1-alpha.1 -> 1.0.1).
+2. `npm run publish`
 
 ## Authors
 
 * **Team Phoenix @ cPanel**
 * **Team Artemis @ cPanel**
+* **Team Cobra   @ cPanel**
 
 ### Contributors
 * Thomas Green <tomg@cpanel.net>

@@ -1,6 +1,6 @@
 node_modules/
 documentation/
-yarn-error.log
+npm-debug.log
 dist/
 docs/
 coverage

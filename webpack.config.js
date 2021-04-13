@@ -31,12 +31,12 @@ const commonConfig = {
     }
 };
 function buildConfig(env) {
-    if (env === 'dev') {
+    if (env['dev']) {
         let devConfigOptions = commonConfig;
         devConfigOptions.mode = 'development';
         devConfigOptions.output.filename = 'cpanel-api.umd.js';
         return devConfigOptions;
-    } else if (env === 'prod') {
+    } else if (env['prod']) {
         let prodConfigOptions = commonConfig;
         prodConfigOptions.mode = 'production';
         prodConfigOptions.output.filename = 'cpanel-api.umd.min.js';

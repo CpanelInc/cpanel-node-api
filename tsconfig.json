@@ -2,12 +2,12 @@
   "compilerOptions": {
     "baseUrl": "tsconfig",
     "lib": [
-      "es2018",
+      "esnext",
       "dom"
     ],
 
     "moduleResolution": "node",
-    "target": "es5",
+    "target": "es2020",
     "strict": true,
     "outDir": "./dist",
     "rootDir": "./src",

@@ -185,6 +185,10 @@ When your changes are implemented and tested, and you're ready to publish, run:
 * Thomas Green <tomg@cpanel.net>
 * Sruthi Sanigarapu <sruthi@cpanel.net>
 * Aneece Yazdani <aneece@cpanel.net>
+* Sarah Kiniry <sarah.kiniry@cpanel.net>
+* Dustin Scherer <dustin.scherer@cpanel.net>
+* Philip King <phil@cpanel.net>
+* Caitlin Flattery <c.flattery@cpanel.net>
 
 ## License
 Copyright © 2021 cPanel, L.L.C.

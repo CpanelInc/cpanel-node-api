@@ -40,16 +40,33 @@
     "author": "cPanel L.L.C.",
     "contributors": [
         {
-            "name": "Aneece Yazdani",
-            "email": "aneece@cpanel.net"
-        },
-        {
             "name": "Sruthi Sanigarapu",
             "email": "sruthi@cpanel.net"
         },
         {
+            "name": "Caitlin Flattery",
+            "email": "c.flattery@cpanel.net"
+        },
+        {
+            "name": "Sarah Kiniry",
+            "email": "sarah.kiniry@cpanel.net"
+        },
+        {
             "name": "Thomas Green",
             "email": "tomg@cpanel.net"
+        },
+        {
+            "name": "Aneece Yazdani",
+            "email": "aneece@cpanel.net"
+        },
+
+        {
+            "name": "Philip King",
+            "email": "phil@cpanel.net"
+        },
+        {
+            "name": "Dustin Scherer",
+            "email": "dustin.scherer@cpanel.net"
         }
     ],
     "license": "MIT",

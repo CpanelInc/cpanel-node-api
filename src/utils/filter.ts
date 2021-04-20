@@ -21,7 +21,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 /**
- * The filter operator defines the rule used to compare data in a column with the passed in value. It
+ * The filter operator defines the rule used to compare data in a column with the passed-in value. It
  * behaves something like:
  *
  *   const value = 1;

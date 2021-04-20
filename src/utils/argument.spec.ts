@@ -35,7 +35,7 @@ describe("Argument Class", () => {
             }).toThrowError();
         });
 
-        it("should build a new name/value when passed passed only a name and value", () => {
+        it("should build a new name/value when passed only a name and value", () => {
             const arg = new Argument("name", "kermit");
             expect(arg).toBeDefined();
             expect(arg.name).toBe("name");
@@ -52,14 +52,14 @@ describe("PerlBooleanArgument Class", () => {
             }).toThrowError();
         });
 
-        it("should build a new name/value when passed passed a name and true value", () => {
+        it("should build a new name/value when passed a name and true value", () => {
             const arg = new PerlBooleanArgument("name", true);
             expect(arg).toBeDefined();
             expect(arg.name).toBe("name");
             expect(arg.value).toBe(perl.fromBoolean(true));
         });
 
-        it("should build a new name/value when passed passed a name and false value", () => {
+        it("should build a new name/value when passed a name and false value", () => {
             const arg = new PerlBooleanArgument("name", false);
             expect(arg).toBeDefined();
             expect(arg.name).toBe("name");

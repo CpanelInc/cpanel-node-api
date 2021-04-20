@@ -31,7 +31,7 @@ import {
 } from "../response";
 
 /**
- * This class will extract the available meta data from the WhmApi format into a standard format for JavaScript developers.
+ * This class will extract the available metadata from the WHM API format into a standard format for JavaScript developers.
  */
 export class WhmApiMetaData implements IMetaData {
 
@@ -76,19 +76,19 @@ export class WhmApiMetaData implements IMetaData {
     recordsBeforeFilter: number = 0;
 
     /**
-     * Indicates the response was the result of a batch api.
+     * Indicates the response was the result of a batch API.
      */
     batch: boolean = false;
 
     /**
-     * A collection of the other less common or custom WhmApi meta-data properties.
+     * A collection of the other less-common or custom WHM API metadata properties.
      */
     properties: { [index: string]: any } = {};
 
     /**
      * Build a new MetaData object from the metadata response from the server.
      *
-     * @param meta WhmApi metadata object.
+     * @param meta WHM API metadata object.
      */
     constructor(meta: any) {
 
@@ -120,7 +120,7 @@ export class WhmApiMetaData implements IMetaData {
 
 
 /**
- * Parser that will convert a WhmApi wire formatted object into a standard response object for JavaScript developers.
+ * Parser that will convert a WHM API wire-formatted object into a standard response object for JavaScript developers.
  */
 export class WhmApiResponse extends Response {
 
@@ -133,7 +133,7 @@ export class WhmApiResponse extends Response {
     private _parseStatus(resMetadata: any): void {
         this.status = 0; // Assume it failed.
         if (typeof (resMetadata.result) === "undefined") {
-            throw new Error("The response should have a numeric status property indicating the api succeeded (>0) or failed (=0)");
+            throw new Error("The response should have a numeric status property indicating the API succeeded (>0) or failed (=0)");
         }
         this.status = parseInt(resMetadata.result, 10);
     }
@@ -160,7 +160,7 @@ export class WhmApiResponse extends Response {
     }
 
     /**
-     * WHM API v1 usually puts list data into a single-key hash.
+     * WHM API 1 usually puts list data into a single-key hash.
      * This isn't useful for us, so we get rid of the extra hash.
      *
      * @method _reduce_list_data
@@ -187,9 +187,9 @@ export class WhmApiResponse extends Response {
     };
 
     /**
-     * Parse out the status, data and metadata from a WhmApi response into the abstract Response and IMetaData structures.
+     * Parse out the status, data and metadata from a WHM API response into the abstract Response and IMetaData structures.
      *
-     * @param response Raw response from the server. Its just been JSON.parse() at this point.
+     * @param response Raw response from the server. It's just been JSON.parse() at this point.
      * @param Options On how to handle parsing of the response.
      */
     constructor(

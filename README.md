@@ -2,7 +2,7 @@
 
 cPanel API JavaScript and TypeScript interface libraries.
 
-This library provides a set of classes for calling cPanel WHM API 1 and UAPI calls. The classes hide much of the complexity of these API's behind classes the abstract the underlying variances between these API systems. Users of this library can focus on what they want to accomplish rather the having to learn the various complexities of the underlying wire formats for each of the cPanel product's APIs
+This library provides a set of classes for calling cPanel WHM API 1 and UAPI calls. The classes hide much of the complexity of these API's behind classes that abstract the underlying variances between these API systems. Users of this library can focus on what they want to accomplish rather than having to learn the various complexities of the underlying wire formats for each of the cPanel product's APIs.
 
 ## Installing @cpanel/api
 
@@ -131,7 +131,7 @@ npm run test
 
 ## Contributing
 
-The maintainer will evaluate all bugs and feature requests, and reserves the right to reject request for any reason.
+The maintainer will evaluate all bugs and feature requests, and reserves the right to reject a request for any reason.
 
 ### Bugs
 
@@ -152,9 +152,9 @@ Describe the feature in detail. Try to include information on why the suggested 
 
 ### Pull requests
 
-We welcome pull request against the @cpanel/api library.
+We welcome pull requests against the @cpanel/api library.
 
-The maintainers will evaluate all pull request. Pull requests are subject to review by the maintainers. We may request additional adjustments to any submitted pull requests.
+The maintainers will evaluate all pull requests. Pull requests are subject to review by the maintainers. We may request additional adjustments to any submitted pull requests.
 
 Any code submitted via pull requests that is incorporated into the library will become the property of cPanel L.L.C. and will be published under the cPanel L.L.C. copyright and the MIT license.
 

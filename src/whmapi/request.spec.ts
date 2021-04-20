@@ -54,7 +54,7 @@ describe("WhmApiRequest: ", () => {
         });
     });
 
-    it("Should generate a request that always contain ‘api.version=1’ as a request parameter", () => {
+    it("Should generate a request that always contains ‘api.version=1’ as a request parameter", () => {
         const request = new WhmApiRequest(WhmApiType.XmlApi, {
             method: "api_method",
         });
@@ -63,7 +63,7 @@ describe("WhmApiRequest: ", () => {
         expect(genReq.body).toEqual("api.version=1");
     });
 
-    it("Should generate request including paging params if set", () => {
+    it("Should generate a request including paging params if set", () => {
         const request = new WhmApiRequest(WhmApiType.JsonApi, {
             method: "api_method",
             pager: new Pager(2, 10)
@@ -73,7 +73,7 @@ describe("WhmApiRequest: ", () => {
         expect(genReq.body).toMatch("api.chunk.enable=1&api.chunk.verbose=1&api.chunk.start=11&api.chunk.size=10");
     });
 
-    it("should generate request including filter params if set", () => {
+    it("should generate a request including filter params if set", () => {
         const request = new WhmApiRequest(WhmApiType.JsonApi, {
             method: "api_method",
             filters: [
@@ -88,7 +88,7 @@ describe("WhmApiRequest: ", () => {
         expect(genReq.body).toMatch("api.filter.enable=1&api.filter.verbose=1&api.filter.a.field=id&api.filter.a.type=gt&api.filter.a.arg0=100");
     });
 
-    it("should generate request if multiple filter params if set", () => {
+    it("should generate a request if multiple filter params if set", () => {
         const request = new WhmApiRequest(WhmApiType.XmlApi, {
             method: "api_method",
             filters: [
@@ -108,7 +108,7 @@ describe("WhmApiRequest: ", () => {
         expect(genReq.body).toMatch("api.filter.enable=1&api.filter.verbose=1&api.filter.a.field=id&api.filter.a.type=gt&api.filter.a.arg0=100&api.filter.b.field=name&api.filter.b.type=contains&api.filter.b.arg0=unit%20test");
     });
 
-    it("should generate request with sort parameters if set", () => {
+    it("should generate a request with sort parameters if set", () => {
         const request = new WhmApiRequest(WhmApiType.XmlApi, {
             method: "api_method",
             sorts: [
@@ -123,7 +123,7 @@ describe("WhmApiRequest: ", () => {
         expect(genReq.body).toMatch("api.sort.enable=1&api.sort.a.field=title&api.sort.a.reverse=1&api.sort.a.method=lexicographic");
     });
 
-    it("should generate request with multiple sort parameters if set", () => {
+    it("should generate a request with multiple sort parameters if set", () => {
         const request = new WhmApiRequest(WhmApiType.XmlApi, {
             method: "api_method",
             sorts: [
@@ -143,7 +143,7 @@ describe("WhmApiRequest: ", () => {
         expect(genReq.body).toMatch("api.sort.enable=1&api.sort.a.field=title&api.sort.a.reverse=1&api.sort.a.method=lexicographic");
     });
 
-    it("should generate request with the arguments", () => {
+    it("should generate a request with the arguments", () => {
         const request = new WhmApiRequest(WhmApiType.JsonApi, {
             method: "api_method",
             arguments: [{
@@ -155,7 +155,7 @@ describe("WhmApiRequest: ", () => {
         expect(genReq.body).toMatch("label=unit");
     });
 
-    it("should generate request with the arguments", () => {
+    it("should generate a request with the arguments", () => {
         const request = new WhmApiRequest(WhmApiType.JsonApi, {
             method: "api_method",
             arguments: [{
@@ -167,7 +167,7 @@ describe("WhmApiRequest: ", () => {
         expect(genReq.body).toMatch("label=unit");
     });
 
-    it("should generate json-api request when api type is set to WhmApiType.JsonApi", () => {
+    it("should generate a json-api request when API type is set to WhmApiType.JsonApi", () => {
         const request = new WhmApiRequest(WhmApiType.JsonApi, {
             method: "api_method",
             arguments: [{
@@ -180,7 +180,7 @@ describe("WhmApiRequest: ", () => {
     });
 
     describe("when json encoding is requested", () => {
-        it("should generate a POST with a json body by default", () => {
+        it("should generate a POST with a JSON body by default", () => {
             const request = new WhmApiRequest(WhmApiType.JsonApi, {
                 method: "api_method",
                 arguments: [{

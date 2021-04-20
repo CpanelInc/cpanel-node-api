@@ -31,7 +31,7 @@ import {
 } from "../response";
 
 /**
- * This class will extract the available meta data from the UAPI format into a standard format for JavaScript developers.
+ * This class will extract the available metadata from the UAPI format into a standard format for JavaScript developers.
  */
 export class UapiMetaData implements IMetaData {
 
@@ -76,19 +76,19 @@ export class UapiMetaData implements IMetaData {
     recordsBeforeFilter: number = 0;
 
     /**
-     * Indicates the response was the result of a batch api.
+     * Indicates the response was the result of a batch API.
      */
     batch: boolean = false;
 
     /**
-     * A collection of the other less common or custom UAPI meta-data properties.
+     * A collection of the other less common or custom UAPI metadata properties.
      */
     properties: { [index: string]: any } = {};
 
     /**
      * Build a new MetaData object from the metadata response from the server.
      *
-     * @param meta Uapi metadata object.
+     * @param meta UAPI metadata object.
      */
     constructor(meta: any) {
 
@@ -120,20 +120,20 @@ export class UapiMetaData implements IMetaData {
 
 
 /**
- * Parser that will convert a UAPI wire formated object into a standard response object for JavaScript developers.
+ * Parser that will convert a UAPI wire-formated object into a standard response object for JavaScript developers.
  */
 export class UapiResponse extends Response {
 
     /**
      * Parse out the status from the response.
      *
-     * @param  response Raw response object from the backend. Already passed thru JSON.parse().
+     * @param  response Raw response object from the backend. Already passed through JSON.parse().
      * @return Number indicating success or failure. > 1 success, 0 failure.
      */
     private _parseStatus(response: any): void {
         this.status = 0; // Assume it failed.
         if (typeof (response.status) === "undefined") {
-            throw new Error("The response should have a numeric status property indicating the api succeeded (>0) or failed (=0)");
+            throw new Error("The response should have a numeric status property indicating the API succeeded (>0) or failed (=0)");
         }
         this.status = parseInt(response.status, 10);
     }
@@ -170,9 +170,9 @@ export class UapiResponse extends Response {
     }
 
     /**
-     * Parse out the status, data and metadata from a Uapi response into the abstract Response and IMetaData structures.
+     * Parse out the status, data and metadata from a UAPI response into the abstract Response and IMetaData structures.
      *
-     * @param response  Raw response from the server. Its just been JSON.parse() at this point.
+     * @param response  Raw response from the server. It's just been JSON.parse() at this point.
      * @param Options on how to handle parsing of the response.
      */
     constructor(

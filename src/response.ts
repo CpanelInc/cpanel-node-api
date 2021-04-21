@@ -211,7 +211,7 @@ export abstract class Response implements IResponse {
     /**
      * Checks if the api failed.
      *
-     * @return true if the API reports failure, true otherwise.
+     * @return true if the API reports failure, false otherwise.
      */
     get failed(): boolean {
         return this.status === 0;

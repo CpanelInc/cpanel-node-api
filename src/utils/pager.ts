@@ -33,12 +33,12 @@ export const ALL = Number.POSITIVE_INFINITY;
 export interface IPager {
 
     /**
-     * One based index of the pages of data.
+     * One-based index of the pages of data.
      */
     page: number;
 
     /**
-     * Number of elements a page of data is composed of. This is the requested page size, if there is less than this number of records in the set, only the remaining records are returned.
+     * Number of elements a page of data is composed of. This is the requested page size, if there are less than this number of records in the set, only the remaining records are returned.
      */
     pageSize: number;
 }
@@ -49,12 +49,12 @@ export interface IPager {
 export class Pager implements IPager {
 
     /**
-     * One based index of the pages of data.
+     * One-based index of the pages of data.
      */
     page: number;
 
     /**
-     * Number of elements a page of data is composed of. This is the requested page size, if there is less than this number of records in the set, only the remaining records are returned.
+     * Number of elements a page of data is composed of. This is the requested page size, if there are less than this number of records in the set, only the remaining records are returned.
      */
     pageSize: number;
 
@@ -63,7 +63,7 @@ export class Pager implements IPager {
      *
      * @param page Page to request. From 1 .. n where n is the set.length % pageSize. Defaults to 1.
      * @param pageSize Number of records to request in a page of data. Defaults to DEFAULT_PAGE_SIZE.
-     *                          If the string 'all' is passed, then all the records are requested. Note: The back end
+     *                          If the string 'all' is passed, then all the records are requested. Note: The backend
      *                          system may still impose page size limits in this case.
      */
     constructor(page: number = 1, pageSize: number = DEFAULT_PAGE_SIZE) {

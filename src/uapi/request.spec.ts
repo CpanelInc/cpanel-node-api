@@ -184,8 +184,8 @@ describe("UapiRequest", () => {
 
     });
 
-    describe("when json encoding is requested", () => {
-        it("should generate a POST with a json body by default", () => {
+    describe("when JSON encoding is requested", () => {
+        it("should generate a POST with a JSON body by default", () => {
             const request = new UapiRequest({
                 namespace: "test",
                 method: "get_tests_by_label",

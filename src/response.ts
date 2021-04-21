@@ -47,7 +47,7 @@ export enum MessageType {
     Error,
 
     /**
-     * Message is an warning.
+     * Message is a warning.
      */
     Warning,
 
@@ -94,7 +94,7 @@ export interface IResponse {
     raw: any;
 
     /**
-     * The status code returned by the api. Usually 1 for success, 0 for failure.
+     * The status code returned by the API. Usually 1 for success, 0 for failure.
      */
     status: number;
 
@@ -104,7 +104,7 @@ export interface IResponse {
     messages: IMessage[];
 
     /**
-     * Additional data returned about the request. Paging, Filtering, maybe other custom properties.
+     * Additional data returned about the request. Paging, filtering, and maybe other custom properties.
      */
     meta: IMetaData;
 
@@ -153,7 +153,7 @@ export abstract class Response implements IResponse {
     raw: any;
 
     /**
-      * The status code returned by the api. Usually 1 for success, 0 for failure.
+      * The status code returned by the API. Usually 1 for success, 0 for failure.
       */
     status: number = 0;
 
@@ -163,7 +163,7 @@ export abstract class Response implements IResponse {
     messages: IMessage[] = [];
 
     /**
-      * Additional data returned about the request. Paging, Filtering, maybe other custom properties.
+      * Additional data returned about the request. Paging, filtering, and maybe other custom properties.
       */
     meta: IMetaData = clone(DefaultMetaData);
 
@@ -182,7 +182,7 @@ export abstract class Response implements IResponse {
     /**
      * Build a new response object from the response. Note, this class should not be called
      * directly.
-     * @param response Complete data passed from the server. Probably its been parsed using JSON.parse().
+     * @param response Complete data passed from the server. Probably it's been parsed using JSON.parse().
      * @param options for how to handle the processing of the response data.
      */
     constructor(response: any, options?: ResponseOptions) {
@@ -200,7 +200,7 @@ export abstract class Response implements IResponse {
     }
 
     /**
-     * Checks if the api was successful.
+     * Checks if the API was successful.
      *
      * @return true if successful, false if failure.
      */
@@ -211,16 +211,16 @@ export abstract class Response implements IResponse {
     /**
      * Checks if the api failed.
      *
-     * @return ture if the api reports failure, true otherwise.
+     * @return true if the API reports failure, false otherwise.
      */
     get failed(): boolean {
         return this.status === 0;
     }
 
     /**
-     * Get the list of message based on the requested type.
+     * Get the list of messages based on the requested type.
      *
-     * @param type Type of the message to lookup
+     * @param type Type of the message to look up.
      * @return List of messages that match the filter.
      */
     private _getMessages(type: MessageType): IMessage[] {

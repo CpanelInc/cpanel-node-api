@@ -52,7 +52,7 @@ export function stripTrailingSlash(path: string) {
 }
 
 /**
- * Add a trailing slashes to a string if it doesn't have one.
+ * Add a trailing slash to a string if it doesn't have one.
  *
  * @method ensureTrailingSlash
  * @param  path The path string to process.
@@ -64,9 +64,9 @@ export function ensureTrailingSlash(path: string) {
 
 type PortNameMap = { [index: string]: string };
 
-// This will work in any context except a proxy URL to cpanel or webmail
-// that accesses a URL outside /frontend (cpanel) or /webmail (webmail),
-// but URLs like that are non-production by defintion.
+// This will work in any context except a proxy URL to cPanel or Webmail
+// that accesses a URL outside /frontend (cPanel) or /webmail (Webmail),
+// but URLs like that are non-production by definition.
 const PortToApplicationMap: PortNameMap = {
     "80": "other",
     "443": "other",
@@ -85,7 +85,7 @@ const PortToApplicationMap: PortNameMap = {
 };
 
 /**
- * Helper class used to calculate paths within cpanel applications.
+ * Helper class used to calculate paths within cPanel applications.
  */
 export class ApplicationPath {
     private unprotectedPaths = ["/resetpass", "/invitation"];
@@ -106,7 +106,7 @@ export class ApplicationPath {
     port: number;
 
     /**
-     * Path part of the url
+     * Path part of the URL.
      */
     path: string;
 
@@ -116,7 +116,7 @@ export class ApplicationPath {
     domain: string;
 
     /**
-     *Session token
+     *Session token.
      */
     securityToken: string;
 
@@ -126,24 +126,24 @@ export class ApplicationPath {
     applicationPath: string;
 
     /**
-     * The name of the theme in the path
+     * The name of the theme in the path.
      */
     theme: string;
 
     /**
-     * The theme path
+     * The theme path.
      */
     themePath: string;
 
     /**
-     * Just the protocol, domain and port
+     * Just the protocol, domain, and port.
      */
     rootUrl: string;
 
     /**
-     * Create the PathHelper. This class is used to help generated paths
+     * Create the PathHelper. This class is used to help generate paths
      * within an application. It has special knowledge about how paths are
-     * constructructed in the cPanel family of applications.
+     * constructed in the cPanel family of applications.
      *
      * @param location Abstraction for the window.location object to aid in unit testing this module.
      */
@@ -154,8 +154,8 @@ export class ApplicationPath {
         let port = location.port;
         if (!port) {
 
-            // Since some browsers wont fill this in, we have to derive it from
-            // the protocol if its not provided in the window.location object.
+            // Since some browsers won't fill this in, we have to derive it from
+            // the protocol if it's not provided in the window.location object.
             if (isHttps(this.protocol)) {
                 port = "443";
             } else if (isHttp(this.protocol)) {
@@ -225,47 +225,47 @@ export class ApplicationPath {
     }
 
     /**
-     * Return whether we are running inside cpanel or something else (e.g., WHM)
+     * Return whether we are running inside cPanel or something else (e.g., WHM)
      *
-     * @return true if this is cpanel; false otherwise
+     * @return true if this is cPanel; false otherwise
      */
     get isCpanel(): boolean {
         return (/cpanel/i).test(this.applicationName);
     }
 
     /**
-     * Return whether we are running inside WHM or something else (e.g., whm)
+     * Return whether we are running inside WHM or something else (e.g., WHM)
      *
-     * @return true if this is whm; false otherwise
+     * @return true if this is WHM; false otherwise
      */
     get isWhm(): boolean {
         return (/whostmgr/i).test(this.applicationName);
     }
 
     /**
-     * Return whether we are running inside WHM or something else (e.g., whm)
+     * Return whether we are running inside WHM or something else (e.g., WHM)
      *
-     * @return true if this is webmail; false otherwise
+     * @return true if this is Webmail; false otherwise
      */
     get isWebmail(): boolean {
         return (/webmail/i).test(this.applicationName);
     }
 
     /**
-     * Get the domain relative path for the relative url path.
+     * Get the domain relative path for the relative URL path.
      *
      * @param relative Relative path to the resource.
-     * @return Domain relative url path including theme if applicable for the application to the file.
+     * @return Domain relative URL path including theme, if applicable, for the application to the file.
      */
     buildPath(relative: string) {
         return this.themePath + relative;
     }
 
     /**
-     * Get the full url path for the relative url path.
+     * Get the full url path for the relative URL path.
      *
      * @param relative Relative path to the resource.
-     * @return Full url path including theme if applicable for the application to the file.
+     * @return Full URL path including theme, if applicable, for the application to the file.
      */
     buildFullPath(relative: string) {
         return this.protocol + "//" + this.domain + ":" + this.port + this.buildPath(relative);

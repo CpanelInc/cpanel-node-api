@@ -87,7 +87,7 @@ describe("Response", () => {
             let response = new FakeResponse(resp, { keepUnprocessedResponse: true });
             expect(response.raw).toEqual(resp);
         });
-        it("should not keep a copy of the raw response when configured so", () => {
+        it("should not keep a copy of the raw response when configured", () => {
             let resp = {};
             let response = new FakeResponse(resp, { keepUnprocessedResponse: false });
             expect(response.raw).not.toBeDefined();
@@ -131,7 +131,7 @@ describe("Response", () => {
                 expect(response.warnings).toEqual([ { type: MessageType.Warning, message: "Fake Warning" } ]);
             });
 
-            it("should return a info messages when there is an info message", () => {
+            it("should return a info message when there is an info message", () => {
                 expect(response.hasInfoMessages).toBe(true);
                 expect(response.infoMessages).toEqual([ { type: MessageType.Information, message: "Fake Information" } ]);
             });

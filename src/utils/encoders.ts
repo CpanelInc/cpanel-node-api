@@ -59,7 +59,7 @@ export interface IArgumentEncoder {
 }
 
 /**
- * Encode parameters using url encode.
+ * Encode parameters using urlencode.
  */
 export class UrlArgumentEncoder implements IArgumentEncoder {
 
@@ -112,7 +112,7 @@ export class WwwFormUrlArgumentEncoder implements IArgumentEncoder {
 }
 
 /**
- * Encode the parameter into json
+ * Encode the parameter into JSON
  */
 export class JsonArgumentEncoder implements IArgumentEncoder {
     contentType: string = "application/json";

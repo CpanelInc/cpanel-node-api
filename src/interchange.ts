@@ -23,7 +23,7 @@
 import { Headers } from "./utils/headers";
 
 /**
- * Abstract data structure used to pass rendered API information to remoting layer.
+ * Abstract data structure used to pass rendered API information to the remoting layer.
  */
 export interface RequestInfo {
 
@@ -33,7 +33,7 @@ export interface RequestInfo {
     headers: Headers;
 
     /**
-     * URL use to make the request.
+     * URL used to make the request.
      */
     url: string;
 

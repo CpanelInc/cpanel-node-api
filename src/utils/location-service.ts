@@ -26,28 +26,28 @@
 export class LocationService {
 
     /**
-     * The pathname part of the url
+     * The pathname part of the URL.
      */
     public get pathname(): string {
         return window.location.pathname;
     }
 
     /**
-     * The port part of the url.
+     * The port part of the URL.
      */
     public get port(): string {
         return window.location.port;
     }
 
     /**
-     * The hostname part of the url.
+     * The hostname part of the URL.
      */
     public get hostname(): string {
         return window.location.hostname;
     }
 
     /**
-     * The protocal part of the url
+     * The protocol part of the URL.
      */
     public get protocol(): string {
         return window.location.protocol;

@@ -133,7 +133,7 @@ export class WhmApiRequest extends Request {
     }
 
     /**
-     * Convert from a number into a string that WHM API v1 will sort
+     * Convert from a number into a string that WHM API 1 will sort
      * in the same order as the numbers; e.g.: 26=>"za", 52=>"zza", ...
      * @method  _make_whm_api_fieldspec_from_number
      * @private
@@ -152,7 +152,7 @@ export class WhmApiRequest extends Request {
      */
     private _generateArguments(params: IArgument[]): void {
 
-        // For any WHM Api call the api version must be specified as an argument. It is required.
+        // For any WHM API call, the API version must be specified as an argument. It is required.
         // Adding it first before everything.
         let apiVersionParam: IArgument = { name: "api.version", value: 1 };
         params.push(apiVersionParam);
@@ -179,7 +179,7 @@ export class WhmApiRequest extends Request {
     }
 
     /**
-     * Lookup the correct name for the filter operator
+     * Look up the correct name for the filter operator
      *
      * @param operator Type of filter operator to use to filter the items
      * @returns The string counter part for the filter operator.
@@ -208,7 +208,7 @@ export class WhmApiRequest extends Request {
     }
 
     /**
-     * Generate the filter parameters if any.
+     * Generate the filter parameters, if any.
      *
      * @param params List of parameters to adjust based on the filter rules provided.
      */
@@ -227,7 +227,7 @@ export class WhmApiRequest extends Request {
     }
 
     /**
-     * In UAPI we request the starting record not the starting page. This translates
+     * In UAPI, we request the starting record, not the starting page. This translates
      * the page and page size into the correct starting record.
      *
      * @param pager Object containing pager settings.
@@ -237,7 +237,7 @@ export class WhmApiRequest extends Request {
     }
 
     /**
-     * Generate the pager request parameters if any.
+     * Generate the pager request parameters, if any.
      *
      * @param params List of parameters to adjust based on the pagination rules.
      */
@@ -262,7 +262,7 @@ export class WhmApiRequest extends Request {
     }
 
     /**
-     * Create a new uapi request.
+     * Create a new UAPI request.
      *
      * @param init Optional request object used to initialize this object.
      */
@@ -277,7 +277,7 @@ export class WhmApiRequest extends Request {
         }
 
         if (!this.method) {
-            throw new Error("You must define a method for the whmapi call before you generate a request");
+            throw new Error("You must define a method for the WHM API call before you generate a request");
         }
     }
 

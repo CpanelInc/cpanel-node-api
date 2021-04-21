@@ -67,38 +67,38 @@ export interface IRequestConfiguration {
 export interface IRequest {
 
     /**
-     * Namespace where the api call lives
+     * Namespace where the API call lives
      */
     namespace?: string;
 
     /**
-     * Method name of the api call.
+     * Method name of the API call.
      */
     method: string;
 
     /**
-     * Optional list of arguments for the api call. You can use types
+     * Optional list of arguments for the API call. You can use types
      *   * Argument or IArgument
      */
     arguments?: IArgument[];
 
     /**
-     * Optional list of sort rules to pass to the api call.
+     * Optional list of sorting rules to pass to the API call.
      */
     sorts?: ISort[];
 
     /**
-     * Optional list of filter rules to pass to the api call.
+     * Optional list of filter rules to pass to the API call.
      */
     filters?: IFilter[];
 
     /**
-     * Optional list of column to include with the response to the api call.
+     * Optional list of columns to include with the response to the API call.
      */
     columns?: string[];
 
     /**
-     * Optional pager rule to pass to the api.
+     * Optional pager rule to pass to the API.
      */
     pager?: IPager;
 
@@ -137,46 +137,46 @@ export interface IBatchRequestMeta {
 }
 
 /**
- * Abstract base class for all Request object. Developers should
+ * Abstract base class for all Request objects. Developers should
  * create a subclass of this that implements the generate() method.
  */
 export abstract class Request {
 
     /**
-     * Namespace where the api call lives
+     * Namespace where the API call lives
      * @type {string}
      */
     public namespace: string = "";
 
     /**
-     * Method name of the api call.
+     * Method name of the API call.
      * @type {string}
      */
     public method: string = "";
 
     /**
-     * Optional list of arguments for the api call.
+     * Optional list of arguments for the API call.
      * @type {IArgument[]}
      */
     public arguments: IArgument[] = [];
 
     /**
-     * Optional list of sort rules to pass to the api call.
+     * Optional list of sorting rules to pass to the API call.
      */
     public sorts: Sort[] = [];
 
     /**
-     * Optional list of filter rules to pass to the api call.
+     * Optional list of filter rules to pass to the API call.
      */
     public filters: Filter[] = [];
 
     /**
-     * Optional list of column to include with the response to the api call.
+     * Optional list of columns to include with the response to the API call.
      */
     public columns: string[] = [];
 
     /**
-     * Optional pager rule to pass to the api.
+     * Optional pager rule to pass to the API.
      */
     public pager: Pager = new Pager();
 
@@ -305,7 +305,7 @@ export abstract class Request {
     }
 
     /**
-     * Add a column to include in the request. Not if no columns are specified, all columns are retrieved.
+     * Add a column to include in the request. If no columns are specified, all columns are retrieved.
      *
      * @param name Name of a column
      * @return Updated Request object.
@@ -347,7 +347,7 @@ export abstract class Request {
     }
 
     /**
-     * Generate the request interchange information. Note: This method is abstract and
+     * Generate the request interchange information. Note: This method is abstracted and
      * must be implemented in derived request generators.
      *
      * @param Rule used to create the interchange. If not provided, implementations

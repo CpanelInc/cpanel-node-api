@@ -42,12 +42,12 @@ export enum SortDirection {
 export enum SortType {
 
     /**
-     * Uses character by character comparison
+     * Uses character-by-character comparison.
      */
     Lexicographic,
 
     /**
-     * Special rule for handing IPv4 comparison. This takes into account the segments
+     * Special rule for handing IPv4 comparison. This takes into account the segments.
      */
     Ipv4,
 

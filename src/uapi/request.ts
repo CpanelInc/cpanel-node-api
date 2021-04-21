@@ -135,7 +135,7 @@ export class UapiRequest extends Request {
     }
 
     /**
-     * Lookup the correct name for the filter operator
+     * Look up the correct name for the filter operator
      *
      * @param operator Type of filter operator to use to filter the items
      * @returns The string counter part for the filter operator.
@@ -187,7 +187,7 @@ export class UapiRequest extends Request {
     }
 
     /**
-     * In UAPI we request the starting record not the starting page. This translates
+     * In UAPI, we request the starting record, not the starting page. This translates
      * the page and page size into the correct starting record.
      */
     private _traslatePageToStart(pager: IPager) {
@@ -195,7 +195,7 @@ export class UapiRequest extends Request {
     }
 
     /**
-     * Generate the pager request parameters if any.
+     * Generate the pager request parameters, if any.
      *
      * @param params List of parameters to adjust based on the pagination rules.
      */
@@ -224,7 +224,7 @@ export class UapiRequest extends Request {
     /**
      * Generate any additional parameters from the configuration data.
      *
-     * @param params List of parameter to adjust based on the configuration.
+     * @param params List of parameters to adjust based on the configuration.
      */
     private _generateConfiguration(params: IArgument[]): void {
         if (this.config && this.config["analytics"]) {
@@ -238,7 +238,7 @@ export class UapiRequest extends Request {
     /**
      * Create a new uapi request.
      *
-     * @param init  Optional request object used to initialize this object.
+     * @param init  Optional request objects used to initialize this object.
      */
     constructor(init?: IRequest ) {
         super(init);
@@ -253,12 +253,12 @@ export class UapiRequest extends Request {
      */
     generate(rule? : GenerateRule): RequestInfo {
 
-        // Needed for or pure js clients since they don't get the compiler checks
+        // Needed for pure JS clients, since they don't get the compiler checks
         if (!this.namespace) {
-            throw new Error("You must define a namespace for the uapi call before you generate a request");
+            throw new Error("You must define a namespace for the UAPI call before you generate a request");
         }
         if (!this.method) {
-            throw new Error("You must define a method for the uapi call before you generate a request");
+            throw new Error("You must define a method for the UAPI call before you generate a request");
         }
 
         if (!rule) {

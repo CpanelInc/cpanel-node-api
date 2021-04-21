@@ -56,7 +56,7 @@ export interface IMetaData {
         totalPages: number;
 
         /**
-         * Indicates if the data set if filtered.
+         * Indicates if the data set is filtered.
          */
         isFiltered: boolean;
 
@@ -66,12 +66,12 @@ export interface IMetaData {
         recordsBeforeFilter: number;
 
         /**
-         * Indicates the response was the result of a batch api.
+         * Indicates the response was the result of a batch API.
          */
         batch: boolean;
 
         /**
-         * A collection of the other less common or custom UAPI meta-data properties.
+         * A collection of the other less common or custom UAPI metadata properties.
          */
         properties: { [index: string]: string };
 }

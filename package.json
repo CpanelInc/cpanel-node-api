@@ -13,9 +13,6 @@
         "**/*.map.js",
         "documentation/**/*"
     ],
-    "engines": {
-        "yarn": "YARN NO LONGER USED - use npm instead."
-    },
     "scripts": {
         "build:prod": "npm run clean && npm run build:ts && npm run webpack:prod",
         "build:dev": "npm run clean && npm run build:ts-dev && npm run webpack:dev",

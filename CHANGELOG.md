@@ -47,3 +47,11 @@ Updated the library version to remove low security threat
 Add support for cPanel and WHM API tokens.
 Add support to convert headers to an object using toObject() or an array using toArray(). This simplifies use with some libraries.
 Fixed the examples in the README.md.
+
+# v4.0.0
+
+Switch default package management strategy to npm from yarn.
+
+# v4.0.1
+
+Patch to retain yarn support as older systems that utilize this require it.

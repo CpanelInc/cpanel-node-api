@@ -20,9 +20,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-import {
-    snakeCase
-} from "lodash";
+import snakeCase from "lodash/snakeCase";
 
 import * as Perl from "../utils/perl";
 

@@ -13,7 +13,7 @@
     "rootDir": "./src",
 
     "declaration": true,
-    "module": "commonjs",
+    "module": "es2020",
     "esModuleInterop": true,
 
     "noEmitOnError": true,

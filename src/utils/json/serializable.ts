@@ -20,15 +20,13 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-import {
-    isUndefined,
-    isNull,
-    isBoolean,
-    isNumber,
-    isString,
-    isArray,
-    isPlainObject
-} from "lodash";
+import isUndefined from "lodash/isUndefined";
+import isNull from "lodash/isNull";
+import isBoolean from "lodash/isBoolean";
+import isNumber from "lodash/isNumber";
+import isString from "lodash/isString";
+import isArray from "lodash/isArray";
+import isPlainObject from "lodash/isPlainObject";
 
 /**
  * Verify if the value can be serialized to JSON

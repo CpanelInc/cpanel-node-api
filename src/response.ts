@@ -24,10 +24,8 @@ import {
     IMetaData
 } from "./metadata";
 
-import {
-    isUndefined,
-    isNull
-} from "lodash";
+import isUndefined from "lodash/isUndefined";
+import isNull from "lodash/isNull";
 
 /**
  * Options for how to handle response parsing.

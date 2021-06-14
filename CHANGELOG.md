@@ -55,3 +55,7 @@ Switch default package management strategy to npm from yarn.
 # v4.0.1
 
 Patch to retain yarn support as older systems that utilize this require it.
+
+# v5.0.0
+
+Update @cpanel/API to support tree-shaking lodash

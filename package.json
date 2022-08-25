@@ -1,102 +1,128 @@
 {
-    "name": "@cpanel/api",
-    "version": "5.0.0",
-    "description": "cPanel API JavaScript and TypeScript interface libraries. This library provides a set of classes for calling cPanel WHM API 1 and UAPI calls. The classes hide much of the complexity of these APIs behind classes the abstract the underlying variances between these API systems. Users of this library can focus on what they want to accomplish rather the having to learn the various complexities of the underlying wire formats for each of the cPanel Products APIs",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "sideEffects": false,
-    "files": [
-        "*.d.ts",
-        "*.js",
-        "*.map.js",
-        "**/*.d.ts",
-        "**/*.js",
-        "**/*.map.js",
-        "documentation/**/*"
-    ],
-    "scripts": {
-        "build:prod": "npm run clean && npm run build:ts && npm run webpack:prod",
-        "build:dev": "npm run clean && npm run build:ts-dev && npm run webpack:dev",
-        "build:ts": "tsc -p tsconfig.prod.json",
-        "build:ts-dev": "tsc -p tsconfig.dev.json",
-        "build:watch": "tsc -w -p tsconfig.json",
-        "webpack:dev": "webpack --env dev",
-        "webpack:prod": "webpack --env prod",
-        "clean": "rm -rf dist",
-        "build-docs": "compodoc -p tsconfig.dev.json -d ./docs",
-        "serve-docs": "compodoc -p tsconfig.dev.json -d ./docs -r 4214 -s",
-        "test": "npm run build:dev && jasmine --config=jasmine.json --reporter=jasmine-console-reporter",
-        "test:cover": "nyc -r lcov -x '**/*.spec.ts' jasmine --config=jasmine.json && nyc report",
-        "test:watch": "npm run build:watch && onchange -i -v -d 100 dist -- jasmine --config=jasmine.json --reporter=jasmine-console-reporter",
-        "ts-tidy": "npx eslint -c .ts-eslint-tidy-rc.json 'src/**/*.ts' --fix",
-        "prepublish": "npm run build:prod"
+  "name": "@cpanel/api",
+  "version": "5.1.0",
+  "description": "cPanel API JavaScript and TypeScript interface libraries. This library provides a set of classes for calling cPanel WHM API 1 and UAPI calls. The classes hide much of the complexity of these APIs behind classes the abstract the underlying variances between these API systems. Users of this library can focus on what they want to accomplish rather the having to learn the various complexities of the underlying wire formats for each of the cPanel Products APIs",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    "import": "./dist/esm/index.js",
+    "require": "./dist/cjs/index.js",
+    "default": "./dist/esm/index.js"
+  },
+  "sideEffects": false,
+  "files": [
+    "*.d.ts",
+    "*.js",
+    "*.map.js",
+    "**/*.d.ts",
+    "**/*.js",
+    "**/*.map.js",
+    "documentation/**/*"
+  ],
+  "lint-staged": {
+    "*.ts": "npx eslint",
+    "**/*": "prettier --write --ignore-unknown"
+  },
+  "scripts": {
+    "build:prod": "npm run clean && npm run build:ts && npm run webpack:prod",
+    "build:dev": "npm run clean && npm run build:ts-dev && npm run webpack:dev",
+    "build:ts": "tsc -p tsconfig.prod-esm.json & tsc -p tsconfig.prod-cjs.json",
+    "build:ts-dev": "tsc -p tsconfig.esm.json & tsc -p tsconfig.cjs.json",
+    "build:test-watch": "tsc -w -p tsconfig.cjs.json",
+    "webpack:dev": "webpack --env dev",
+    "webpack:prod": "webpack --env prod",
+    "clean": "rm -rf dist",
+    "build-docs": "compodoc -p tsconfig.esm.json -d ./docs",
+    "serve-docs": "compodoc -p tsconfig.esm.json -d ./docs -r 4214 -s",
+    "test": "npm run build:dev && jasmine --config=jasmine.json --reporter=jasmine-console-reporter",
+    "test:cover": "npm run build:dev && nyc -r lcov -x '**/*.spec.ts' jasmine --config=jasmine.json && nyc report",
+    "test:watch": "npm run build:test-watch && onchange -i -v -d 100 dist -- jasmine --config=jasmine.json --reporter=jasmine-console-reporter",
+    "prepare": "husky install",
+    "prepublish": "npm run build:prod",
+    "lint": "npx eslint 'src/**/*.ts'",
+    "lint:fix": "npx eslint 'src/**/*.ts' --fix",
+    "tidy": "npx prettier --write .",
+    "tidy:check": "npx prettier --check .",
+    "tidy:file": "npx prettier --write ",
+    "tidy:watch": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CpanelInc/cpanel-node-api"
+  },
+  "author": "cPanel L.L.C.",
+  "contributors": [
+    {
+      "name": "Sruthi Sanigarapu",
+      "email": "sruthi@cpanel.net"
     },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/CpanelInc/cpanel-node-api"
+    {
+      "name": "Caitlin Flattery",
+      "email": "c.flattery@cpanel.net"
     },
-    "author": "cPanel L.L.C.",
-    "contributors": [
-        {
-            "name": "Sruthi Sanigarapu",
-            "email": "sruthi@cpanel.net"
-        },
-        {
-            "name": "Caitlin Flattery",
-            "email": "c.flattery@cpanel.net"
-        },
-        {
-            "name": "Sarah Kiniry",
-            "email": "sarah.kiniry@cpanel.net"
-        },
-        {
-            "name": "Thomas Green",
-            "email": "tomg@cpanel.net"
-        },
-        {
-            "name": "Aneece Yazdani",
-            "email": "aneece@cpanel.net"
-        },
-
-        {
-            "name": "Philip King",
-            "email": "phil@cpanel.net"
-        },
-        {
-            "name": "Dustin Scherer",
-            "email": "dustin.scherer@cpanel.net"
-        }
-    ],
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/CpanelInc/cpanel-node-api/issues"
+    {
+      "name": "Sarah Kiniry",
+      "email": "sarah.kiniry@cpanel.net"
     },
-    "homepage": "https://cpanel.com",
-    "devDependencies": {
-        "@compodoc/compodoc": "^1.1.11",
-        "@types/jasmine": "3.6.9",
-        "@types/lodash": "^4.14.168",
-        "@types/node": "14.14.37",
-        "@typescript-eslint/eslint-plugin": "^4.21.0",
-        "@typescript-eslint/parser": "^4.21.0",
-        "eslint": "^7.23.0",
-        "http-server": "^0.12.3",
-        "jasmine": "3.7.0",
-        "jasmine-console-reporter": "^3.1.0",
-        "jasmine-ts": "^0.3.2",
-        "lodash": "^4.17.21",
-        "nyc": "^15.1.0",
-        "onchange": "^7.1.0",
-        "ts-node": "^9.1.1",
-        "tslib": "^2.2.0",
-        "typescript": "4.2.4",
-        "webpack": "^5.31.0",
-        "webpack-cli": "^4.6.0"
+    {
+      "name": "Thomas Green",
+      "email": "tomg@cpanel.net"
     },
-    "keywords": [
-        "api",
-        "uapi",
-        "whmapi"
-    ],
-    "dependencies": {}
+    {
+      "name": "Aneece Yazdani",
+      "email": "aneece@cpanel.net"
+    },
+    {
+      "name": "Philip King",
+      "email": "phil@cpanel.net"
+    },
+    {
+      "name": "Dustin Scherer",
+      "email": "dustin.scherer@cpanel.net"
+    },
+    {
+      "name": "Aspen Hollyer",
+      "email": "a.hollyer@cpanel.net"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CpanelInc/cpanel-node-api/issues"
+  },
+  "homepage": "https://cpanel.com",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@compodoc/compodoc": "^1.1.11",
+    "@types/jasmine": "3.6.9",
+    "@types/lodash": "^4.14.168",
+    "@types/node": "14.14.37",
+    "@typescript-eslint/eslint-plugin": "^4.21.0",
+    "@typescript-eslint/parser": "^4.21.0",
+    "eslint": "^7.23.0",
+    "eslint-config-prettier": "^8.5.0",
+    "http-server": "^0.12.3",
+    "husky": "^8.0.1",
+    "jasmine": "3.7.0",
+    "jasmine-console-reporter": "^3.1.0",
+    "jasmine-ts": "^0.3.2",
+    "lint-staged": "^13.0.3",
+    "nyc": "^15.1.0",
+    "onchange": "^7.1.0",
+    "prettier": "^2.7.1",
+    "ts-node": "^9.1.1",
+    "tslib": "^2.2.0",
+    "typescript": "4.2.4",
+    "webpack": "^5.31.0",
+    "webpack-cli": "^4.6.0"
+  },
+  "keywords": [
+    "api",
+    "uapi",
+    "whmapi",
+    "cpanel",
+    "whm"
+  ]
 }

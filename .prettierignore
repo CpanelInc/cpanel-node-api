@@ -1,0 +1,5 @@
+dist
+CHANGELOG.md
+.vscode
+coverage
+.nyc_output

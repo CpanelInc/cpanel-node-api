@@ -59,3 +59,9 @@ Patch to retain yarn support as older systems that utilize this require it.
 # v5.0.0
 
 Update @cpanel/API to support tree-shaking lodash
+
+# v.5.1.0
+
+Supports consumers using both ES Modules and CommonJS.
+Fixes a lodash import that was causing code bloat.
+Adds developer tooling (eslint, prettier, husky).

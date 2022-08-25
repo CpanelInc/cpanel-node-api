@@ -185,23 +185,24 @@ export class WhmApiRequest extends Request {
      */
     private _lookupFilterOperator(operator: FilterOperator): string {
         switch (operator) {
-            case FilterOperator.GreaterThanUnlimited:
-                return "gt_handle_unlimited";
-            case FilterOperator.GreaterThan:
-                return "gt";
-            case FilterOperator.LessThanUnlimited:
-                return "lt_handle_unlimited";
-            case FilterOperator.LessThan:
-                return "lt";
-            case FilterOperator.Equal:
-                return "eq";
-            case FilterOperator.Begins:
-                return "begins";
-            case FilterOperator.Contains:
-                return "contains";
-            default:
-                const key = FilterOperator[operator];
-                throw new Error(`Unrecoginzed FilterOperator ${key} for WHM API 1`);
+          case FilterOperator.GreaterThanUnlimited:
+            return "gt_handle_unlimited";
+          case FilterOperator.GreaterThan:
+            return "gt";
+          case FilterOperator.LessThanUnlimited:
+            return "lt_handle_unlimited";
+          case FilterOperator.LessThan:
+            return "lt";
+          case FilterOperator.Equal:
+            return "eq";
+          case FilterOperator.Begins:
+            return "begins";
+          case FilterOperator.Contains:
+            return "contains";
+          default:
+            // eslint-disable-next-line no-case-declarations -- just used for readability
+            const key = FilterOperator[operator];
+            throw new Error(`Unrecoginzed FilterOperator ${key} for WHM API 1`);
         }
     }
 

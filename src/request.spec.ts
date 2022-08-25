@@ -131,7 +131,9 @@ describe("Request derived object that implements generate", () => {
         expect(request.sorts).toEqual([new Sort( "name", SortDirection.Ascending, SortType.Lexicographic )]);
         expect(request.filters).toEqual([new Filter("enabled", FilterOperator.Equal, "1" )]);
         expect(request.columns).toEqual(["name", "description", "steps", "set"]);
-        expect(request.pager as object).toEqual(jasmine.objectContaining({ page: 1, pageSize: 20 }));
+        expect(request.pager as unknown).toEqual(
+          jasmine.objectContaining({ page: 1, pageSize: 20 })
+        );
     });
 
     describe("when the addArgument() method is called", () => {
@@ -235,12 +237,16 @@ describe("Request derived object that implements generate", () => {
 
         it("should add pager using the interface", () => {
             request.paginate({ page: 10, pageSize: 25 });
-            expect(request.pager as object).toEqual(jasmine.objectContaining({ page: 10, pageSize: 25 }));
+            expect(request.pager as unknown).toEqual(
+              jasmine.objectContaining({ page: 10, pageSize: 25 })
+            );
         });
 
         it("should add pager using object", () => {
             request.paginate(new Pager(10, 25));
-            expect(request.pager as object).toEqual(jasmine.objectContaining({ page: 10, pageSize: 25 }));
+            expect(request.pager as unknown).toEqual(
+              jasmine.objectContaining({ page: 10, pageSize: 25 })
+            );
         });
     });
 });

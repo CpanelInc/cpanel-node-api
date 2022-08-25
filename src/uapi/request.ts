@@ -166,6 +166,7 @@ export class UapiRequest extends Request {
             case FilterOperator.Contains:
                 return "contains";
             default:
+                // eslint-disable-next-line no-case-declarations -- just used for readability
                 const key = FilterOperator[operator];
                 throw new Error(`Unrecognized FilterOperator ${key} for UAPI`);
         }

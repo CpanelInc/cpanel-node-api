@@ -184,8 +184,14 @@ export class UapiResponse extends Response {
         this._parseStatus(response);
         this._parseMessages(response);
 
-        if (!response || !response.hasOwnProperty("data")) {
-            throw new Error("Expected response to contain a data property, but it is missing");
+        if (
+          !response ||
+          !Object.prototype.hasOwnProperty
+            .call(response, "data")
+        ) {
+          throw new Error(
+            "Expected response to contain a data property, but it is missing"
+          );
         }
 
         // TODO: Add parsing by specific types to take care of renames and type coercion.

@@ -1,6 +1,6 @@
 {
     "name": "@cpanel/api",
-    "version": "5.0.0",
+    "version": "5.0.1",
     "description": "cPanel API JavaScript and TypeScript interface libraries. This library provides a set of classes for calling cPanel WHM API 1 and UAPI calls. The classes hide much of the complexity of these APIs behind classes the abstract the underlying variances between these API systems. Users of this library can focus on what they want to accomplish rather the having to learn the various complexities of the underlying wire formats for each of the cPanel Products APIs",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -28,8 +28,13 @@
         "test": "npm run build:dev && jasmine --config=jasmine.json --reporter=jasmine-console-reporter",
         "test:cover": "nyc -r lcov -x '**/*.spec.ts' jasmine --config=jasmine.json && nyc report",
         "test:watch": "npm run build:watch && onchange -i -v -d 100 dist -- jasmine --config=jasmine.json --reporter=jasmine-console-reporter",
-        "ts-tidy": "npx eslint -c .ts-eslint-tidy-rc.json 'src/**/*.ts' --fix",
-        "prepublish": "npm run build:prod"
+        "prepublish": "npm run build:prod",
+        "lint": "npx eslint 'src/**/*.ts'",
+        "lint:fix": "npx eslint 'src/**/*.ts' --fix",
+        "tidy": "npx prettier --write .",
+        "tidy:check": "npx prettier --check .",
+        "tidy:file": "npx prettier --write ",
+        "tidy:watch": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}"
     },
     "repository": {
         "type": "git",
@@ -57,7 +62,6 @@
             "name": "Aneece Yazdani",
             "email": "aneece@cpanel.net"
         },
-
         {
             "name": "Philip King",
             "email": "phil@cpanel.net"
@@ -65,6 +69,10 @@
         {
             "name": "Dustin Scherer",
             "email": "dustin.scherer@cpanel.net"
+        },
+        {
+            "name": "Aspen Hollyer",
+            "email": "a.hollyer@cpanel.net"
         }
     ],
     "license": "MIT",
@@ -80,6 +88,7 @@
         "@typescript-eslint/eslint-plugin": "^4.21.0",
         "@typescript-eslint/parser": "^4.21.0",
         "eslint": "^7.23.0",
+        "eslint-config-prettier": "^8.5.0",
         "http-server": "^0.12.3",
         "jasmine": "3.7.0",
         "jasmine-console-reporter": "^3.1.0",
@@ -87,6 +96,7 @@
         "lodash": "^4.17.21",
         "nyc": "^15.1.0",
         "onchange": "^7.1.0",
+        "prettier": "^2.7.1",
         "ts-node": "^9.1.1",
         "tslib": "^2.2.0",
         "typescript": "4.2.4",
@@ -96,7 +106,8 @@
     "keywords": [
         "api",
         "uapi",
-        "whmapi"
-    ],
-    "dependencies": {}
+        "whmapi",
+        "cpanel",
+        "whm"
+    ]
 }

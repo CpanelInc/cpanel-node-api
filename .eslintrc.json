@@ -1,0 +1,32 @@
+{
+  "root": true,
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["@typescript-eslint"],
+      "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+      },
+      "env": {
+        "browser": true
+      },
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "prettier"
+      ],
+      "rules": {
+        "quotes": [
+          "error",
+          "double",
+          { "allowTemplateLiterals": true, "avoidEscape": true }
+        ],
+        "spaced-comment": ["error", "always", { "exceptions": ["-*"] }]
+      }
+    }
+  ]
+}

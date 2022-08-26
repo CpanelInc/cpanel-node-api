@@ -139,7 +139,7 @@ export class WhmApiRequest extends Request {
      * @return letter combination for the index of the sort item.
      */
     private _make_whm_api_fieldspec_from_number(num: number): string {
-        let left = _.padStart("", Math.floor(num / 26), "z");
+        const left = _.padStart("", Math.floor(num / 26), "z");
         return left + "abcdefghijklmnopqrstuvwxyz".charAt(num % 26);
     };
 
@@ -152,7 +152,7 @@ export class WhmApiRequest extends Request {
 
         // For any WHM API call, the API version must be specified as an argument. It is required.
         // Adding it first before everything.
-        let apiVersionParam: IArgument = { name: "api.version", value: 1 };
+        const apiVersionParam: IArgument = { name: "api.version", value: 1 };
         params.push(apiVersionParam);
         this.arguments.forEach(argument => params.push(argument));
     }
@@ -168,7 +168,7 @@ export class WhmApiRequest extends Request {
                 params.push({ name: "api.sort.enable", value: Perl.fromBoolean(true) });
             }
 
-            let sortPrefix: string = `api.sort.${this._make_whm_api_fieldspec_from_number(index)}`;
+            const sortPrefix = `api.sort.${this._make_whm_api_fieldspec_from_number(index)}`;
 
             params.push({ name: `${sortPrefix}.field`, value: sort.column });
             params.push({ name: `${sortPrefix}.reverse`, value: Perl.fromBoolean(sort.direction !== SortDirection.Ascending) });
@@ -217,7 +217,7 @@ export class WhmApiRequest extends Request {
                 params.push({ name: "api.filter.verbose", value: Perl.fromBoolean(true) });
             }
 
-            let filterPrefix: string = `api.filter.${this._make_whm_api_fieldspec_from_number(index)}`;
+            const filterPrefix = `api.filter.${this._make_whm_api_fieldspec_from_number(index)}`;
             params.push({ name: `${filterPrefix}.field`, value: filter.column });
             params.push({ name: `${filterPrefix}.type`, value: this._lookupFilterOperator(filter.operator) });
             params.push({ name: `${filterPrefix}.arg0`, value: filter.value });
@@ -244,7 +244,7 @@ export class WhmApiRequest extends Request {
             return;
         }
 
-        let allPages = this.pager.all();
+        const allPages = this.pager.all();
         params.push({ name: "api.chunk.enable", value: Perl.fromBoolean(true) });
         params.push({ name: "api.chunk.verbose", value: Perl.fromBoolean(true) });
         params.push({
@@ -304,7 +304,7 @@ export class WhmApiRequest extends Request {
 
         const argumentRule: ArgumentSerializationRule = argumentSerializationRules.getRule(rule.verb);
 
-        let info = {
+        const info = {
             headers: new Headers([
                 {
                     name: "Content-Type",
@@ -319,13 +319,13 @@ export class WhmApiRequest extends Request {
             body: "",
         };
 
-        let params: IArgument[] = [];
+        const params: IArgument[] = [];
         this._generateArguments(params);
         this._generateSorts(params);
         this._generateFilters(params);
         this._generatePagination(params);
 
-        let encoded = this._build(params, rule.encoder);
+        const encoded = this._build(params, rule.encoder);
 
         if (argumentRule.dataInBody) {
             info["body"] = encoded;

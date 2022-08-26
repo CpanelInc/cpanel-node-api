@@ -202,7 +202,7 @@ export class UapiRequest extends Request {
             return;
         }
 
-        let allPages = this.pager.all();
+        const allPages = this.pager.all();
         params.push({
             name: "api.paginate",
             value: Perl.fromBoolean(true),
@@ -276,7 +276,7 @@ export class UapiRequest extends Request {
 
         const argumentRule: ArgumentSerializationRule = argumentSerializationRules.getRule(rule.verb);
 
-        let info: RequestInfo = {
+        const info: RequestInfo = {
             headers: new Headers([
                 {
                     name: "Content-Type",
@@ -292,14 +292,14 @@ export class UapiRequest extends Request {
             body: "",
         };
 
-        let params: IArgument[] = [];
+        const params: IArgument[] = [];
         this._generateArguments(params);
         this._generateSorts(params);
         this._generateFilters(params);
         this._generatePagination(params);
         this._generateConfiguration(params);
 
-        let encoded = this._build(params, rule.encoder);
+        const encoded = this._build(params, rule.encoder);
 
         if (argumentRule.dataInBody) {
             info["body"] = encoded;

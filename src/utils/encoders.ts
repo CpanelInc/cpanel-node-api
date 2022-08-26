@@ -63,10 +63,10 @@ export interface IArgumentEncoder {
  */
 export class UrlArgumentEncoder implements IArgumentEncoder {
 
-    contentType: string = "";
-    separatorStart: string = "?";
-    separatorEnd: string = "";
-    recordSeparator: string = "&";
+    contentType = "";
+    separatorStart = "?";
+    separatorEnd = "";
+    recordSeparator = "&";
 
     /**
      * Encode a given value into query-string compatible format.
@@ -89,10 +89,10 @@ export class UrlArgumentEncoder implements IArgumentEncoder {
  */
 export class WwwFormUrlArgumentEncoder implements IArgumentEncoder {
 
-    contentType: string = "application/x-www-form-urlencoded";
-    separatorStart: string = "";
-    separatorEnd: string = "";
-    recordSeparator: string = "&";
+    contentType = "application/x-www-form-urlencoded";
+    separatorStart = "";
+    separatorEnd = "";
+    recordSeparator = "&";
 
     /**
      * Encode a given value into the application/x-www-form-urlencoded.
@@ -115,10 +115,10 @@ export class WwwFormUrlArgumentEncoder implements IArgumentEncoder {
  * Encode the parameter into JSON
  */
 export class JsonArgumentEncoder implements IArgumentEncoder {
-    contentType: string = "application/json";
-    separatorStart: string = "{";
-    separatorEnd:    string = "}";
-    recordSeparator: string = ",";
+    contentType = "application/json";
+    separatorStart = "{";
+    separatorEnd = "}";
+    recordSeparator = ",";
 
     /**
      * Encode a given value into the JSON application/json body.

@@ -79,17 +79,17 @@ class FakeResponseWithMessages extends FakeResponse {
 describe("Response", () => {
     describe("constructor", () => {
         it("should not keep a copy of the raw response by default", () => {
-            let response = new FakeResponse({});
+            const response = new FakeResponse({});
             expect(response.raw).not.toBeDefined();
         });
         it("should keep a copy of the raw response when requested", () => {
-            let resp = {};
-            let response = new FakeResponse(resp, { keepUnprocessedResponse: true });
+            const resp = {};
+            const response = new FakeResponse(resp, { keepUnprocessedResponse: true });
             expect(response.raw).toEqual(resp);
         });
         it("should not keep a copy of the raw response when configured", () => {
-            let resp = {};
-            let response = new FakeResponse(resp, { keepUnprocessedResponse: false });
+            const resp = {};
+            const response = new FakeResponse(resp, { keepUnprocessedResponse: false });
             expect(response.raw).not.toBeDefined();
         });
     });

@@ -146,13 +146,13 @@ export abstract class Request {
      * Namespace where the API call lives
      * @type {string}
      */
-    public namespace: string = "";
+    public namespace = "";
 
     /**
      * Method name of the API call.
      * @type {string}
      */
-    public method: string = "";
+    public method = "";
 
     /**
      * Optional list of arguments for the API call.
@@ -185,7 +185,7 @@ export abstract class Request {
      */
     public headers: Headers = new Headers();
 
-    private _usePager: boolean = false;
+    private _usePager = false;
 
     /**
      * Use the pager only if true.

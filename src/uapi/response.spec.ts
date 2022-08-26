@@ -44,13 +44,13 @@ describe("UapiResponse", () => {
             expect(new UapiResponse({ data: {}, status: 1 }).success).toBe(true);
         });
         it("should store the data property if present in the response", () => {
-            let data = {};
+            const data = {};
             expect(new UapiResponse({ data: data, status: 1 }).data).toBe(data);
         });
         it("should store the metadata if present in the response", () => {
-            let data = {};
-            let metadata = {};
-            let response = new UapiResponse({ data: data, metadata: metadata, status: 1 });
+            const data = {};
+            const metadata = {};
+            const response = new UapiResponse({ data: data, metadata: metadata, status: 1 });
             expect(response.data).toBe(data);
             expect(response.meta).toBeDefined();
         });
@@ -82,8 +82,8 @@ describe("UapiResponse", () => {
 describe("UapiMetaData", () => {
     describe("constructor with no elements", () => {
         it("should use the default values", () => {
-            let raw = {};
-            let meta = new UapiMetaData(raw);
+            const raw = {};
+            const meta = new UapiMetaData(raw);
             expect(meta.isPaged).toBe(false);
             expect(meta.record).toBe(0);
             expect(meta.page).toBe(0);
@@ -98,7 +98,7 @@ describe("UapiMetaData", () => {
 
     describe("constructor with pagination", () => {
         it("should parse the pagination data", () => {
-            let raw = {
+            const raw = {
                 paginate: {
                     start_result: 20,
                     current_page: 3,
@@ -107,7 +107,7 @@ describe("UapiMetaData", () => {
                     total_results: 49,
                 }
             };
-            let meta = new UapiMetaData(raw);
+            const meta = new UapiMetaData(raw);
             expect(meta.isPaged).toBe(true);
             expect(meta.record).toBe(20);
             expect(meta.page).toBe(3);
@@ -122,12 +122,12 @@ describe("UapiMetaData", () => {
 
     describe("constructor with filter", () => {
         it("should parse the filter data", () => {
-            let raw = {
+            const raw = {
                 filter: {
                     records_before_filter: 75,
                 }
             };
-            let meta = new UapiMetaData(raw);
+            const meta = new UapiMetaData(raw);
             expect(meta.isPaged).toBe(false);
             expect(meta.record).toBe(0);
             expect(meta.page).toBe(0);
@@ -142,7 +142,7 @@ describe("UapiMetaData", () => {
 
     describe("constructor with custom metadata properties", () => {
         it("should put the custom properties in the properties collection, but not paginate or filter", () => {
-            let raw = {
+            const raw = {
                 filter: {
                     records_before_filter: 75,
                 },
@@ -159,7 +159,7 @@ describe("UapiMetaData", () => {
                 "custom.array": [ 1, 2, 3 ],
                 "custom.object": { a: 10, b: 11 }
             };
-            let meta = new UapiMetaData(raw);
+            const meta = new UapiMetaData(raw);
             expect(Object.keys(meta.properties).length).toBe(5);
             expect(meta.properties["custom.bool"]).toBe(true);
             expect(meta.properties["custom.number"]).toBe(55);

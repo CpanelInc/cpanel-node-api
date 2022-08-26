@@ -66,7 +66,7 @@ export class Pager implements IPager {
      *                          If the string 'all' is passed, then all the records are requested. Note: The backend
      *                          system may still impose page size limits in this case.
      */
-    constructor(page: number = 1, pageSize: number = DEFAULT_PAGE_SIZE) {
+    constructor(page = 1, pageSize: number = DEFAULT_PAGE_SIZE) {
         if (page <= 0) {
             throw new Error("The page must be 1 or greater. This is the logical page, not a programming index.");
         }

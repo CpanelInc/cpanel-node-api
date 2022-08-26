@@ -79,7 +79,7 @@ export class Headers {
      * Retrieve the headers as an array of Headers
      */
     toArray(): Header[] {
-        let copy: Header[] = [];
+        const copy: Header[] = [];
         this.headers.forEach(h => copy.push({ name: h.name, value: h.value }));
         return copy;
     }

@@ -23,7 +23,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const commonConfig = {
-    entry: './dist/index.js',
+    entry: './dist/cjs/index.js',
     output: {
         path: path.resolve(__dirname, 'dist', 'bundles'),
         library: ['@cpanel', 'api'],

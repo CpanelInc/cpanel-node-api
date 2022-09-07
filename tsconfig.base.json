@@ -9,11 +9,10 @@
     "moduleResolution": "node",
     "target": "es2020",
     "strict": true,
-    "outDir": "./dist",
     "rootDir": "./src",
 
     "declaration": true,
-    "module": "commonjs",
+    "declarationDir": "./dist/types",
     "esModuleInterop": true,
 
     "noEmitOnError": true,
@@ -22,21 +21,19 @@
     "noImplicitThis": true,
     "noUnusedParameters": false,
     "noUnusedLocals": true,
-    "removeComments": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
-    "sourceMap": false,
     "strictNullChecks": true,
     "types": [
       "jasmine",
       "node"
-    ]
+    ],
+
+    "sourceMap": true,
+    "removeComments": false
   },
   "include": [
     "src/*.ts",
     "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
   ]
 }

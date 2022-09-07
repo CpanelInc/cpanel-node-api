@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.prod",
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "./dist/cjs"
+  },
+  "exclude": [
+    "node_modules",
+    "src/**/*.spec.ts"
+  ]
+}

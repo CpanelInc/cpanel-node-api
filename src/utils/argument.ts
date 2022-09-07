@@ -26,59 +26,58 @@ import { fromBoolean } from "./perl";
  * Abstract interface that value-based arguments must implement
  */
 export interface IArgument {
+  /**
+   * Name of the argument
+   */
+  name: string;
 
-    /**
-     * Name of the argument
-     */
-    name: string;
-
-    /**
-     * Value of the argument.
-     */
-    value: any;
+  /**
+   * Value of the argument.
+   */
+  value: any;
 }
 
 /**
  * An name/value pair argument
  */
-export class Argument implements IArgument  {
+export class Argument implements IArgument {
+  /**
+   * Name of the argument.
+   */
+  name: string;
 
-    /**
-     * Name of the argument.
-     */
-    name: string;
+  /**
+   * Value of the argument
+   */
+  value: any;
 
-    /**
-     * Value of the argument
-     */
-    value: any;
-
-    /**
-     * Build a new Argument.
-     *
-     * @param name Name of the argument
-     * @param value Value of the argument.
-     */
-    constructor(name: string, value: any) {
-        if (!name) {
-            throw new Error("You must provide a name when creating a name/value argument");
-        }
-        this.name = name;
-        this.value = value;
+  /**
+   * Build a new Argument.
+   *
+   * @param name Name of the argument
+   * @param value Value of the argument.
+   */
+  constructor(name: string, value: any) {
+    if (!name) {
+      throw new Error(
+        "You must provide a name when creating a name/value argument"
+      );
     }
+    this.name = name;
+    this.value = value;
+  }
 }
 
 /**
  * Specialty argument class that will auto-coerce a Boolean to a perl Boolean
  */
 export class PerlBooleanArgument extends Argument {
-
-    /**
-     * Build a new Argument
-     * @param  name  Name of the argument
-     * @param value Value of the argument. Will be serialized to use perl's Boolean rules.
-     */
-    constructor(name: string, value: boolean) {
-        super(name, fromBoolean(value));
-    }
+  /**
+   * Build a new Argument
+   * @param  name  Name of the argument
+   * @param value Value of the argument. Will be serialized to use perl's Boolean rules.
+   */
+  constructor(name: string, value: boolean) {
+    super(name, fromBoolean(value));
+  }
 }

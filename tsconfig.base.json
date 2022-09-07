@@ -1,10 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": "tsconfig",
-    "lib": [
-      "esnext",
-      "dom"
-    ],
+    "lib": ["esnext", "dom"],
 
     "moduleResolution": "node",
     "target": "es2020",
@@ -24,16 +21,10 @@
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
-    "types": [
-      "jasmine",
-      "node"
-    ],
+    "types": ["jasmine", "node"],
 
     "sourceMap": true,
     "removeComments": false
   },
-  "include": [
-    "src/*.ts",
-    "src/**/*.ts"
-  ]
+  "include": ["src/*.ts", "src/**/*.ts"]
 }

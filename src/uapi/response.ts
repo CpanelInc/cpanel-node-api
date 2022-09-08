@@ -38,47 +38,47 @@ export class UapiMetaData implements IMetaData {
     /**
      * Indicates if the data is paged.
      */
-    isPaged: boolean = false;
+    isPaged = false;
 
     /**
      * The record number of the first record of a page.
      */
-    record: number = 0;
+    record = 0;
 
     /**
      * The current page.
      */
-    page: number = 0;
+    page = 0;
 
     /**
      * The page size of the returned set.
      */
-    pageSize: number = 0;
+    pageSize = 0;
 
     /**
      * The total number of records available on the backend.
      */
-    totalRecords: number = 0;
+    totalRecords = 0;
 
     /**
      * The total number of pages of records on the backend.
      */
-    totalPages: number = 0;
+    totalPages = 0;
 
     /**
      * Indicates if the data set if filtered.
      */
-    isFiltered: boolean = false;
+    isFiltered = false;
 
     /**
      * Number of records available before the filter was processed.
      */
-    recordsBeforeFilter: number = 0;
+    recordsBeforeFilter = 0;
 
     /**
      * Indicates the response was the result of a batch API.
      */
-    batch: boolean = false;
+    batch = false;
 
     /**
      * A collection of the other less common or custom UAPI metadata properties.
@@ -109,7 +109,7 @@ export class UapiMetaData implements IMetaData {
         }
 
         // Get any other custom metadata properties off the object
-        let builtinSet = new Set(["paginate", "filter"]);
+        const builtinSet = new Set(["paginate", "filter"]);
         Object.keys(meta)
             .filter((key: string) => !builtinSet.has(key))
             .forEach((key: string) => {
@@ -157,7 +157,7 @@ export class UapiResponse extends Response {
         }
 
         if ("messages" in response) {
-            var messages = response.messages;
+            const messages = response.messages;
             if ( messages ) {
                 messages.forEach((message: string) => {
                     this.messages.push({
@@ -184,8 +184,14 @@ export class UapiResponse extends Response {
         this._parseStatus(response);
         this._parseMessages(response);
 
-        if (!response || !response.hasOwnProperty("data")) {
-            throw new Error("Expected response to contain a data property, but it is missing");
+        if (
+          !response ||
+          !Object.prototype.hasOwnProperty
+            .call(response, "data")
+        ) {
+          throw new Error(
+            "Expected response to contain a data property, but it is missing"
+          );
         }
 
         // TODO: Add parsing by specific types to take care of renames and type coercion.

@@ -48,7 +48,7 @@ function isSerializable(value: any) {
         return false;
     }
 
-    for (var key in value) {
+    for (const key in value) {
         if (!isSerializable(value[key])) {
             return false;
         }

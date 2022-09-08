@@ -117,7 +117,7 @@ export interface IResponse {
     options: ResponseOptions;
 }
 
-export let DefaultMetaData: IMetaData = {
+export const DefaultMetaData: IMetaData = {
     isPaged: false,
     isFiltered: false,
     record: 0,
@@ -153,7 +153,7 @@ export abstract class Response implements IResponse {
     /**
       * The status code returned by the API. Usually 1 for success, 0 for failure.
       */
-    status: number = 0;
+    status = 0;
 
     /**
       * List of messages related to the response.

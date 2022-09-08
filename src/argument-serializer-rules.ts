@@ -71,7 +71,7 @@ export class DefaultArgumentSerializationRules {
             HttpVerb.DELETE,
             HttpVerb.HEAD
         ].forEach((verb: HttpVerb) => {
-            let label = HttpVerb[verb].toString();
+            const label = HttpVerb[verb].toString();
             this.map[label] = {
                 verb: label,
                 dataInBody: false,
@@ -83,7 +83,7 @@ export class DefaultArgumentSerializationRules {
             HttpVerb.PUT,
             HttpVerb.PATCH
         ].forEach((verb: HttpVerb) => {
-            let label = HttpVerb[verb].toString();
+            const label = HttpVerb[verb].toString();
             this.map[label] = {
                 verb: label,
                 dataInBody: true,
@@ -102,7 +102,7 @@ export class DefaultArgumentSerializationRules {
      * @param verb verb to lookup.
      */
     getRule(verb: HttpVerb | string): ArgumentSerializationRule {
-        let name: string = typeof (verb) === "string" ? verb : HttpVerb[verb].toString();
+        const name: string = typeof (verb) === "string" ? verb : HttpVerb[verb].toString();
         let rule = this.map[name];
         if (!rule) {
             rule = this.map["DEFAULT"];

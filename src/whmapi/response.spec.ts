@@ -29,7 +29,7 @@ describe("WhmApiResponse", () => {
             expect(() => new WhmApiResponse(undefined)).toThrowError();
         });
         it("should report failure when response result is 0", () => {
-            let serverResponse = {
+            const serverResponse = {
                 metadata: {
                     result: 0
                 }
@@ -37,7 +37,7 @@ describe("WhmApiResponse", () => {
             expect(new WhmApiResponse(serverResponse).success).toBe(false);
         });
         it("should report success when response result is 1", () => {
-            let serverResponse = {
+            const serverResponse = {
                 data: {},
                 metadata: {
                     result: 1
@@ -49,7 +49,7 @@ describe("WhmApiResponse", () => {
             const expectedData = {
                 test: "Test"
             };
-            let serverResponse = {
+            const serverResponse = {
                 data: expectedData,
                 metadata: {
                     result: 1
@@ -58,30 +58,30 @@ describe("WhmApiResponse", () => {
             expect(new WhmApiResponse(serverResponse).data).toBe(expectedData);
         });
         it("should store extra metadata information in ‘properties’ property under whmApiResponseObj.meta", () => {
-            let expectedData = {};
-            let expectedMetadata = {
+            const expectedData = {};
+            const expectedMetadata = {
                 result: 1,
                 extra: "property"
             };
-            let response = new WhmApiResponse({ data: expectedData, metadata: expectedMetadata });
+            const response = new WhmApiResponse({ data: expectedData, metadata: expectedMetadata });
             expect(response.meta.properties).toBeDefined();
             expect(Object.keys(response.meta.properties)).toContain("extra");
         });
         it("should parse any errors provided", () => {
-            const error: string = "Api Failure";
-            let serverResponse = {
+            const error = "Api Failure";
+            const serverResponse = {
                 metadata: {
                     result: 0,
                     reason: error
                 }
             };
-            let response = new WhmApiResponse(serverResponse);
+            const response = new WhmApiResponse(serverResponse);
             expect(response.errors.length).not.toBe(0);
             expect(response.errors[0].message).toEqual(error);
         });
         it("should reduce the list data if an array is assigned to a single hash.", () => {
             const listData = ["Test", "List", "Returned", "To", "Single", "Hash"];
-            let serverResponse = {
+            const serverResponse = {
                 data: {
                     test: listData
                 },

@@ -167,6 +167,7 @@ export class ApplicationPath {
         this.port = parseInt(port, 10);
         this.path = location.pathname;
 
+        // eslint-disable-next-line no-useless-escape -- regex, not a string
         const pathMatch = (this.path.match(/((?:\/cpsess\d+)?)(?:\/([^\/]+))?/) || []);
 
 

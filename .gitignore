@@ -5,3 +5,4 @@ dist/
 docs/
 coverage
 .nyc_output
+.vscode

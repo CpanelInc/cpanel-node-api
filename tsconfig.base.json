@@ -1,30 +1,30 @@
 {
-  "compilerOptions": {
-    "baseUrl": "tsconfig",
-    "lib": ["esnext", "dom"],
+    "compilerOptions": {
+        "baseUrl": "tsconfig",
+        "lib": ["esnext", "dom"],
 
-    "moduleResolution": "node",
-    "target": "es2020",
-    "strict": true,
-    "rootDir": "./src",
+        "moduleResolution": "node",
+        "target": "es2020",
+        "strict": true,
+        "rootDir": "./src",
 
-    "declaration": true,
-    "declarationDir": "./dist/types",
-    "esModuleInterop": true,
+        "declaration": true,
+        "declarationDir": "./dist/types",
+        "esModuleInterop": true,
 
-    "noEmitOnError": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "noUnusedParameters": false,
-    "noUnusedLocals": true,
-    "skipDefaultLibCheck": true,
-    "skipLibCheck": true,
-    "strictNullChecks": true,
-    "types": ["jasmine", "node"],
+        "noEmitOnError": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "noUnusedParameters": false,
+        "noUnusedLocals": true,
+        "skipDefaultLibCheck": true,
+        "skipLibCheck": true,
+        "strictNullChecks": true,
+        "types": ["jasmine", "node"],
 
-    "sourceMap": true,
-    "removeComments": false
-  },
-  "include": ["src/*.ts", "src/**/*.ts"]
+        "sourceMap": true,
+        "removeComments": false
+    },
+    "include": ["src/*.ts", "src/**/*.ts"]
 }

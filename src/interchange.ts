@@ -26,18 +26,18 @@ import { Headers } from "./utils/headers";
  * Abstract data structure used to pass rendered API information to the remoting layer.
  */
 export interface RequestInfo {
-  /**
-   * List of headers for the request
-   */
-  headers: Headers;
+    /**
+     * List of headers for the request
+     */
+    headers: Headers;
 
-  /**
-   * URL used to make the request.
-   */
-  url: string;
+    /**
+     * URL used to make the request.
+     */
+    url: string;
 
-  /**
-   * Body of the request.
-   */
-  body: string;
+    /**
+     * Body of the request.
+     */
+    body: string;
 }

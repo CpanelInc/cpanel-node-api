@@ -24,48 +24,48 @@
  * Common http verbs
  */
 export enum HttpVerb {
-  /**
-   * Get request
-   */
-  GET,
+    /**
+     * Get request
+     */
+    GET,
 
-  /**
-   * Head request
-   */
-  HEAD,
+    /**
+     * Head request
+     */
+    HEAD,
 
-  /**
-   * Post request
-   */
-  POST,
+    /**
+     * Post request
+     */
+    POST,
 
-  /**
-   * Put request
-   */
-  PUT,
+    /**
+     * Put request
+     */
+    PUT,
 
-  /**
-   * Delete request
-   */
-  DELETE,
+    /**
+     * Delete request
+     */
+    DELETE,
 
-  /**
-   * Connect request
-   */
-  CONNECT,
+    /**
+     * Connect request
+     */
+    CONNECT,
 
-  /**
-   * Options request
-   */
-  OPTIONS,
+    /**
+     * Options request
+     */
+    OPTIONS,
 
-  /**
-   * Trace request
-   */
-  TRACE,
+    /**
+     * Trace request
+     */
+    TRACE,
 
-  /**
-   * Patch request
-   */
-  PATCH,
+    /**
+     * Patch request
+     */
+    PATCH,
 }

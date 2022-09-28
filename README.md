@@ -20,41 +20,41 @@ npm install @cpanel/api
 
 ```ts
 import {
-  Argument,
-  WhmApiResponse,
-  WhmApiRequest,
-  WhmApiType,
-  WhmApiTokenHeader,
+    Argument,
+    WhmApiResponse,
+    WhmApiRequest,
+    WhmApiType,
+    WhmApiTokenHeader,
 } from "@cpanel/api";
 
 const token = "...paste your API token here...";
 const request = new WhmApiRequest(WhmApiType.JsonApi, {
-  method: "api_token_create",
-  arguments: [
-    new Argument("token_name", "my-Auth-Token"),
-    // ---- API Token Permissions ----
-    // Login to the UI
-    new Argument("acl", "create-user-session"),
-    // Delete a token
-    new Argument("acl", "manage-api-tokens"),
-  ],
-  headers: [new WhmApiTokenHeader(token, "root")],
+    method: "api_token_create",
+    arguments: [
+        new Argument("token_name", "my-Auth-Token"),
+        // ---- API Token Permissions ----
+        // Login to the UI
+        new Argument("acl", "create-user-session"),
+        // Delete a token
+        new Argument("acl", "manage-api-tokens"),
+    ],
+    headers: [new WhmApiTokenHeader(token, "root")],
 }).generate();
 
 fetch("http://my-cpanel-server.com:2087", {
-  method: "POST",
-  headers: request.headers.toObject(),
-  body: request.body,
+    method: "POST",
+    headers: request.headers.toObject(),
+    body: request.body,
 })
-  .then((response) => response.json())
-  .then((response) => {
-    response.data = new WhmApiResponse(response.data);
-    if (!response.data.status) {
-      throw new Error(response.data.errors[0].message);
-    }
-    return response;
-  })
-  .then((data) => console.log(data));
+    .then((response) => response.json())
+    .then((response) => {
+        response.data = new WhmApiResponse(response.data);
+        if (!response.data.status) {
+            throw new Error(response.data.errors[0].message);
+        }
+        return response;
+    })
+    .then((data) => console.log(data));
 ```
 
 ### JavaScript
@@ -106,17 +106,17 @@ fetch('http://my-cpanel-server.com:2087', {
 
 1. Set up your development environment to test the local version of your library rather than the one distributed on `npm.dev.cpanel.net`:
 
-   ```sh
-   npm install --also=dev
-   npm run build:dev
-   ```
+    ```sh
+    npm install --also=dev
+    npm run build:dev
+    ```
 
 2. Make the changes to the library.
 3. Rebuild the library:
 
-   ```sh
-   npm run build:dev
-   ```
+    ```sh
+    npm run build:dev
+    ```
 
 ## Testing
 
@@ -175,21 +175,21 @@ When your changes are implemented and tested, and you're ready to publish, run:
 
 ## Authors
 
-- **Team Phoenix @ cPanel**
-- **Team Artemis @ cPanel**
-- **Team Cobra @ cPanel**
-- **Team Moonshot @ cPanel**
+-   **Team Phoenix @ cPanel**
+-   **Team Artemis @ cPanel**
+-   **Team Cobra @ cPanel**
+-   **Team Moonshot @ cPanel**
 
 ### Contributors
 
-- Thomas Green <tomg@cpanel.net>
-- Sruthi Sanigarapu <sruthi@cpanel.net>
-- Aneece Yazdani <aneece@cpanel.net>
-- Sarah Kiniry <sarah.kiniry@cpanel.net>
-- Dustin Scherer <dustin.scherer@cpanel.net>
-- Philip King <phil@cpanel.net>
-- Caitlin Flattery <c.flattery@cpanel.net>
-- Aspen Hollyer <a.hollyer@cpanel.net>
+-   Thomas Green <tomg@cpanel.net>
+-   Sruthi Sanigarapu <sruthi@cpanel.net>
+-   Aneece Yazdani <aneece@cpanel.net>
+-   Sarah Kiniry <sarah.kiniry@cpanel.net>
+-   Dustin Scherer <dustin.scherer@cpanel.net>
+-   Philip King <phil@cpanel.net>
+-   Caitlin Flattery <c.flattery@cpanel.net>
+-   Aspen Hollyer <a.hollyer@cpanel.net>
 
 ## License
 

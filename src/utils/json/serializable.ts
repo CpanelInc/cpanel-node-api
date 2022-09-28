@@ -35,27 +35,27 @@ import isPlainObject from "lodash/isPlainObject";
  * @source https://stackoverflow.com/questions/30579940/reliable-way-to-check-if-objects-is-serializable-in-javascript#answer-30712764
  */
 function isSerializable(value: any) {
-  if (
-    isUndefined(value) ||
-    isNull(value) ||
-    isBoolean(value) ||
-    isNumber(value) ||
-    isString(value)
-  ) {
-    return true;
-  }
-
-  if (!isPlainObject(value) && !isArray(value)) {
-    return false;
-  }
-
-  for (const key in value) {
-    if (!isSerializable(value[key])) {
-      return false;
+    if (
+        isUndefined(value) ||
+        isNull(value) ||
+        isBoolean(value) ||
+        isNumber(value) ||
+        isString(value)
+    ) {
+        return true;
     }
-  }
 
-  return true;
+    if (!isPlainObject(value) && !isArray(value)) {
+        return false;
+    }
+
+    for (const key in value) {
+        if (!isSerializable(value[key])) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 export { isSerializable };

@@ -21,183 +21,183 @@
 // DEALINGS IN THE SOFTWARE.
 
 import {
-  Headers,
-  CustomHeader,
-  CpanelApiTokenHeader,
-  WhmApiTokenHeader,
-  CpanelApiTokenInvalidError,
-  WhmApiTokenInvalidError,
+    Headers,
+    CustomHeader,
+    CpanelApiTokenHeader,
+    WhmApiTokenHeader,
+    CpanelApiTokenInvalidError,
+    WhmApiTokenInvalidError,
 } from "../utils/headers";
 
 describe("Headers collection: ", () => {
-  describe("when you call constructor without an argument", () => {
-    it("should return an empty headers collection", () => {
-      const headers = new Headers();
-      expect(headers.toArray()).toEqual([]);
+    describe("when you call constructor without an argument", () => {
+        it("should return an empty headers collection", () => {
+            const headers = new Headers();
+            expect(headers.toArray()).toEqual([]);
+        });
     });
-  });
 
-  describe("when you call constructor an object array", () => {
-    it("should return an empty headers collection", () => {
-      const headers = new Headers([
-        {
-          name: "dog",
-          value: "barks",
-        },
-      ]);
-      expect(headers.toArray()).toEqual([
-        {
-          name: "dog",
-          value: "barks",
-        },
-      ]);
-      expect(headers.toObject()).toEqual({
-        dog: "barks",
-      });
+    describe("when you call constructor an object array", () => {
+        it("should return an empty headers collection", () => {
+            const headers = new Headers([
+                {
+                    name: "dog",
+                    value: "barks",
+                },
+            ]);
+            expect(headers.toArray()).toEqual([
+                {
+                    name: "dog",
+                    value: "barks",
+                },
+            ]);
+            expect(headers.toObject()).toEqual({
+                dog: "barks",
+            });
+        });
     });
-  });
 
-  describe("when you call constructor an specific CustomerHeader classes array", () => {
-    it("should return an empty headers collection", () => {
-      const headers = new Headers([
-        new CustomHeader({
-          name: "cat",
-          value: "meows",
-        }),
-      ]);
-      const array = headers.toArray();
+    describe("when you call constructor an specific CustomerHeader classes array", () => {
+        it("should return an empty headers collection", () => {
+            const headers = new Headers([
+                new CustomHeader({
+                    name: "cat",
+                    value: "meows",
+                }),
+            ]);
+            const array = headers.toArray();
 
-      expect(array).toEqual([
-        {
-          name: "cat",
-          value: "meows",
-        },
-      ]);
-      expect(headers.toObject()).toEqual({
-        cat: "meows",
-      });
+            expect(array).toEqual([
+                {
+                    name: "cat",
+                    value: "meows",
+                },
+            ]);
+            expect(headers.toObject()).toEqual({
+                cat: "meows",
+            });
+        });
     });
-  });
 });
 
 describe("CpanelApiTokenHeader: ", () => {
-  describe("when you attempt to pass an empty token", () => {
-    it("should throw an error", () => {
-      expect(() => new CpanelApiTokenHeader("")).toThrowError(
-        CpanelApiTokenInvalidError
-      );
+    describe("when you attempt to pass an empty token", () => {
+        it("should throw an error", () => {
+            expect(() => new CpanelApiTokenHeader("")).toThrowError(
+                CpanelApiTokenInvalidError
+            );
+        });
     });
-  });
 
-  describe("when you attempt to pass an token and no user", () => {
-    it("should throw an error", () => {
-      expect(() => new CpanelApiTokenHeader("fake")).toThrowError(
-        CpanelApiTokenInvalidError
-      );
+    describe("when you attempt to pass an token and no user", () => {
+        it("should throw an error", () => {
+            expect(() => new CpanelApiTokenHeader("fake")).toThrowError(
+                CpanelApiTokenInvalidError
+            );
+        });
     });
-  });
 
-  describe("when you attempt to pass an token and an empty user", () => {
-    it("should throw an error", () => {
-      expect(() => new CpanelApiTokenHeader("fake", "")).toThrowError(
-        CpanelApiTokenInvalidError
-      );
+    describe("when you attempt to pass an token and an empty user", () => {
+        it("should throw an error", () => {
+            expect(() => new CpanelApiTokenHeader("fake", "")).toThrowError(
+                CpanelApiTokenInvalidError
+            );
+        });
     });
-  });
 
-  describe("when you attempt to pass an token and an empty user prefix", () => {
-    it("should throw an error", () => {
-      expect(() => new CpanelApiTokenHeader(":fake")).toThrowError(
-        CpanelApiTokenInvalidError
-      );
+    describe("when you attempt to pass an token and an empty user prefix", () => {
+        it("should throw an error", () => {
+            expect(() => new CpanelApiTokenHeader(":fake")).toThrowError(
+                CpanelApiTokenInvalidError
+            );
+        });
     });
-  });
 
-  describe("when you attempt to pass an empty token with a user prefix", () => {
-    it("should throw an error", () => {
-      expect(() => new CpanelApiTokenHeader("user:")).toThrowError(
-        CpanelApiTokenInvalidError
-      );
+    describe("when you attempt to pass an empty token with a user prefix", () => {
+        it("should throw an error", () => {
+            expect(() => new CpanelApiTokenHeader("user:")).toThrowError(
+                CpanelApiTokenInvalidError
+            );
+        });
     });
-  });
 
-  describe("when you attempt to pass an token and user", () => {
-    it("should successfully ", () => {
-      const { name, value } = new CpanelApiTokenHeader("fake", "user");
-      expect({ name, value }).toEqual({
-        name: "Authorization",
-        value: "cpanel user:fake",
-      });
+    describe("when you attempt to pass an token and user", () => {
+        it("should successfully ", () => {
+            const { name, value } = new CpanelApiTokenHeader("fake", "user");
+            expect({ name, value }).toEqual({
+                name: "Authorization",
+                value: "cpanel user:fake",
+            });
+        });
     });
-  });
 
-  describe("when you attempt to pass an token with a user prefix", () => {
-    it("should successfully ", () => {
-      const { name, value } = new CpanelApiTokenHeader("user:fake");
-      expect({ name, value }).toEqual({
-        name: "Authorization",
-        value: "cpanel user:fake",
-      });
+    describe("when you attempt to pass an token with a user prefix", () => {
+        it("should successfully ", () => {
+            const { name, value } = new CpanelApiTokenHeader("user:fake");
+            expect({ name, value }).toEqual({
+                name: "Authorization",
+                value: "cpanel user:fake",
+            });
+        });
     });
-  });
 });
 
 describe("WhmApiTokenHeader: ", () => {
-  describe("when you attempt to pass an empty token", () => {
-    it("should throw an error", () => {
-      expect(() => new WhmApiTokenHeader("")).toThrowError(
-        WhmApiTokenInvalidError
-      );
+    describe("when you attempt to pass an empty token", () => {
+        it("should throw an error", () => {
+            expect(() => new WhmApiTokenHeader("")).toThrowError(
+                WhmApiTokenInvalidError
+            );
+        });
     });
-  });
 
-  describe("when you attempt to pass an token and no user", () => {
-    it("should throw an error", () => {
-      expect(() => new WhmApiTokenHeader("fake")).toThrowError();
+    describe("when you attempt to pass an token and no user", () => {
+        it("should throw an error", () => {
+            expect(() => new WhmApiTokenHeader("fake")).toThrowError();
+        });
     });
-  });
 
-  describe("when you attempt to pass an token and an empty user", () => {
-    it("should throw an error", () => {
-      expect(() => new WhmApiTokenHeader("fake", "")).toThrowError(
-        WhmApiTokenInvalidError
-      );
+    describe("when you attempt to pass an token and an empty user", () => {
+        it("should throw an error", () => {
+            expect(() => new WhmApiTokenHeader("fake", "")).toThrowError(
+                WhmApiTokenInvalidError
+            );
+        });
     });
-  });
 
-  describe("when you attempt to pass an token and an empty user prefix", () => {
-    it("should throw an error", () => {
-      expect(() => new WhmApiTokenHeader(":fake")).toThrowError(
-        WhmApiTokenInvalidError
-      );
+    describe("when you attempt to pass an token and an empty user prefix", () => {
+        it("should throw an error", () => {
+            expect(() => new WhmApiTokenHeader(":fake")).toThrowError(
+                WhmApiTokenInvalidError
+            );
+        });
     });
-  });
 
-  describe("when you attempt to pass an empty token with a user prefix", () => {
-    it("should throw an error", () => {
-      expect(() => new WhmApiTokenHeader("user:")).toThrowError(
-        WhmApiTokenInvalidError
-      );
+    describe("when you attempt to pass an empty token with a user prefix", () => {
+        it("should throw an error", () => {
+            expect(() => new WhmApiTokenHeader("user:")).toThrowError(
+                WhmApiTokenInvalidError
+            );
+        });
     });
-  });
 
-  describe("when you attempt to pass an token and user", () => {
-    it("should successfully ", () => {
-      const { name, value } = new WhmApiTokenHeader("fake", "user");
-      expect({ name, value }).toEqual({
-        name: "Authorization",
-        value: "whm user:fake",
-      });
+    describe("when you attempt to pass an token and user", () => {
+        it("should successfully ", () => {
+            const { name, value } = new WhmApiTokenHeader("fake", "user");
+            expect({ name, value }).toEqual({
+                name: "Authorization",
+                value: "whm user:fake",
+            });
+        });
     });
-  });
 
-  describe("when you attempt to pass an token with a user prefix", () => {
-    it("should successfully ", () => {
-      const { name, value } = new WhmApiTokenHeader("user:fake");
-      expect({ name, value }).toEqual({
-        name: "Authorization",
-        value: "whm user:fake",
-      });
+    describe("when you attempt to pass an token with a user prefix", () => {
+        it("should successfully ", () => {
+            const { name, value } = new WhmApiTokenHeader("user:fake");
+            expect({ name, value }).toEqual({
+                name: "Authorization",
+                value: "whm user:fake",
+            });
+        });
     });
-  });
 });

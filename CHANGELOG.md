@@ -69,3 +69,7 @@ Adds developer tooling (eslint, prettier, husky).
 # v5.1.1
 
 Update prettier configuration to use 4-space tabs. Tidy.
+
+# v5.1.2
+
+Version lock dependencies.

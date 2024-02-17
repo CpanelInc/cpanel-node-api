@@ -11,7 +11,8 @@
                 "project": "./tsconfig.base.json"
             },
             "env": {
-                "browser": true
+                "browser": true,
+                "jasmine": true
             },
             "extends": [
                 "eslint:recommended",

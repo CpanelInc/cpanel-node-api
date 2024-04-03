@@ -165,13 +165,12 @@ When your changes are implemented and tested, and you're ready to publish, run:
 ### Developer publishing (publishing an alpha build for testing)
 
 1. As part of the development changes update the `version` property in `package.json` to the format `X.X.X-alpha.X` so that the semver is updated correctly and appended with alpha build information (1.0.0 -> 1.0.1-alpha.1).
-2. `npm run publish`
-3. Confirm changes are properly published at http://alpha.docs.ui.dev.cpanel.net/locale
+2. Request maintainers of the repository to publish alpha builds using `npm publish`
 
 ### Production publishing (This will be done by a UI3)
 
 1. When dev changes are accepted and complete update the `version` property in `package.json` to the format `X.X.X` so that the semver is updated correctly and alpha build information has been removed. Do this on the development branch before merging pull request (1.0.1-alpha.1 -> 1.0.1).
-2. `npm run publish`
+2. Request maintainers of the repository to publish your latest changes using `npm publish` post merge.
 
 ## Authors
 
@@ -193,5 +192,5 @@ When your changes are implemented and tested, and you're ready to publish, run:
 
 ## License
 
-Copyright © 2022 cPanel, L.L.C.
+Copyright © 2024 cPanel, L.L.C.
 Licensed under the included [MIT](https://github.com/CpanelInc/cpanel-node-api/blob/main/LICENSE) license.

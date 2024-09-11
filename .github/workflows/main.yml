@@ -1,0 +1,18 @@
+name: Pre PR Checks
+on: push
+jobs:
+  pr-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+            node-version: 16.20.2
+      - name: Install NPM Packages
+        run: npm install --also=dev
+      - name: Run ESlint
+        run: npm run lint
+      - name: Run Unit Tests
+        run: npm run test

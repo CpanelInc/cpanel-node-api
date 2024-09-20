@@ -73,3 +73,7 @@ Update prettier configuration to use 4-space tabs. Tidy.
 # v5.1.2
 
 Version lock dependencies.
+
+# v5.2.1
+
+Fixed export of types for more modern Node versions.

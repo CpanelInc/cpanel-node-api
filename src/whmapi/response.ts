@@ -124,7 +124,7 @@ export class WhmApiResponse extends Response {
         this.status = 0; // Assume it failed.
         if (typeof resMetadata.result === "undefined") {
             throw new Error(
-                "The response should have a numeric status property indicating the API succeeded (>0) or failed (=0)"
+                "The response should have a numeric status property indicating the API succeeded (>0) or failed (=0)",
             );
         }
         this.status = parseInt(resMetadata.result, 10);

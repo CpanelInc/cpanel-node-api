@@ -125,7 +125,7 @@ export class UapiResponse extends Response {
         this.status = 0; // Assume it failed.
         if (typeof response.status === "undefined") {
             throw new Error(
-                "The response should have a numeric status property indicating the API succeeded (>0) or failed (=0)"
+                "The response should have a numeric status property indicating the API succeeded (>0) or failed (=0)",
             );
         }
         this.status = parseInt(response.status, 10);
@@ -179,7 +179,7 @@ export class UapiResponse extends Response {
             !Object.prototype.hasOwnProperty.call(response, "data")
         ) {
             throw new Error(
-                "Expected response to contain a data property, but it is missing"
+                "Expected response to contain a data property, but it is missing",
             );
         }
 

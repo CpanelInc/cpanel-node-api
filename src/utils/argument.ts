@@ -60,7 +60,7 @@ export class Argument implements IArgument {
     constructor(name: string, value: any) {
         if (!name) {
             throw new Error(
-                "You must provide a name when creating a name/value argument"
+                "You must provide a name when creating a name/value argument",
             );
         }
         this.name = name;

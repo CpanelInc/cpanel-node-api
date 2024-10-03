@@ -227,7 +227,7 @@ export class ApplicationPath {
         return (
             !this.securityToken &&
             this.unprotectedPaths.indexOf(
-                stripTrailingSlash(this.applicationPath)
+                stripTrailingSlash(this.applicationPath),
             ) !== -1
         );
     }

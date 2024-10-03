@@ -109,11 +109,11 @@ export class Sort implements ISort {
     constructor(
         column: string,
         direction: SortDirection = SortDirection.Ascending,
-        type: SortType = SortType.Lexicographic
+        type: SortType = SortType.Lexicographic,
     ) {
         if (!column) {
             throw new Error(
-                "You must provide a non-empty column name for a Sort rule."
+                "You must provide a non-empty column name for a Sort rule.",
             );
         }
         this.column = column;

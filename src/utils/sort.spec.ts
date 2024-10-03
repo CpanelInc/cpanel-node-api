@@ -48,7 +48,7 @@ describe("Sort Class", () => {
             const sort = new Sort(
                 "column",
                 SortDirection.Descending,
-                SortType.Numeric
+                SortType.Numeric,
             );
             expect(sort.column).toBe("column");
             expect(sort.direction).toBe(SortDirection.Descending);

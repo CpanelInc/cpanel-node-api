@@ -72,7 +72,7 @@ describe("WhmApiRequest: ", () => {
         expect(request).toBeDefined();
         const genReq = request.generate();
         expect(genReq.body).toMatch(
-            "api.chunk.enable=1&api.chunk.verbose=1&api.chunk.start=11&api.chunk.size=10"
+            "api.chunk.enable=1&api.chunk.verbose=1&api.chunk.start=11&api.chunk.size=10",
         );
     });
 
@@ -89,7 +89,7 @@ describe("WhmApiRequest: ", () => {
         });
         const genReq = request.generate();
         expect(genReq.body).toMatch(
-            "api.filter.enable=1&api.filter.verbose=1&api.filter.a.field=id&api.filter.a.type=gt&api.filter.a.arg0=100"
+            "api.filter.enable=1&api.filter.verbose=1&api.filter.a.field=id&api.filter.a.type=gt&api.filter.a.arg0=100",
         );
     });
 
@@ -111,7 +111,7 @@ describe("WhmApiRequest: ", () => {
         });
         const genReq = request.generate();
         expect(genReq.body).toMatch(
-            "api.filter.enable=1&api.filter.verbose=1&api.filter.a.field=id&api.filter.a.type=gt&api.filter.a.arg0=100&api.filter.b.field=name&api.filter.b.type=contains&api.filter.b.arg0=unit%20test"
+            "api.filter.enable=1&api.filter.verbose=1&api.filter.a.field=id&api.filter.a.type=gt&api.filter.a.arg0=100&api.filter.b.field=name&api.filter.b.type=contains&api.filter.b.arg0=unit%20test",
         );
     });
 
@@ -128,7 +128,7 @@ describe("WhmApiRequest: ", () => {
         });
         const genReq = request.generate();
         expect(genReq.body).toMatch(
-            "api.sort.enable=1&api.sort.a.field=title&api.sort.a.reverse=1&api.sort.a.method=lexicographic"
+            "api.sort.enable=1&api.sort.a.field=title&api.sort.a.reverse=1&api.sort.a.method=lexicographic",
         );
     });
 
@@ -150,7 +150,7 @@ describe("WhmApiRequest: ", () => {
         });
         const genReq = request.generate();
         expect(genReq.body).toMatch(
-            "api.sort.enable=1&api.sort.a.field=title&api.sort.a.reverse=1&api.sort.a.method=lexicographic"
+            "api.sort.enable=1&api.sort.a.field=title&api.sort.a.reverse=1&api.sort.a.method=lexicographic",
         );
     });
 

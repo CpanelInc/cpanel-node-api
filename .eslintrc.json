@@ -26,7 +26,8 @@
                     "double",
                     { "allowTemplateLiterals": true, "avoidEscape": true }
                 ],
-                "spaced-comment": ["error", "always", { "exceptions": ["-*"] }]
+                "spaced-comment": ["error", "always", { "exceptions": ["-*"] }],
+                "@typescript-eslint/no-explicit-any": "off"
             }
         }
     ]

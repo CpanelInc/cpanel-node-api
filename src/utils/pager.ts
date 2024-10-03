@@ -67,13 +67,13 @@ export class Pager implements IPager {
     constructor(page = 1, pageSize: number = DEFAULT_PAGE_SIZE) {
         if (page <= 0) {
             throw new Error(
-                "The page must be 1 or greater. This is the logical page, not a programming index."
+                "The page must be 1 or greater. This is the logical page, not a programming index.",
             );
         }
 
         if (pageSize <= 0) {
             throw new Error(
-                "The pageSize must be set to 'ALL' or a number > 0"
+                "The pageSize must be set to 'ALL' or a number > 0",
             );
         }
 

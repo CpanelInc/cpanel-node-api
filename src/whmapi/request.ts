@@ -89,7 +89,7 @@ export class WhmApiRequest extends Request {
     addHeader(header: Header): Request {
         if (header instanceof CpanelApiTokenHeader) {
             throw new CpanelApiTokenMismatchError(
-                "A CpanelApiTokenHeader cannot be used on a WhmApiRequest"
+                "A CpanelApiTokenHeader cannot be used on a WhmApiRequest",
             );
         }
         super.addHeader(header);
@@ -153,14 +153,14 @@ export class WhmApiRequest extends Request {
             }
 
             const sortPrefix = `api.sort.${this._make_whm_api_fieldspec_from_number(
-                index
+                index,
             )}`;
 
             params.push({ name: `${sortPrefix}.field`, value: sort.column });
             params.push({
                 name: `${sortPrefix}.reverse`,
                 value: Perl.fromBoolean(
-                    sort.direction !== SortDirection.Ascending
+                    sort.direction !== SortDirection.Ascending,
                 ),
             });
             params.push({
@@ -197,7 +197,7 @@ export class WhmApiRequest extends Request {
                 // eslint-disable-next-line no-case-declarations -- improves readability
                 const key = FilterOperator[operator];
                 throw new Error(
-                    `Unrecoginzed FilterOperator ${key} for WHM API 1`
+                    `Unrecoginzed FilterOperator ${key} for WHM API 1`,
                 );
         }
     }
@@ -221,7 +221,7 @@ export class WhmApiRequest extends Request {
             }
 
             const filterPrefix = `api.filter.${this._make_whm_api_fieldspec_from_number(
-                index
+                index,
             )}`;
             params.push({
                 name: `${filterPrefix}.field`,
@@ -287,7 +287,7 @@ export class WhmApiRequest extends Request {
         // Needed for or pure js clients since they don't get the compiler checks
         if (apiType != WhmApiType.JsonApi && apiType != WhmApiType.XmlApi) {
             throw new Error(
-                "You must define the API type for the whmapi call before you generate a request."
+                "You must define the API type for the whmapi call before you generate a request.",
             );
         } else {
             this.apiType = apiType;
@@ -295,7 +295,7 @@ export class WhmApiRequest extends Request {
 
         if (!this.method) {
             throw new Error(
-                "You must define a method for the WHM API call before you generate a request"
+                "You must define a method for the WHM API call before you generate a request",
             );
         }
     }

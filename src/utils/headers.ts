@@ -80,7 +80,7 @@ export class Headers {
     toArray(): Header[] {
         const copy: Header[] = [];
         this.headers.forEach((h) =>
-            copy.push({ name: h.name, value: h.value })
+            copy.push({ name: h.name, value: h.value }),
         );
         return copy;
     }
@@ -132,17 +132,17 @@ export class CpanelApiTokenHeader extends CustomHeader {
     constructor(token: string, user?: string) {
         if (!token) {
             throw new CpanelApiTokenInvalidError(
-                "You must pass a valid token to the constructor."
+                "You must pass a valid token to the constructor.",
             );
         }
         if (!user && !/^.+[:]/.test(token)) {
             throw new CpanelApiTokenInvalidError(
-                "You must pass a cPanel username associated with the cPanel API token."
+                "You must pass a cPanel username associated with the cPanel API token.",
             );
         }
         if (!user && !/[:].+$/.test(token)) {
             throw new CpanelApiTokenInvalidError(
-                "You must pass a valid cPanel API token."
+                "You must pass a valid cPanel API token.",
             );
         }
         super({
@@ -176,17 +176,17 @@ export class WhmApiTokenHeader extends CustomHeader {
     constructor(token: string, user?: string) {
         if (!token) {
             throw new WhmApiTokenInvalidError(
-                "You must pass a valid token to the constructor."
+                "You must pass a valid token to the constructor.",
             );
         }
         if (!user && !/^.+:/.test(token)) {
             throw new WhmApiTokenInvalidError(
-                "You must pass a WHM username associated with the WHM API token."
+                "You must pass a WHM username associated with the WHM API token.",
             );
         }
         if (!user && !/:.+$/.test(token)) {
             throw new WhmApiTokenInvalidError(
-                "You must pass a valid WHM API token."
+                "You must pass a valid WHM API token.",
             );
         }
         super({

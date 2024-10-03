@@ -22,7 +22,7 @@
 
 import * as Perl from "./utils/perl";
 
-import { IRequest, Request, GenerateRule } from "./request";
+import { IRequest, Request } from "./request";
 
 import { Argument } from "./utils/argument";
 
@@ -45,7 +45,7 @@ class MockRequest extends Request {
         super(init);
     }
 
-    generate(rule?: GenerateRule): RequestInfo {
+    generate(): RequestInfo {
         return {
             headers: new Headers([
                 { name: "content-type", value: "text/plain" },
@@ -131,7 +131,7 @@ describe("Request derived object that implements generate", () => {
             "set",
         ]);
         expect(request.pager as unknown).toEqual(
-            jasmine.objectContaining({ page: 1, pageSize: 20 })
+            jasmine.objectContaining({ page: 1, pageSize: 20 }),
         );
     });
 
@@ -180,8 +180,8 @@ describe("Request derived object that implements generate", () => {
                 new Sort(
                     "name",
                     SortDirection.Descending,
-                    SortType.Lexicographic
-                )
+                    SortType.Lexicographic,
+                ),
             );
         });
 
@@ -190,8 +190,8 @@ describe("Request derived object that implements generate", () => {
                 new Sort(
                     "name",
                     SortDirection.Descending,
-                    SortType.Lexicographic
-                )
+                    SortType.Lexicographic,
+                ),
             );
             expect(request.sorts).toBeDefined();
             expect(request.sorts.length).toBe(1);
@@ -199,8 +199,8 @@ describe("Request derived object that implements generate", () => {
                 new Sort(
                     "name",
                     SortDirection.Descending,
-                    SortType.Lexicographic
-                )
+                    SortType.Lexicographic,
+                ),
             );
         });
     });
@@ -226,8 +226,8 @@ describe("Request derived object that implements generate", () => {
                 new Filter(
                     "enabled",
                     FilterOperator.Equal,
-                    Perl.fromBoolean(true)
-                )
+                    Perl.fromBoolean(true),
+                ),
             );
         });
 
@@ -236,8 +236,8 @@ describe("Request derived object that implements generate", () => {
                 new Filter(
                     "enabled",
                     FilterOperator.Equal,
-                    Perl.fromBoolean(true)
-                )
+                    Perl.fromBoolean(true),
+                ),
             );
             expect(request.filters).toBeDefined();
             expect(request.filters.length).toBe(1);
@@ -245,8 +245,8 @@ describe("Request derived object that implements generate", () => {
                 new Filter(
                     "enabled",
                     FilterOperator.Equal,
-                    Perl.fromBoolean(true)
-                )
+                    Perl.fromBoolean(true),
+                ),
             );
         });
     });
@@ -280,14 +280,14 @@ describe("Request derived object that implements generate", () => {
         it("should add pager using the interface", () => {
             request.paginate({ page: 10, pageSize: 25 });
             expect(request.pager as unknown).toEqual(
-                jasmine.objectContaining({ page: 10, pageSize: 25 })
+                jasmine.objectContaining({ page: 10, pageSize: 25 }),
             );
         });
 
         it("should add pager using object", () => {
             request.paginate(new Pager(10, 25));
             expect(request.pager as unknown).toEqual(
-                jasmine.objectContaining({ page: 10, pageSize: 25 })
+                jasmine.objectContaining({ page: 10, pageSize: 25 }),
             );
         });
     });

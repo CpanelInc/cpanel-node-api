@@ -31,21 +31,21 @@ describe("UapiResponse", () => {
         });
         it("should report failure for any 0 status", () => {
             expect(new UapiResponse({ data: {}, status: "0" }).success).toBe(
-                false
+                false,
             );
             expect(new UapiResponse({ data: {}, status: 0 }).success).toBe(
-                false
+                false,
             );
             expect(new UapiResponse({ data: {}, status: "" }).success).toBe(
-                false
+                false,
             );
         });
         it("should report success for any 1 status", () => {
             expect(new UapiResponse({ data: {}, status: "1" }).success).toBe(
-                true
+                true,
             );
             expect(new UapiResponse({ data: {}, status: 1 }).success).toBe(
-                true
+                true,
             );
         });
         it("should store the data property if present in the response", () => {

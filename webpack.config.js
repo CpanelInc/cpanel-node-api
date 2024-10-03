@@ -43,7 +43,7 @@ function buildConfig(env) {
         return prodConfigOptions;
     } else {
         console.log(
-            "Wrong webpack build parameter. Possible choices: 'dev' or 'prod'."
+            "Wrong webpack build parameter. Possible choices: 'dev' or 'prod'.",
         );
     }
 }

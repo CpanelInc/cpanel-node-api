@@ -33,7 +33,7 @@ describe("Filter Class", () => {
             const filter = new Filter(
                 "name",
                 FilterOperator.Contains,
-                "kermit"
+                "kermit",
             );
             expect(filter).toBeDefined();
             expect(filter.column).toBe("name");

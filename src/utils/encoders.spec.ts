@@ -108,20 +108,20 @@ describe("JsonArgumentEncoder", () => {
         expect(encoder.encode("data", true, false)).toBe('"data":true,');
         expect(encoder.encode("data", [1, 2, 3], true)).toBe('"data":[1,2,3]');
         expect(encoder.encode("data", [1, 2, 3], false)).toBe(
-            '"data":[1,2,3],'
+            '"data":[1,2,3],',
         );
         expect(encoder.encode("data", { a: 1, b: 2 }, true)).toBe(
-            '"data":{"a":1,"b":2}'
+            '"data":{"a":1,"b":2}',
         );
         expect(encoder.encode("data", { a: 1, b: 2 }, false)).toBe(
-            '"data":{"a":1,"b":2},'
+            '"data":{"a":1,"b":2},',
         );
     });
 
     it("should throw an error when passed a value that can not be serialized", () => {
         expect(() => encoder.encode("", "", false)).toThrowError();
         expect(() =>
-            encoder.encode("", { a: 1, b: () => true }, false)
+            encoder.encode("", { a: 1, b: () => true }, false),
         ).toThrowError();
     });
 });

@@ -66,7 +66,7 @@ export class UapiRequest extends Request {
     addHeader(header: Header): Request {
         if (header instanceof WhmApiTokenHeader) {
             throw new WhmApiTokenMismatchError(
-                "A WhmApiTokenHeader cannot be used on a CpanelApiRequest"
+                "A WhmApiTokenHeader cannot be used on a CpanelApiRequest",
             );
         }
         super.addHeader(header);
@@ -118,7 +118,7 @@ export class UapiRequest extends Request {
             params.push({
                 name: "api.sort_reverse_" + index,
                 value: Perl.fromBoolean(
-                    sort.direction !== SortDirection.Ascending
+                    sort.direction !== SortDirection.Ascending,
                 ),
             });
             params.push({
@@ -259,12 +259,12 @@ export class UapiRequest extends Request {
         // Needed for pure JS clients, since they don't get the compiler checks
         if (!this.namespace) {
             throw new Error(
-                "You must define a namespace for the UAPI call before you generate a request"
+                "You must define a namespace for the UAPI call before you generate a request",
             );
         }
         if (!this.method) {
             throw new Error(
-                "You must define a method for the UAPI call before you generate a request"
+                "You must define a method for the UAPI call before you generate a request",
             );
         }
 

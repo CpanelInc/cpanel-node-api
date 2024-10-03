@@ -69,7 +69,7 @@ export class DefaultArgumentSerializationRules {
                     verb: label,
                     dataInBody: false,
                 };
-            }
+            },
         );
 
         [HttpVerb.POST, HttpVerb.PUT, HttpVerb.PATCH].forEach(
@@ -79,7 +79,7 @@ export class DefaultArgumentSerializationRules {
                     verb: label,
                     dataInBody: true,
                 };
-            }
+            },
         );
     }
 

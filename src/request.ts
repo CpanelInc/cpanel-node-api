@@ -294,7 +294,7 @@ export abstract class Request {
             this.filters.push(filter);
         } else {
             this.filters.push(
-                new Filter(filter.column, filter.operator, filter.value)
+                new Filter(filter.column, filter.operator, filter.value),
             );
         }
         return this;

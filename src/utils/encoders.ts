@@ -137,7 +137,7 @@ export class JsonArgumentEncoder implements IArgumentEncoder {
         }
         if (!json.isSerializable(value)) {
             throw new Error(
-                "The passed in value can not be serialized to JSON"
+                "The passed in value can not be serialized to JSON",
             );
         }
         return (

@@ -84,7 +84,7 @@ describe("CpanelApiTokenHeader: ", () => {
     describe("when you attempt to pass an empty token", () => {
         it("should throw an error", () => {
             expect(() => new CpanelApiTokenHeader("")).toThrowError(
-                CpanelApiTokenInvalidError
+                CpanelApiTokenInvalidError,
             );
         });
     });
@@ -92,7 +92,7 @@ describe("CpanelApiTokenHeader: ", () => {
     describe("when you attempt to pass an token and no user", () => {
         it("should throw an error", () => {
             expect(() => new CpanelApiTokenHeader("fake")).toThrowError(
-                CpanelApiTokenInvalidError
+                CpanelApiTokenInvalidError,
             );
         });
     });
@@ -100,7 +100,7 @@ describe("CpanelApiTokenHeader: ", () => {
     describe("when you attempt to pass an token and an empty user", () => {
         it("should throw an error", () => {
             expect(() => new CpanelApiTokenHeader("fake", "")).toThrowError(
-                CpanelApiTokenInvalidError
+                CpanelApiTokenInvalidError,
             );
         });
     });
@@ -108,7 +108,7 @@ describe("CpanelApiTokenHeader: ", () => {
     describe("when you attempt to pass an token and an empty user prefix", () => {
         it("should throw an error", () => {
             expect(() => new CpanelApiTokenHeader(":fake")).toThrowError(
-                CpanelApiTokenInvalidError
+                CpanelApiTokenInvalidError,
             );
         });
     });
@@ -116,7 +116,7 @@ describe("CpanelApiTokenHeader: ", () => {
     describe("when you attempt to pass an empty token with a user prefix", () => {
         it("should throw an error", () => {
             expect(() => new CpanelApiTokenHeader("user:")).toThrowError(
-                CpanelApiTokenInvalidError
+                CpanelApiTokenInvalidError,
             );
         });
     });
@@ -146,7 +146,7 @@ describe("WhmApiTokenHeader: ", () => {
     describe("when you attempt to pass an empty token", () => {
         it("should throw an error", () => {
             expect(() => new WhmApiTokenHeader("")).toThrowError(
-                WhmApiTokenInvalidError
+                WhmApiTokenInvalidError,
             );
         });
     });
@@ -160,7 +160,7 @@ describe("WhmApiTokenHeader: ", () => {
     describe("when you attempt to pass an token and an empty user", () => {
         it("should throw an error", () => {
             expect(() => new WhmApiTokenHeader("fake", "")).toThrowError(
-                WhmApiTokenInvalidError
+                WhmApiTokenInvalidError,
             );
         });
     });
@@ -168,7 +168,7 @@ describe("WhmApiTokenHeader: ", () => {
     describe("when you attempt to pass an token and an empty user prefix", () => {
         it("should throw an error", () => {
             expect(() => new WhmApiTokenHeader(":fake")).toThrowError(
-                WhmApiTokenInvalidError
+                WhmApiTokenInvalidError,
             );
         });
     });
@@ -176,7 +176,7 @@ describe("WhmApiTokenHeader: ", () => {
     describe("when you attempt to pass an empty token with a user prefix", () => {
         it("should throw an error", () => {
             expect(() => new WhmApiTokenHeader("user:")).toThrowError(
-                WhmApiTokenInvalidError
+                WhmApiTokenInvalidError,
             );
         });
     });

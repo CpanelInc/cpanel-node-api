@@ -1,4 +1,9 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npx lint-staged
+# use npx22 if available else use npx
+if command -v /usr/local/cpanel/3rdparty/bin/npx22 >/dev/null 2>&1; then
+  /usr/local/cpanel/3rdparty/bin/npx22 lint-staged
+else
+  npx lint-staged
+fi
